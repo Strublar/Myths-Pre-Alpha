@@ -1,0 +1,39 @@
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.csprojAssemblyReference.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.AssemblyInfoInputs.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.AssemblyInfo.cs
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.csproj.CoreCompileInputs.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.exe
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.deps.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.runtimeconfig.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.runtimeconfig.dev.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.dll
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.pdb
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.dll
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.pdb
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Repairing 2\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.genruntimeconfig.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.exe
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.deps.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.runtimeconfig.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.runtimeconfig.dev.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.dll
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.pdb
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.csprojAssemblyReference.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.AssemblyInfoInputs.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.AssemblyInfo.cs
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.csproj.CoreCompileInputs.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.dll
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.pdb
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.genruntimeconfig.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.exe
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.deps.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.runtimeconfig.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.runtimeconfig.dev.json
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.dll
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Debug\netcoreapp3.1\Myths_Server.pdb
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.csprojAssemblyReference.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.AssemblyInfoInputs.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.AssemblyInfo.cs
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.csproj.CoreCompileInputs.cache
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.dll
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.pdb
+C:\Users\daluz\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Debug\netcoreapp3.1\Myths_Server.genruntimeconfig.cache

@@ -1,0 +1,21 @@
+Id;Name;description
+0;Echanuffement;+2 maitrise feu
+1;Tir de precision;Pousse de 2 cases les personnages en zone 1
+2;Enracinement;-2 mobilite aux ennemis en zone 1 jusqu'a la fin de leur prochain tour
+3;Evocation;+1 maitrise Feu, Terre et Air
+4;Dragon protecteur;+4 Armure et 4 barriere aux allies en zone 2
+5;omg;+1 maitrise arcane a tous les allies
+6;Prete a combattre;+1 mobilite jusqua la fin du tour
+7;Esprit latent;Attire de 2 cases les ennemis alignes jusqu'a 3 cases
+8;Cri de guerre;+5 attaque jusqu'a la fin du tour
+9;Jamais seule;Tous les personnages gagnent une maitrise tenebre
+10;Magma;Gagne autant de jauge terre que vous gagnez de jauge feu
+11;Pas leger;+1 maitrise air lorsqu'il se deplace
+12;Ecorces regeneratrices;Quand un allie gagne de l'armure, il se soigne de 2
+13;Maitre des elements;+1 attaque par maitrise
+14;Egide;+3 armure et 3 barriere aux Mythes allies appeles
+15;viiiiite;+1 mobilite
+16;Foi;Fin de tour : Se soigne de 3
+17;Lenteur;-1 mobilite
+18;Devastation;Debut de tour : Inflige 4 degats physiques aux ennemis en zone 1
+19;Sombre pacte;+1 energie
