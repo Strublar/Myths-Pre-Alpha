@@ -9,6 +9,6 @@ public class TurnCounterBehaviour : MonoBehaviour
 
     public void UpdateCounter()
     {
-        counter.text = turnCounter.ToString();
+        counter.text = (turnCounter/2).ToString();
     }
 }

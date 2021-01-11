@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BeginTurnTooltipBehaviour
     - CallCounterBehaviour
     - DamageBubbleBehaviour
     - EndTurnButtonBehaviour
@@ -33,6 +34,12 @@ ScriptsOnlyBuild:
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshPro
     - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -77,63 +84,63 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11158}
-    - Class: 114
       Script: {instanceID: 11160}
     - Class: 114
       Script: {instanceID: 11162}
     - Class: 114
-      Script: {instanceID: 11180}
+      Script: {instanceID: 11182}
     - Class: 114
-      Script: {instanceID: 11388}
+      Script: {instanceID: 11390}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11526}
     - Class: 114
-      Script: {instanceID: 11730}
+      Script: {instanceID: 11732}
     - Class: 114
-      Script: {instanceID: 11796}
+      Script: {instanceID: 11798}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 11990}
+      Script: {instanceID: 11992}
     - Class: 114
-      Script: {instanceID: 12072}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12102}
+      Script: {instanceID: 12104}
     - Class: 114
-      Script: {instanceID: 12142}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 12294}
+      Script: {instanceID: 12296}
     - Class: 114
-      Script: {instanceID: 12374}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 12426}
     - Class: 114
-      Script: {instanceID: 12544}
+      Script: {instanceID: 12546}
     - Class: 114
-      Script: {instanceID: 12556}
+      Script: {instanceID: 12558}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 12630}
     - Class: 114
-      Script: {instanceID: 12694}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 12730}
+      Script: {instanceID: 12700}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12734}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 12826}
+      Script: {instanceID: 12820}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12830}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12846}
     - Class: 114
-      Script: {instanceID: 12966}
+      Script: {instanceID: 12870}
     - Class: 114
-      Script: {instanceID: 13070}
+      Script: {instanceID: 12970}
     - Class: 114
-      Script: {instanceID: 13084}
+      Script: {instanceID: 13074}
+    - Class: 114
+      Script: {instanceID: 13088}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -194,81 +201,81 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11158}
-    - Class: 114
       Script: {instanceID: 11160}
     - Class: 114
       Script: {instanceID: 11162}
     - Class: 114
-      Script: {instanceID: 11180}
+      Script: {instanceID: 11164}
     - Class: 114
-      Script: {instanceID: 11318}
+      Script: {instanceID: 11182}
     - Class: 114
-      Script: {instanceID: 11388}
+      Script: {instanceID: 11320}
     - Class: 114
-      Script: {instanceID: 11444}
+      Script: {instanceID: 11390}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11446}
     - Class: 114
-      Script: {instanceID: 11718}
+      Script: {instanceID: 11526}
     - Class: 114
-      Script: {instanceID: 11730}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11796}
+      Script: {instanceID: 11732}
     - Class: 114
-      Script: {instanceID: 11822}
+      Script: {instanceID: 11798}
     - Class: 114
-      Script: {instanceID: 11826}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 11828}
     - Class: 114
-      Script: {instanceID: 12102}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 12142}
+      Script: {instanceID: 12104}
     - Class: 114
-      Script: {instanceID: 12294}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 12374}
+      Script: {instanceID: 12296}
     - Class: 114
-      Script: {instanceID: 12390}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12434}
+      Script: {instanceID: 12426}
     - Class: 114
-      Script: {instanceID: 12440}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12544}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12556}
+      Script: {instanceID: 12546}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 12558}
     - Class: 114
-      Script: {instanceID: 12694}
+      Script: {instanceID: 12630}
     - Class: 114
-      Script: {instanceID: 12730}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12734}
     - Class: 114
-      Script: {instanceID: 12806}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12810}
     - Class: 114
-      Script: {instanceID: 12826}
+      Script: {instanceID: 12820}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12830}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12846}
     - Class: 114
       Script: {instanceID: 12866}
     - Class: 114
-      Script: {instanceID: 12966}
+      Script: {instanceID: 12870}
     - Class: 114
-      Script: {instanceID: 13070}
+      Script: {instanceID: 12970}
     - Class: 114
-      Script: {instanceID: 25042}
+      Script: {instanceID: 13074}
     - Class: 114
-      Script: {instanceID: 25298}
+      Script: {instanceID: 32436}
+    - Class: 114
+      Script: {instanceID: 32734}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -576,7 +583,7 @@ ScriptsOnlyBuild:
     className: TMP_Asset
   - hash:
       serializedVersion: 2
-      Hash: 5f0bf135ccd661963f7821a1db441122
+      Hash: dcd598bb7036e0d4c695d3219eb7ad27
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -624,7 +631,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: edc4584b6f3b9e059a0e44ed3f8dc7e8
+      Hash: 670a728a1c112fb643744d2658a50987
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TileBehaviour
@@ -720,7 +727,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: a721e34573ece11daf5b8e50787032bd
+      Hash: 29073ecc6cfaafd2db044db2fd363ea8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MythUIBehaviour
@@ -754,6 +761,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BeginTurnTooltipBehaviour
   - hash:
       serializedVersion: 2
       Hash: 88cc9df3c6fc697bfbeacd24c0d6f2d7
@@ -914,4 +927,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/LoginScene.unity
   - Assets/Scenes/FightScene.unity
-  playerPath: C:/Users/daluz/Desktop/Myths - Unity/Myths/Myths-Client/Build/Myths-Client.exe
+  playerPath: C:/Users/daluz/Desktop/Myths - Unity/Myths/Myths-Pre-Alpha/Myths-Client/Build/Myths.exe

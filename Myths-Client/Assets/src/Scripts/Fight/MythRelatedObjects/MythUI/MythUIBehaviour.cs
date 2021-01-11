@@ -9,11 +9,10 @@ public class MythUIBehaviour : MonoBehaviour
     #region Attributes
 
     private Myth linkedMyth = null;
-    private int maxHp = -1;
     //Children objects
 
     public UnityEngine.UI.Text nameTag;
-    public UnityEngine.UI.Text hpTag, armorTag, barrierTag, maxHpTag;
+    public UnityEngine.UI.Text hpTag, armorTag, barrierTag, maxHpTag,maxArmorTag,maxBarrierTag;
     public GameObject portrait,backGround, toolTip, deadCross;
     public bool isMouseOver;
     public float timer;

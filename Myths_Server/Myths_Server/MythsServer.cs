@@ -104,7 +104,7 @@ namespace Myths_Server
             try
             {
                 user.ClientStream.Write(message.GetBytes(),0,256);
-                Thread.Sleep(5);
+                Thread.Sleep(10);
             }
             catch (Exception e)
             {

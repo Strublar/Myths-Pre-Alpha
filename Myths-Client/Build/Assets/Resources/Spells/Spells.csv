@@ -2,11 +2,11 @@ Id;Name;energyCost;minrange;maxrange;Element;Shape;description
 0;Deflagration;4;1;2;2;Normal;Inflige 5 degats magiques et gagne 1 maitrise feu si une cible est touchee
 1;Eruption;3;1;2;2;Normal;Inflige 4 degats magiques en zone 1
 2;Pyroclaste;5;1;2;4;Normal;Inflige 8 degats magiques
-3;Meteor;8;1;3;2;Normal;Inflige 9 degats magiques en zone 2
+3;Meteor;8;1;3;2;Normal;Inflige 9 degats magiques aux ennemis en zone 2
 4;Fleche rapide;1;2;3;5;Normal;Inflige 1 degats physiques, Consomme 1 maitrise air : +1 degat et gagne 1 jauge air
 5;Tir harcelant;3;3;4;5;Normal;Inflige 4 degats physiques
 6;Pointe rocheuse;5;1;3;4;Normal;Inflige 6 degats physiques et gagne 1 maitrise terre si une cible est touchee
-7;Tir puissant;8;2;3;4;Normal;Inflige 13 degats bruts
+7;Tir puissant;8;2;3;4;Normal;Inflige 11 degats bruts
 8;Ecorce;3;0;3;4;Normal;La cible gagne 4 armure
 9;Embourber;7;0;0;3;Normal;Inflige 4 degats physiques aux ennemis en zone 1 et ils perdent 1 mobilite jusqu'a la fin de leur tour
 10;Frappe tronc;5;1;1;4;Normal;Inflige 4 degats physiques +3 si le lanceur a 70 armure ou plus
@@ -57,14 +57,14 @@ Id;Name;energyCost;minrange;maxrange;Element;Shape;description
 55;Pensee collective;0;0;0;1;Normal;Tous les allies gagnent 2 maitrise arcane
 56;Bouclier arcanique;3;0;3;6;Normal;La cible gagne 22 barriere
 57;Decharge arcanique;5;1;3;1;Normal;Inflige 6 degats magiques par maitrise en zone 1
-58;Jugement;8;1;1;6;Normal;Inflige 19 degats bruts
+58;Jugement;8;1;1;6;Normal;Inflige 16 degats bruts
 59;Soin de masse;3;0;0;6;Normal;Soigne tous les allies de 14
 60;Lame flamboyante;5;1;1;2;Normal;Inflige 8 degats physiques et gagne 4 attaque jusqu'a la fin de la partie
 61;Sceller;0;0;0;7;Normal;-2 appel a l'adversaire
 62;Terreur;10;0;0;7;Normal;Inflige 14 degats bruts a tous les ennemis
 63;Drain des fluides;5;1;2;3;Normal;Inflige 15 degats magiques, consomme 1 maitrise tenebre de la cible : +1 maitrise eau et tenebre et +5 degats
 64;Affutage;3;0;0;7;Normal;+6 attaque jusqu'a la fin de la partie
-65;Crochet;0;1;6;4;Normal;Attire la cible de 6 cases
+65;Crochet;0;1;6;4;Line;Attire la cible de 6 cases
 66;Massacre;5;1;1;7;Normal;Inflige 10 degats physiques. Si la cible a moins de 8 pv, inflige 8 degats bruts
 67;Don de pouvoir;3;1;3;7;Normal;La cible gagne 6 energie et 4 attaque ce tour
 68;Silence;0;1;3;7;Normal;Les ennemis en zone 1 perdent 5 energie au prochain tour

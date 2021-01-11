@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public TurnCounterBehaviour turnCounter;
     public HistoryBehaviour history;
     public TimerBehaviour timer;
+    public GameObject yourTurnObject;
 
     public static Queue<Action<object[]>> fightUpdates;
     public static Queue<object[]> fightUpdatesParam;
@@ -165,6 +166,9 @@ public class GameManager : MonoBehaviour
         int index = 5 * Mathf.Abs(playerId - localPlayerId) + mythTeamIndex;
         Debug.Log("Initializing Myth index = " + index);
         mythPortraits[index].LinkedMyth = players[playerId].Team[mythTeamIndex];
+        mythPortraits[index].maxHpTag.text = hp.ToString();
+        mythPortraits[index].maxArmorTag.text = armor.ToString();
+        mythPortraits[index].maxBarrierTag.text = barrier.ToString();
         mythPortraits[index].UpdateMyth();
 
     }
@@ -221,15 +225,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if(playerId == localPlayerId)
+        {
+            yourTurnObject.SetActive(true);
+        }
 
         playerNames[0].UpdateCurrentPlayer((playerId == localPlayerId));
         playerNames[1].UpdateCurrentPlayer((playerId != localPlayerId));
-        if(playerId == 0)
-        {
-            
-            turnCounter.UpdateCounter();
-            turnCounter.turnCounter++;
-        }
+
+        turnCounter.UpdateCounter();
+        turnCounter.turnCounter++;
+        
         timer.resetTimer();
         RefreshInterface();
         
@@ -298,6 +304,7 @@ public class GameManager : MonoBehaviour
             new Vector3(-30+10*unit.Stats[Stat.x], 2.5f, 38-10*unit.Stats[Stat.y]+4*localPlayerId), 
             cameraTransform.rotation) as GameObject;
 
+
         unit.Model.GetComponentInChildren<Animator>().Play("Base Layer.Run", 0, 2);
         if(unit.OwnerId == GameManager.gm.localPlayerId)
         {
@@ -340,6 +347,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
         RefreshInterface();
     }
 
@@ -352,6 +360,7 @@ public class GameManager : MonoBehaviour
         Vector3 targetPos = new Vector3(-30 + 10 * unit.Stats[Stat.x], 3, 38 - 10 * unit.Stats[Stat.y] + 4 * localPlayerId);
         iTween.MoveTo(unit.Model, targetPos, 2);
         unit.Model.GetComponentInChildren<Animator>().Play("Base Layer.Run", 0, 1);
+        
         RefreshInterface();
 
     }
@@ -422,6 +431,10 @@ public class GameManager : MonoBehaviour
                 panel.UpdatePanel();
             }
 
+        }
+        foreach (TileBehaviour tile in TileBehaviour.board.Values)
+        {
+            tile.UpdateUnitOnTile();
         }
 
         //Gauge

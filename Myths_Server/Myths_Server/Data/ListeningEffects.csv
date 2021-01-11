@@ -4,7 +4,7 @@ id;Name;ExecutionTrigger;ExT value;ExecutionTrigger;ExT value;ExecutionTrigger;E
 2;Rage_Buff;EndTurnTrigger;0;EffectHolderRecallTrigger;0;;;EndTurnTrigger;0;EffectHolderRecallTrigger;0;;;71;72;
 3;Rituel_Puissance_Buff;EndTurnTrigger;0;EffectHolderRecallTrigger;0;;;EndTurnTrigger;0;EffectHolderRecallTrigger;0;;;73;;
 4;Eruh_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;74;75;
-5;Eruh_Passive;EffectHolderOwnerGainFireGaugeTrigger;0;;;;;EffectHolderRecallTrigger;0;;;;;97;;
+5;Eruh_Passive;EffectHolderAttackTrigger;0;;;;;EffectHolderRecallTrigger;0;;;;;97;181;
 6;Martenis_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;76;;
 7;Martenis_Passive;EffectHolderMoveTrigger;0;;;;;EffectHolderRecallTrigger;0;;;;;98;;
 8;Terrestran_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;78;79;
@@ -12,7 +12,7 @@ id;Name;ExecutionTrigger;ExT value;ExecutionTrigger;ExT value;ExecutionTrigger;E
 10;Balathan_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;80;81;82
 11;Balathan_Passive;InstantTrigger;0;;;;;InstantTrigger;0;;;;;100;101;
 12;Anakiros_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;83;84;
-13;Anakiros_Passive;AllyCalledTrigger;0;;;;;EffectHolderRecallTrigger;0;;;;;104;105;
+13;Anakiros_Passive;EffectHolderRecallTrigger;0;;;;;EffectHolderRecallTrigger;0;;;;;104;;
 14;Oskour_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;85;;
 15;Oskour_Passive;InstantTrigger;0;;;;;EffectHolderRecallTrigger;0;;;;;;;
 16;Iralis_Call;InstantTrigger;0;;;;;InstantTrigger;0;;;;;86;87;

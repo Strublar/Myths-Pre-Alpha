@@ -8,7 +8,6 @@ public class TeambuilderMythBehaviour : MonoBehaviour
     #region Attributes
     private Myth linkedMyth = null;
    
-    private int maxHp = -1;
     //Parent
     public SelectedTeamBehaviour team;
 

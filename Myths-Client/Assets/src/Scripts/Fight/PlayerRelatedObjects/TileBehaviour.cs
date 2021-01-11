@@ -32,6 +32,7 @@ public class TileBehaviour : MonoBehaviour
     public SpriteRenderer[] masteries;
     public Sprite[] masteryTextures;
     public DamageBubbleBehaviour[] damageBubbles;
+    public GameObject selectedTileObject, allyUnit, enemyUnit;
 
     public GameObject passiveToolTip;
     public TextMeshPro toolTipText;
@@ -83,7 +84,8 @@ public class TileBehaviour : MonoBehaviour
         if(GameManager.gm.gameStarted)
         {
             GameManager.gm.selectedTile = this;
-            GetComponent<Renderer>().material.mainTexture = textureTileSelected;
+            //GetComponent<Renderer>().material.mainTexture = textureTileSelected;
+            selectedTileObject.SetActive(true);
 
             Unit unitOnTile = GameManager.gm.UnitOnTile(x, y);
             if(unitOnTile != null)
@@ -109,8 +111,8 @@ public class TileBehaviour : MonoBehaviour
             if (GameManager.gm.selectedTile == this)
             {
                 GameManager.gm.selectedTile = null;
-                GetComponent<Renderer>().material.mainTexture = currentTexture;
-
+                //GetComponent<Renderer>().material.mainTexture = currentTexture;
+                selectedTileObject.SetActive(false);
                 HideUnitTooltip();
                 isMouseOver = false;
                 HidePassiveTooltip();
@@ -125,36 +127,42 @@ public class TileBehaviour : MonoBehaviour
         Unit unitOnTile = GameManager.gm.UnitOnTile(x, y);
         if (unitOnTile != null)
         {
-            //TODO REGARDER L EQUIPE
-            GameManager.gm.selectedUnit = unitOnTile;
-            TileBehaviour.UpdateMovingTiles(unitOnTile);
+            if(unitOnTile.OwnerId == GameManager.gm.localPlayerId)
+            {
+                GameManager.gm.selectedUnit = unitOnTile;
+                TileBehaviour.UpdateMovingTiles(unitOnTile);
+            }
+            
         }
+        
     }
 
     private void OnMouseUp()
     {
-        Debug.Log("Drag&Drop from "+this.x+" "+this.y+" to "+
-            GameManager.gm.selectedTile.x+" "+ GameManager.gm.selectedTile.y);
-        if(GameManager.gm.selectedTile.currentTexture == textureTileMoving)
-        {
 
-            Unit unitOnTile = GameManager.gm.UnitOnTile(GameManager.gm.selectedTile.x, 
-                GameManager.gm.selectedTile.y);
-            if (GameManager.gm.selectedTile.currentTexture == GameManager.gm.selectedTile.textureTileMoving &&
-                unitOnTile==null )
+        if(GameManager.gm.selectedTile != null)
+        {
+            if (GameManager.gm.selectedTile.currentTexture == GameManager.gm.selectedTile.textureTileMoving)
             {
-                if (GameManager.gm.selectedUnit.Stats[Stat.canMove]>0)
+
+                Unit unitOnTile = GameManager.gm.UnitOnTile(GameManager.gm.selectedTile.x,
+                    GameManager.gm.selectedTile.y);
+                if (unitOnTile == null)
                 {
-                    Debug.Log("Moving");
-                    Server.SendMessageToServer(new MoveMessage(GameManager.gm.selectedUnit.Id,
-                        GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
+                    if (GameManager.gm.selectedUnit.Stats[Stat.canMove] > 0)
+                    {
+                        Debug.Log("Moving");
+                        Server.SendMessageToServer(new MoveMessage(GameManager.gm.selectedUnit.Id,
+                            GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
+                    }
+
+                    //DOING
+                    /*GameManager.gm.MoveUnit(GameManager.gm.selectedUnit,
+                    GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y);*/
                 }
-                
-                //DOING
-                /*GameManager.gm.MoveUnit(GameManager.gm.selectedUnit,
-                GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y);*/
             }
         }
+        
         TileBehaviour.ResetTiles();
     }
 
@@ -211,16 +219,33 @@ public class TileBehaviour : MonoBehaviour
     }
     #endregion
 
-    #region Methods
+    
 
-
-    #endregion
 
     #region Display Methods
     public void ResetTexture()
     {
         currentTexture = textureTileNormal;
         GetComponent<Renderer>().material.mainTexture = textureTileNormal;
+        
+    }
+
+    public void UpdateUnitOnTile()
+    {
+        Unit unitOnTile = GameManager.gm.UnitOnTile(x, y);
+        allyUnit.SetActive(false);
+        enemyUnit.SetActive(false);
+        if (unitOnTile != null)
+        {
+            if (unitOnTile.OwnerId == GameManager.gm.localPlayerId)
+            {
+                allyUnit.SetActive(true);
+            }
+            else
+            {
+                enemyUnit.SetActive(true);
+            }
+        }
     }
     public void UpdateMovingTexture()
     {

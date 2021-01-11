@@ -64,7 +64,7 @@ namespace Myths_Server
                             fightHandler.FireEvent(new CapturePortalEvent(entity.Id, target.Id));
                             fightHandler.FireEvent(new EntityStatChangedEvent(((Unit)target).Owner.Id, 
                                 ((Unit)target).Owner.Id, Stat.gaugeArcane,
-                                ((Unit)target).Owner.GetStat(Stat.gaugeArcane) + 2));
+                                ((Unit)target).Owner.GetStat(Stat.gaugeArcane) + 1));
                         }
                         
                     }

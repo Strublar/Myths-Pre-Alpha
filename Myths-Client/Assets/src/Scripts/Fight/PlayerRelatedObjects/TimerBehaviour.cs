@@ -23,7 +23,7 @@ public class TimerBehaviour : MonoBehaviour
 
     public void resetTimer()
     {
-        timer = 90;
+        timer = 120;
     }
 
     public void UpdateTimerText()

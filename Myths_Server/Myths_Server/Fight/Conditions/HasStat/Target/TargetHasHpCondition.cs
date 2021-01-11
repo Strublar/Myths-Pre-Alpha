@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Myths_Server
+{
+    /**
+     * -----Condition-----
+     * Abstract Class
+     * Determines if an effect should apply 
+     */
+    class TargetHasHpCondition : Condition
+    {
+
+        #region Attributes
+        #endregion
+
+        #region Getters & Setters
+        #endregion
+
+        #region Constructor
+        public TargetHasHpCondition()
+        {
+        }
+
+        
+        #endregion
+
+        #region Methods
+        public override bool IsValid(Context context)
+        {
+
+            Unit target = (Unit)context.FightHandler.Entities[context.HolderId];
+            if(target.GetStat(Stat.hp) >= Value)
+            {
+                return true;
+            }
+            
+            return false;
+
+        }
+        #endregion
+    }
+}

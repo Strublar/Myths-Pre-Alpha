@@ -11,7 +11,7 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 9;Tir_harcelant_Damage;DealPhysicalDamageEffect;4;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 10;Pointe_Rocheuse_Damage;DealPhysicalDamageEffect;6;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 11;Pointe_Rocheuse_Mastery;GainMasteryEffect;4;EffectSourceSelector;0;EffectSourceSelector;0;;;;;;
-12;Tir_puissant_Damage;DealTrueDamageEffect;13;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
+12;Tir_puissant_Damage;DealTrueDamageEffect;11;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 13;Ecorce_Armor;GainArmorEffect;4;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 14;Irrigation_Heal;HealEffect;11;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 15;Frappe_tronc_Damage;DealPhysicalDamageEffect;4;EffectHolderSelector;0;EffectSourceSelector;0;SourceHasNotArmorCondition;70;;;;
@@ -82,8 +82,8 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 80;Balathan_Call_Mastery1;GainMasteryEffect;2;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 81;Balathan_Call_Mastery2;GainMasteryEffect;4;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 82;Balathan_Call_Mastery3;GainMasteryEffect;5;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
-83;Anakiros_Call_Gain_Armor;GainArmorEffect;4;SimpleAlliesSelector;2;EffectSourceSelector;0;;;;;;
-84;Anakiros_Call_Gain_Barrier;GainBarrierEffect;4;SimpleAlliesSelector;2;EffectSourceSelector;0;;;;;;
+83;Anakiros_Call_Gain_Armor;GainArmorEffect;5;SimpleAlliesSelector;2;EffectSourceSelector;0;;;;;;
+84;Anakiros_Call_Gain_Barrier;GainBarrierEffect;5;SimpleAlliesSelector;2;EffectSourceSelector;0;;;;;;
 85;Oskour_Call_Mastery;GainMasteryEffect;1;AllAlliesSelector;0;EffectSourceSelector;0;;;;;;
 86;Iralis_Call_Gain_Mobility;GainMobilityEffect;1;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 87;Iralis_Call_Place_Buff;PlaceListeningEffectEffect;26;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
@@ -95,14 +95,14 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 94;Terrestran_Call_Buff_Gain_Mobility;GainMobilityEffect;2;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 95;Iralis_Call_Buff_Lose_Mobility;LoseMobilityEffect;1;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 96;Skordal_Call_Buff_Lose_Attack;LoseAttackEffect;5;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
-97;Eruh_Passive_Gauge;GainEarthGaugeEffect;1;EventTargetSelector;0;EffectSourceSelector;0;;;;;;
+97;Eruh_Passive_Gauge;GainEarthGaugeEffect;1;EffectSourceOwnerSelector;0;EffectSourceSelector;0;;;;;;
 98;Martenis_Passive_Mastery;GainMasteryEffect;5;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 99;Terrestran_Passive_Heal;HealEffect;2;EventTargetSelector;0;EffectSourceSelector;0;;;;;;
 100;Balathan_Passive_Place_Buff1;PlaceListeningEffectEffect;29;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 101;Balathan_Passive_Place_Buff2;PlaceListeningEffectEffect;30;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 102;Balathan_Passive_Buff1_Gain_Attack;GainAttackEffect;1;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 103;Balathan_Passive_Buff2_Lose_Attack;LoseAttackEffect;1;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
-104;Anakiros_Passive_Gain_Armor;GainArmorEffect;3;EventTargetSelector;0;EffectSourceSelector;0;;;;;;
+104;Anakiros_Passive_Gain_Call;GainCallEffect;1;EffectSourceSelector;0;EffectSourceSelector;0;;;;;;
 105;Anakiros_Passive_Gain_Barrier;GainBarrierEffect;3;EventTargetSelector;0;EffectSourceSelector;0;;;;;;
 106;Oskour_Passive_Place_Buff1;PlaceListeningEffectEffect;31;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 107;Oskour_Passive_Place_Buff2;PlaceListeningEffectEffect;32;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
@@ -143,7 +143,7 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 142;Pensee_Collective_Mastery2;GainMasteryEffect;1;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 143;Bouclier_Arcanique_Barrier;GainBarrierEffect;22;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 144;Decharge_Arcanique_Damage;DealMagicalDamagePerMasteryEffect;6;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
-145;Jugement_Damage;DealTrueDamageEffect;19;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
+145;Jugement_Damage;DealTrueDamageEffect;16;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 146;Soin_Masse_Heal;HealEffect;14;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 147;Lame_Flamboyante_Damage;DealPhysicalDamageEffect;8;EffectHolderSelector;0;EffectSourceSelector;0;;;;;;
 148;Lame_Flamboyante_Gain_Attack;GainAttackEffect;4;EffectSourceSelector;0;EffectSourceSelector;0;;;;;;
@@ -179,3 +179,4 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 178;Trait_Ombre_Cond_Damage;DealMagicalDamageEffect;7;EffectHolderSelector;0;EffectSourceSelector;0;TargetHasMasteryCondition;7;;;;
 179;Massacre_Excute;DealTrueDamageEffect;8;EffectHolderSelector;0;EffectSourceSelector;0;TargetHasNotHpCondition;9;;;;
 180;Trait_Ombre_Consume_Mastery;ConsumeMasteryEffect;7;EffectHolderSelector;0;EffectSourceSelector;0;TargetHasMasteryCondition;7;;;;
+181;Eruh_Passive_Gauge2;GainFireGaugeEffect;1;EffectSourceOwnerSelector;0;EffectSourceSelector;0;;;;;;

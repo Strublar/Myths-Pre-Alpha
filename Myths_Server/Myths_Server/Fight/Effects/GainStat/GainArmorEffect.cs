@@ -37,8 +37,12 @@ namespace Myths_Server
                     Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" Gains "+value+" armor");
 
                     Entity target = fightHandler.Entities[targetId];
-                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
-                        Stat.armor, target.GetStat(Stat.armor) + value));
+                    if (target.GetStat(Stat.armor) < target.Stats[Stat.armor])
+                    {
+                        //Not full health
+                        fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.armor,
+                            (int)MathF.Min(target.Stats[Stat.armor], target.GetStat(Stat.armor) + value)));
+                    }
                     fightHandler.FireEvent(new GainArmorEvent(targetId, targetId, value));
                 }
             }
