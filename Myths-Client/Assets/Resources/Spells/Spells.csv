@@ -1,71 +1,99 @@
 Id;Name;energyCost;minrange;maxrange;Element;Shape;description
-0;Deflagration;4;1;2;2;Normal;Inflige 5 degats magiques et gagne 1 maitrise feu si une cible est touchee
-1;Eruption;3;1;2;2;Normal;Inflige 4 degats magiques en zone 1
+0;Deflagration;4;1;2;2;Normal;Inflige 5 degats magiques et gagne 1 maitrise feu
+1;Eruption;3;1;2;2;Normal;Inflige 3 degats magiques aux ennemis en zone carree
 2;Pyroclaste;5;1;2;4;Normal;Inflige 8 degats magiques
-3;Meteor;8;1;3;2;Normal;Inflige 9 degats magiques aux ennemis en zone 2
+3;Meteor;8;1;3;2;NoLOS;Inflige 7 degats magiques aux ennemis en zone carree (sans ligne de vue)
 4;Fleche rapide;1;2;3;5;Normal;Inflige 1 degats physiques, Consomme 1 maitrise air : +1 degat et gagne 1 jauge air
-5;Tir harcelant;3;3;4;5;Normal;Inflige 4 degats physiques
-6;Pointe rocheuse;5;1;3;4;Normal;Inflige 6 degats physiques et gagne 1 maitrise terre si une cible est touchee
+5;Tir harcelant;3;3;4;5;NoLOS;Inflige 4 degats physiques (sans ligne de vue)
+6;Pointe rocheuse;5;1;3;4;Normal;Inflige 6 degats physiques et gagne 1 maitrise terre
 7;Tir puissant;8;2;3;4;Normal;Inflige 11 degats bruts
 8;Ecorce;3;0;3;4;Normal;La cible gagne 4 armure
-9;Embourber;7;0;0;3;Normal;Inflige 4 degats physiques aux ennemis en zone 1 et ils perdent 1 mobilite jusqu'a la fin de leur tour
+9;Embourber;2;1;2;3;Normal;Inflige 2 degats physiques, consomme une maitrise eau : -1 mobilite pour la cible pendant 1 tour
 10;Frappe tronc;5;1;1;4;Normal;Inflige 4 degats physiques +3 si le lanceur a 70 armure ou plus
 11;Racine aggripante;3;1;2;3;Line;Inflige 2 degats physiques en ligne et attire d'une case
-12;Projection de roche;4;1;2;4;Normal;Inflige 5 degats magiques en zone 1
-13;projection de feu;3;1;3;2;Normal;Inflige 4 degats magiques
-14;projection de vent;3;1;3;5;Line;Inflige 3 degats et pousse d'une case en ligne
-15;Evocation;2;0;0;5;Normal;Gagne 1 maitrise feu, terre et air
-16;Ecailles de protection;3;0;2;4;Normal;La cible gagne 3 armure et barriere
-17;Coup de queue;5;1;1;4;Normal;Inflige 6 degats physiques
-18;Souffle draconique;3;1;2;5;Line;Inflige 2 degats magiques et pousse d'une case en ligne
-19;Inspiration;3;0;0;5;Normal;Les allies en zone 1 gagnent 1 maitrise air
+12;Projection d'eau;4;1;3;3;Normal;Soigne la cible de 8
+13;projection de feu;3;1;3;2;Normal;Inflige 3 degats magiques +2 si le lanceur a au moins 7 attaque
+14;projection de vent;2;1;3;5;Line;Inflige 3 degats magiques en ligne Consomme une maitrise air : pousse d'une case
+15;Evocation;3;0;0;5;Normal;Gagne 1 maitrise feu, terre et air
+16;Ecailles de Quartz;1;1;2;6;Normal;Transfere son armure et sa barriere a la cible
+17;Coup de queue;5;1;1;5;Normal;Inflige 7 degats physiques et pousse d'une case
+18;Souffle;2;1;2;5;Normal;Inflige 3 degats physiques Consomme une maitrise Air : La cible perd 2 attaque ce tour
+19;Repos;4;0;0;6;Normal;Recharge l'armure et la barriere et se soigne de 5
 20;Paf;3;1;3;6;Normal;Inflige 2 degats magiques +2 si le lanceur a au moins 70 barriere
 21;Aled;2;0;3;6;Normal;La cible 3 barriere
-22;BOOM;5;1;3;1;Normal;Inflige 4 degats magiques en zone 1
+22;Switch;5;1;2;1;Normal;Echange de position avec l'allie cible
 23;hmmmm;4;0;0;1;Normal;Les allies en zone 1 gagnent 1 maitrise arcane
-24;Lueur ardente;3;0;2;2;Normal;La cible gagne 2 attaque ce tour +1 si elle a une maitrise feu
-25;Epee de feu;5;1;1;2;Normal;Inflige 4 degats physiques Si le lanceur a plus de 11 attaque : inflige egalement 3 degats bruts
-26;Aube radieuse;5;0;0;6;Normal;Tous les allies gagnent 1 maitrise feu et lumiere
+24;Lueur ardente;2;0;0;2;Normal;Gagne 3 attaque ce tour
+25;Epee de feu;5;1;1;2;Normal;Inflige 5 degats physiques Si le lanceur a plus de 12 attaque : Gagne 2 maitrises feu
+26;Aube radieuse;5;0;0;6;Normal;Le allies en zone 2 gagnent 1 maitrise feu et lumiere
 27;Priere de soin;3;0;0;6;Normal;Soigne les allies en zone 1 de 4
-28;Flot maudit;2;1;2;3;Normal;Inflige 3 degats magiques et la cible gagne 1 maitrise tenebre
+28;Flot maudit;2;1;2;3;Normal;Inflige 3 degats magiques Consomme une maitrise eau : +1 degat la cible gagne 1 maitrise tenebre
 29;Drain de vie;5;1;3;3;Normal;Inflige 5 degats magiques et se soigne de 5
-30;Cauchemar;8;1;1;7;Normal;Inflige 21 degats magiques
-31;Hanter;4;1;2;7;Normal;Inflige 6 degats magiques Consomme 1 maitrise tenebre sur la cible : +3 degats et gagne 1 maitrise tenebre
-32;Frappe brutale;3;1;1;4;Normal;Inflige 3 degats physiques aux enemis en zone 1
-33;Frappe enragee;5;1;1;7;Normal;Inflig 4 degats physiques +3 si le lanceur a 12 atk ou plus
-34;Rage;4;0;0;7;Normal;Gagne 4 attaque et 1 mobilite jusqu'a la fin du tour
-35;Protection;2;0;0;4;Normal;Gagne 2 armure et 2 barriere
+30;Cauchemar;8;1;1;7;Normal;Inflige 20 degats magiques
+31;Hanter;4;1;2;7;Normal;Inflige 5 degats magiques Consomme 1 maitrise tenebre sur la cible : +3 degats et gagne 1 maitrise tenebre
+32;Frappe brutale;5;1;1;4;Normal;Inflige 4 degats physiques aux enemis en zone 1
+33;Frappe enragee;5;1;1;7;Normal;Inflige 4 degats physiques +3 si le lanceur a 13 atk ou plus
+34;Rage;2;0;0;7;Normal;Gagne 3 attaque jusqu'a la fin du tour Consomme une maitrise tenebre : Gagne 1 mobilite
+35;Protection;3;0;0;4;Normal;Gagne 3 armure et 3 barriere
 36;Trait de l'ombre;4;1;3;7;Normal;Inflige 4 degats magiques Consomme une maitrise tenebre de la cible : +3 degats
 37;Rituel de puissance;6;0;0;1;Normal;Tous les allies en zone 2 gagnent 3 atk ce tour
 38;Rituel occulte;4;0;0;7;Normal;+1 maitrise tenebre aux personnages en zone 2
-39;Soin occulte;3;0;2;7;Normal;Soigne la cible de 3, Consomme 1 maitrise tenebre a la cible : soigne 3 de plus et gagne une maitrise tenebre
-40;Debordement de magma;0;0;0;2;Normal;+3 maitrise feu et +6 jauge feu
-41;Apoclypse;7;0;0;2;Normal;Chaque ennemi inflige 7 degats magiques aux ennemis en zone 1
-42;Tremblement;10;0;0;4;Normal;Inflige 21 degats magiques a tous les ennemis
+39;Soin occulte;3;0;2;7;Normal;Soigne la cible de 3 et elle gagne 1 maitrise tenebre
+40;Debordement de magma;0;0;0;2;Normal;+3 maitrise feu et +3 jauge feu
+41;Apoclypse;7;0;0;2;Normal;Chaque ennemi inflige 6 degats magiques aux ennemis en zone 1
+42;Tremblement;10;0;0;4;Normal;Inflige 12 degats magiques a tous les ennemis
 43;Tir de precision;5;1;3;4;Normal;inflige 17 degats physiques
-44;Tir de barrage;5;1;10;5;Normal;Inflige 13 degats magiques
-45;Fleche repoussante;3;1;3;5;Line;Inflige 12 degats physiques et pousse de 3 cases
-46;Seisme;8;0;0;4;Normal;Inflige 14 degats physiques en zone 2
-47;Branchages;5;0;0;4;Normal;Tous les allies gagnent 15 armure
-48;Racines;3;0;0;3;Normal;Inflige 5 degats physiques a tous les ennemis et ils perdent 2 mobilite jusqu'a la fin de leur tour
-49;Deferlement;3;1;3;2;Normal;Inflige 5 degats magiques par maitrise
-50;Surcharge;3;0;0;4;Normal;Gagne 2 attaque par maitrise jusqu'a la fin de la partie
-51;Manifestation elementaire;5;0;0;5;Normal;+5 jauge feu, terre et air
-52;Bourrasque;2;1;1;5;Normal;Inflige 7 degats magiques et pousse la cible de 4 cases
-53;Egide utime;5;1;2;4;Normal;La cible gagne 16 armure et 16 barriere
-54;Regard draconique;5;1;3;5;Normal;Inflige 10 degats magiques et la cible perd 3 energie au prochain tour
-55;Pensee collective;0;0;0;1;Normal;Tous les allies gagnent 2 maitrise arcane
-56;Bouclier arcanique;3;0;3;6;Normal;La cible gagne 22 barriere
+44;Tir de barrage;5;1;10;5;NoLOS;Inflige 11 degats magiques (sans ligne de vue)
+45;Fleche repoussante;3;1;3;5;Line;Inflige 10 degats physiques et pousse de 3 cases
+46;Seisme;8;0;0;4;Normal;Inflige 13 degats physiques en zone 2
+47;Branchages;5;0;0;4;Normal;Tous les allies gagnent 10 armure
+48;Racines;1;0;0;3;Normal;Tous les ennemis perdent 2 mobilite pendant 1 tour
+49;Deferlement;3;1;3;4;Normal;Inflige 5 degats magiques par maitrise
+50;Surcharge;3;0;0;3;Normal;Gagne 2 attaque par maitrise jusqu'a la fin de la partie
+51;Manifestation elementaire;5;0;0;5;Normal;+4 jauge feu, terre et air
+52;Bourrasque;2;1;1;5;Normal;Inflige 9 degats physiques et pousse la cible de 4 cases
+53;Egide utime;5;1;2;6;Normal;La cible gagne 18 armure et 18 barriere
+54;Regard draconique;5;1;3;5;Normal;Inflige 11 degats physiques et la cible perd 3 energie au prochain tour
+55;Pensee collective;3;0;0;1;Normal;Tous les allies gagnent 2 maitrise arcane
+56;Bouclier arcanique;3;0;3;6;Normal;La cible gagne 21 barriere
 57;Decharge arcanique;5;1;3;1;Normal;Inflige 6 degats magiques par maitrise en zone 1
-58;Jugement;8;1;1;6;Normal;Inflige 16 degats bruts
-59;Soin de masse;3;0;0;6;Normal;Soigne tous les allies de 14
-60;Lame flamboyante;5;1;1;2;Normal;Inflige 8 degats physiques et gagne 4 attaque jusqu'a la fin de la partie
+58;Jugement;8;1;1;6;Normal;Inflige 17 degats bruts
+59;Soin de masse;3;0;3;6;Normal;Soigne la cible de 16
+60;Lame flamboyante;5;1;1;2;Normal;Inflige 9 degats physiques et gagne 4 attaque jusqu'a la fin de la partie
 61;Sceller;0;0;0;7;Normal;-2 appel a l'adversaire
-62;Terreur;10;0;0;7;Normal;Inflige 14 degats bruts a tous les ennemis
-63;Drain des fluides;5;1;2;3;Normal;Inflige 15 degats magiques, consomme 1 maitrise tenebre de la cible : +1 maitrise eau et tenebre et +5 degats
-64;Affutage;3;0;0;7;Normal;+6 attaque jusqu'a la fin de la partie
+62;Terreur;10;0;0;7;Normal;Inflige 6 degats bruts a tous les ennemis
+63;Drain des fluides;5;1;2;3;Normal;Inflige 13 degats magiques, consomme 1 maitrise tenebre de la cible : +1 maitrise eau et tenebre et +5 degats
+64;Affutage;3;0;0;7;Normal;+5 attaque jusqu'a la fin de la partie
 65;Crochet;0;1;6;4;Line;Attire la cible de 6 cases
-66;Massacre;5;1;1;7;Normal;Inflige 10 degats physiques. Si la cible a moins de 8 pv, inflige 8 degats bruts
-67;Don de pouvoir;3;1;3;7;Normal;La cible gagne 6 energie et 4 attaque ce tour
-68;Silence;0;1;3;7;Normal;Les ennemis en zone 1 perdent 5 energie au prochain tour
+66;Massacre;5;1;1;7;Normal;Inflige 14 degats physiques et gagne 1 maitrise tenebre et roche
+67;Don de pouvoir;4;1;3;7;Normal;La cible gagne 6 energie et 4 attaque ce tour
+68;Silence;2;1;3;7;Normal;Les ennemis en zone 1 perdent 5 energie au prochain tour
 69;Appel spirituel;0;0;0;1;Normal;+2 appels
+70;Gonflage;5;0;0;3;Normal;Se soigne de 6 et gagne 2 maitrises eau
+71;Aspirer;3;1;2;6;Normal;Inflige 3 degats magiques et se soigne de 2
+72;Crachat sous pression;3;1;2;3;Normal;Inflige 6 degats magiques et perds 3 pv
+73;Crachat gluant;5;1;3;6;Normal;Les ennemis en zone 1 perdent 3 atk et 1 energie pendant 1 tour
+74;Reservoir;0;0;0;6;Normal;Se soigne de 19
+75;Absorber;5;1;1;6;Normal;Inflige 12 degats magiques et se soigne de 12
+76;Bombe a eau;5;1;3;3;Normal;Inflige 17 degats magiques en zone 1 et perds 10 pv
+77;Griffure;5;1;1;7;Normal;Inflige 5 degats physiques Cible isolee : +2 degats et la cible gagne 1 maitrise tenebre
+78;Morsure;3;1;1;7;Normal;Inflige 4 degats physiques Consomme une maitrise tenebre de la cible : Se soigne de 3
+79;Renifler;5;0;0;5;Normal;Gagne 1 maitrise air et 1 mobilite ce tour par ennemi avec une maitrise tenebre
+80;Laceration;2;1;1;5;Normal;Inflige 3 degat physique, Consomme une maitrise air : -1 mobilite pendant 1 tour
+81;Soif de sang;3;0;0;5;Normal;Gagne 2 maitrise air ainsi que 3 attaque et 1 mobilite jusqu'a la fin de la partie
+82;Predateur;0;1;5;5;NoLOS Tile;Se teleporte sur la case ciblee
+83;Hurlement;5;0;0;7;Normal;Inflige 9 degats physique aux ennemis en zone 1 et ils perent 3 atk et 3 energie pendant 1 tour
+84;Sillage;3;1;2;3;Line Tile NoLOS;Se deplace en ligne et inflige 5 degats magiques aux ennemis traverses
+85;Coup de tete;2;1;1;3;Normal;Inflige 3 degats magiques Consomme une maitrise eau : Pousse d'une case
+86;Encorner;7;1;1;1;Normal;Inflige 6 degats magiques et echange de place avec la cible
+87;Heurt;3;1;1;1;Normal;Inflige 4 degats magique Consomme une maitrise arcane : +2 degats
+88;Ruee fulguante;7;1;4;3;Line Tile NoLOS;Se deplace en ligne, inflige 18 degats magiques aux ennemis traverses et soigne 18 pv aux allie traverses
+89;Prise d'elan;0;0;0;3;Normal;+2 maitrise eau, +3 jauge eau et +1 mobilite ce tour
+90;En un eclair;0;1;2;1;NoLOS Tile;Se teleporte sur la case ciblee et gagne 2 maitrise arcane
+91;Frappe masquee;5;1;2;2;Normal;Inflige 7 degats physiques
+92;Peur;3;1;2;2;Line;Inflige 3 degats physiques et pousse d'une case en ligne
+93;Changement de visage;5;0;0;1;Normal;Echange l'armure et la barriere
+94;Nouveau masque;2;0;0;1;Normal;Gagne 3 armure et 3 barriere Consomme une maitrise arcane : Applique l'effet aux allies en zone 1
+95;Coup de theatre;0;1;2;1;Normal;Engage la cible
+96;Duo;0;1;3;2;Normal;+3 energie ce tour a la cible et au lanceur
+97;Scene;0;0;0;1;Normal;Capture tous les portails

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MythPanelBehaviour : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class MythPanelBehaviour : MonoBehaviour
     public SpellBehaviour[] spells, ults;
     public PassiveBehaviour passive;
     public UnityEngine.UI.Image recallBg;
-    public GameObject canAttack, canMove, recallButton;
+    public GameObject canAttack, canMove, recallButton, background, energyObject;
     #endregion
 
     #region Getters & Setters
@@ -48,12 +49,21 @@ public class MythPanelBehaviour : MonoBehaviour
         UpdateIsEngaged();
         UpdateActions();
         UpdatePassive();
+        UpdateState();
     }
 
     public void UpdateEnergy()
     {
-
-        energyTag.text = linkedMyth.Stats[Stat.energy].ToString();
+        if(linkedMyth.Stats[Stat.isCalled] == 1)
+        {
+            energyObject.SetActive(true);
+            energyTag.text = linkedMyth.Stats[Stat.energy].ToString();
+        }
+        else
+        {
+            energyObject.SetActive(false);
+        }
+        
     }
 
     public void UpdateName()
@@ -68,15 +78,23 @@ public class MythPanelBehaviour : MonoBehaviour
         ults[2].gameObject.SetActive(false);
         if (linkedMyth.Stats[Stat.isEngaged]==0)
         {
-            recallButton.SetActive(true);
-            if (linkedMyth.Stats[Stat.canRecall] == 0)
+            if(linkedMyth.Stats[Stat.isCalled]== 1)
+            {
+                recallButton.SetActive(true);
+            }
+            else
+            {
+                recallButton.SetActive(false);
+            }
+            
+/*            if (linkedMyth.Stats[Stat.canRecall] == 0)
             {
                 recallBg.color = new Color32(170, 170, 170, 255);
             }
             else
             {
                 recallBg.color = new Color32(119, 255, 255, 255);
-            }
+            }*/
         }
         else
         {
@@ -134,6 +152,32 @@ public class MythPanelBehaviour : MonoBehaviour
     public void UpdatePassive()
     {
         passive.InitMyth(linkedMyth);
+    }
+
+    public void UpdateState()
+    {
+
+        if (linkedMyth.Stats[Stat.isDead] == 1)
+        {
+            background.GetComponent<Image>().color = new Color32(173, 50, 50, 255);
+        }
+        else if (linkedMyth.Stats[Stat.isCalled] == 1 && linkedMyth.Stats[Stat.isEngaged] == 1)
+        {
+            background.GetComponent<Image>().color = new Color32(21, 209, 219, 255);
+        }
+        else if (linkedMyth.Stats[Stat.isEngaged] == 1 && linkedMyth.Stats[Stat.isCalled] == 0)
+        {
+            background.GetComponent<Image>().color = new Color32(0, 106, 150, 255);
+        }
+        else if (linkedMyth.Stats[Stat.isEngaged] == 0 && linkedMyth.Stats[Stat.isCalled] == 1)
+        {
+            background.GetComponent<Image>().color = new Color32(21, 209, 219, 255);
+        }
+        else
+        {
+            background.GetComponent<Image>().color = new Color32(0, 106, 150, 255);
+        }
+
     }
 
     public void RecallMyth()

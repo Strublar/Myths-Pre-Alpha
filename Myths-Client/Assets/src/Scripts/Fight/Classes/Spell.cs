@@ -18,7 +18,7 @@ public class Spell
     private Mastery element;
     private int energyCost;
     private int minRange, maxRange;
-    string shape;
+    private string shape;
 
 
     #endregion

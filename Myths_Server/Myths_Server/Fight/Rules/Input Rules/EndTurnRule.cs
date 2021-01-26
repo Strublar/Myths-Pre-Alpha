@@ -55,9 +55,8 @@ namespace Myths_Server
                 foreach (Entity ent in fightHandler.Entities.Values)
                 {
                     
-                    if (ent.Team == currentTeam)
+                    if (ent.Team == currentTeam && (ent.GetStat(Stat.isCalled) == 1 || ent is Player))
                     {
-                        Console.WriteLine("Debuug begin turn on " + ent.Definition.Name);
                         fightHandler.FireEvent(new BeginTurnEvent(ent.Id,ent.Id));
                     }
                 }

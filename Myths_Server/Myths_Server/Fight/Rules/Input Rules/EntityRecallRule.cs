@@ -25,7 +25,7 @@ namespace Myths_Server
             if(newEvent is EntityRecallEvent)
             {
                 Console.WriteLine("Recall rule activated");
-                if(fightHandler.Entities[newEvent.TargetId].GetStat(Stat.canRecall) == 1)
+                if(fightHandler.Entities[newEvent.TargetId].GetStat(Stat.isEngaged) == 0)
                 {
                     int calledCounter = 0;
                     foreach (Entity entity in fightHandler.Entities.Values)

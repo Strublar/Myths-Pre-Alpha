@@ -28,34 +28,31 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public override void Execute(Context context, FightHandler fightHandler)
+        public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
-            if(ConditionValid(context))
-            {
-                int computedValue = 0;
-                Entity source = fightHandler.Entities[context.SourceId];
-                if (source.GetStat(Stat.mastery1) != 0)
-                {
-                    computedValue += value;
-                }
-                if (source.GetStat(Stat.mastery2) != 0)
-                {
-                    computedValue += value;
-                }
-                if (source.GetStat(Stat.mastery2) != 0)
-                {
-                    computedValue += value;
-                }
-                value = computedValue;
-                foreach (int targetId in targets.GetTargets(context))
-                {
-                    Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" loses "+value+" calls");
 
-                    Entity target = fightHandler.Entities[targetId];
-                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
-                        Stat.calls, target.GetStat(Stat.calls) - value));
-                }
+            int computedValue = 0;
+            Entity source = fightHandler.Entities[context.SourceId];
+            if (source.GetStat(Stat.mastery1) != 0)
+            {
+                computedValue += value;
             }
+            if (source.GetStat(Stat.mastery2) != 0)
+            {
+                computedValue += value;
+            }
+            if (source.GetStat(Stat.mastery2) != 0)
+            {
+                computedValue += value;
+            }
+            value = computedValue;
+
+            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" loses "+value+" calls");
+
+            Entity target = fightHandler.Entities[targetId];
+            fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
+                Stat.calls, target.GetStat(Stat.calls) - value));
+
         }
         #endregion
     }

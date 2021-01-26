@@ -29,7 +29,7 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public virtual bool IsValid(Context context)
+        public virtual bool IsValid(int targetId, Context context)
         {
             //TODO
             return true;

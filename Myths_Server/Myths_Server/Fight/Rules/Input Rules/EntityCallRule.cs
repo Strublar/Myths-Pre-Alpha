@@ -49,7 +49,7 @@ namespace Myths_Server
                             Stat.y, callEvent.Y));
                         
                         fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.TargetId, callEvent.TargetId,
-                            Stat.canRecall, 0));
+                            Stat.canRecall, 1));
                         fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.TargetId, callEvent.TargetId,
                             Stat.energy, fightHandler.Entities[newEvent.TargetId].Stats[Stat.energy]));
                         fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.TargetId, callEvent.TargetId,

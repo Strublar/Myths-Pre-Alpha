@@ -23,11 +23,11 @@ namespace Myths_Server
         {
         }
 
-        
+
         #endregion
 
         #region Methods
-        public override bool IsValid(Context context)
+        public override bool IsValid(int targetId, Context context)
         {
 
             Unit source = (Unit)context.FightHandler.Entities[context.SourceId];

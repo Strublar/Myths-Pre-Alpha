@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<int, Entity> entities;
     public Dictionary<int, Player> players;
-    public int localPlayerId;
+    public int localPlayerId = 0;
     public int currentPlayer;
     public Transform cameraTransform;
 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public CallCounterBehaviour[] callCounters;
     public GameObject winScreen, loseScreen;
     public GameObject spellPrefab;
-    public GaugePanelBehaviour gaugePanel;
+    public GaugePanelBehaviour[] gaugePanels;
     public TurnCounterBehaviour turnCounter;
     public HistoryBehaviour history;
     public TimerBehaviour timer;
@@ -146,8 +146,11 @@ public class GameManager : MonoBehaviour
         players.Add(playerId,new Player(playerId, entityId, playerName));
         playerNames[playerId].UpdateName(playerName);
         callCounters[playerId].InitCounter(players[playerId]);
+        gaugePanels[playerId].InitGauge(players[playerId]);
         if (isLocalPlayer)
-            InitLocalPlayer(playerId);
+            localPlayerId = playerId;
+        if(players.Values.Count == 2)
+            InitLocalPlayer(localPlayerId);
     }
 
     public void InitMyth(int playerId, int mythTeamIndex, int entityId,
@@ -170,6 +173,11 @@ public class GameManager : MonoBehaviour
         mythPortraits[index].maxArmorTag.text = armor.ToString();
         mythPortraits[index].maxBarrierTag.text = barrier.ToString();
         mythPortraits[index].UpdateMyth();
+        if(playerId == localPlayerId)
+        {
+            panels[mythTeamIndex].InitPanel(players[playerId].Team[mythTeamIndex]);
+            panels[mythTeamIndex].UpdatePanel();
+        }
 
     }
 
@@ -186,6 +194,9 @@ public class GameManager : MonoBehaviour
         temp[1] = playerNames[1].PlayerName;
         playerNames[0].UpdateName(temp[localPlayerId]);
         playerNames[1].UpdateName(temp[1-localPlayerId]);
+
+        
+
         try
         {
             callCounters[0].InitCounter(players[localPlayerId]);
@@ -199,8 +210,12 @@ public class GameManager : MonoBehaviour
         catch (Exception) { }
 
         //Gauge panel
-        gaugePanel.InitGauge(players[localPlayerId]);
-        gaugePanel.UpdateGauge();
+        int[] tempPanel = new int[2];
+        tempPanel[0] = gaugePanels[0].linkedPlayer.PlayerId;
+        tempPanel[1] = gaugePanels[1].linkedPlayer.PlayerId;
+        gaugePanels[0].InitGauge(players[tempPanel[localPlayerId]]);
+        gaugePanels[1].InitGauge(players[tempPanel[1-localPlayerId]]);
+        gaugePanels[localPlayerId].UpdateGauge();
 
         TileBehaviour.InitLocalPlayer(playerId);
     }
@@ -312,7 +327,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Update panel
-        if(unit is Myth myth && unit.OwnerId == localPlayerId)
+        /*if(unit is Myth myth && unit.OwnerId == localPlayerId)
         {
             //Init panels
             foreach (MythPanelBehaviour panel in panels)
@@ -324,7 +339,7 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
-        }
+        }*/
 
         RefreshInterface();
     }
@@ -337,7 +352,7 @@ public class GameManager : MonoBehaviour
         unit.Model.SetActive(false);
 
         //Update panels
-        if(unit is Myth myth && myth.OwnerId == GameManager.gm.localPlayerId)
+        /*if(unit is Myth myth && myth.OwnerId == GameManager.gm.localPlayerId)
         {
             foreach(MythPanelBehaviour panel in panels)
             {
@@ -346,7 +361,7 @@ public class GameManager : MonoBehaviour
                     panel.MythRecalled();
                 }
             }
-        }
+        }*/
 
         RefreshInterface();
     }
@@ -438,7 +453,11 @@ public class GameManager : MonoBehaviour
         }
 
         //Gauge
-        gaugePanel.UpdateGauge();
+        foreach(GaugePanelBehaviour panel in gaugePanels)
+        {
+            panel.UpdateGauge();
+        }
+        
     }
     #endregion
 

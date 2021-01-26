@@ -459,23 +459,52 @@ public class TileBehaviour : MonoBehaviour
                 tile.x, tile.y);
             if (distance >= spell.MinRange && distance <= spell.MaxRange)
             {
-                if(spell.Shape == "Normal" || tile.x == caster.Stats[Stat.x]  || tile.y == caster.Stats[Stat.y])
+                if(CheckCastingShape(caster,spell,tile) && 
+                    CheckCastingLos(caster,spell,tile) && 
+                    CheckCastingTile(caster, spell, tile))
                 {
-                    if (Utils.LineOfSight3(caster.Stats[Stat.x], caster.Stats[Stat.y],
-                    tile.x, tile.y))
-                    {
-                        tile.UpdateCastingTexture();
-                    }
+                    tile.UpdateCastingTexture();
                 }
-                
-                
             }
         }
+
+        
+    }
+    public static bool CheckCastingShape(Unit caster, Spell spell, TileBehaviour tile)
+    {
+        if (spell.Shape.Contains("Normal"))
+        {
+            return true;
+        }
+        else if (spell.Shape.Contains("Line") && (tile.x == caster.Stats[Stat.x] || tile.y == caster.Stats[Stat.y]))
+        {
+            return true;
+        }
+        return false;
     }
 
+    public static bool CheckCastingLos(Unit caster, Spell spell, TileBehaviour tile)
+    {
+        if (Utils.LineOfSight3(caster.Stats[Stat.x], caster.Stats[Stat.y],
+                tile.x, tile.y) || spell.Shape.Contains("NoLOS"))
+        {
+            return true;
+        }
+        return false;
+    }
 
+    public static bool CheckCastingTile(Unit caster, Spell spell, TileBehaviour tile)
+    {
+        if(spell.Shape.Contains("Tile") && GameManager.gm.UnitOnTile(tile.x,tile.y) != null)
+        {
+            return false;
+        }
+
+
+        return true;
+    }
     #endregion
-    
+
 
 
     #region Static Methods

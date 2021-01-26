@@ -28,23 +28,19 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public override void Execute(Context context, FightHandler fightHandler)
+        public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
-            if(ConditionValid(context))
-            {
-                foreach(int targetId in targets.GetTargets(context))
-                {
-                    Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" Gains "+value+" barrier");
 
-                    Entity target = fightHandler.Entities[targetId];
-                    if (target.GetStat(Stat.barrier) < target.Stats[Stat.barrier])
-                    {
-                        //Not full health
-                        fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.barrier,
-                            (int)MathF.Min(target.Stats[Stat.barrier], target.GetStat(Stat.barrier) + value)));
-                    }
-                }
+            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" Gains "+value+" barrier");
+
+            Entity target = fightHandler.Entities[targetId];
+            if (target.GetStat(Stat.barrier) < target.Stats[Stat.barrier])
+            {
+                //Not full health
+                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.barrier,
+                    (int)MathF.Min(target.Stats[Stat.barrier], target.GetStat(Stat.barrier) + value)));
             }
+
         }
         #endregion
     }

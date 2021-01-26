@@ -14,11 +14,6 @@ public class TeambuilderBehaviour : MonoBehaviour
         int index = 0;
         for(int i =0;i<14;i++)
         {
-            if (i == 5 ||
-                i == 6 ||
-                i == 7 ||
-                i == 10)
-                continue;
             myths[index].LinkedMyth = Myth.ParseMyth(i);
             myths[index].UpdateMyth();
             index++;

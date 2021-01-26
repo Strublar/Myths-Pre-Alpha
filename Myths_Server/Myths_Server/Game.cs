@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 
@@ -19,6 +20,8 @@ namespace Myths_Server
         private User currentPlayer;
         private Dictionary<User,int> playerEntities;
         private int deployement = 0;
+        private bool gameEnded;
+
         #endregion
 
         #region Getters & Setters
@@ -29,6 +32,7 @@ namespace Myths_Server
         public Queue<object[]> WorkerQueueParameters { get => workerQueueParameters; set => workerQueueParameters = value; }
         public User CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
         public Dictionary<User, int> PlayerEntities { get => playerEntities; set => playerEntities = value; }
+        public bool GameEnded { get => gameEnded; set => gameEnded = value; }
 
         #endregion
 
@@ -53,7 +57,7 @@ namespace Myths_Server
             CurrentPlayer = users[1];
             fightHandler = new FightHandler(this,users[0].Team, users[1].Team);
             deployement = 0;
-            
+            GameEnded = false;
             workerThread = new Thread(() => GameLoop(this));
             workerThread.Start();
         }
@@ -119,6 +123,24 @@ namespace Myths_Server
                 this.currentPlayer = users[0];
             }
         }
+
+        public void EndGame()
+        {
+
+            gameEnded = true;
+            //workerThread.Join();
+
+        }
+
+        public void GatherStats()
+        {
+            //Not implemented yet
+            string dir = Environment.CurrentDirectory;
+            string fileName = "../../../Stats/StatsMyths.csv";
+            string path = Path.GetFullPath(fileName, dir);
+            throw new NotImplementedException();
+
+        }
         #endregion
 
         #region Worker thread methods
@@ -126,7 +148,7 @@ namespace Myths_Server
         public void GameLoop(Game game)
         {
 
-            while (true)
+            while (!game.GameEnded)
             {
                 if(WorkerQueue.Count>0 && WorkerQueueParameters.Count == WorkerQueue.Count)
                 {
@@ -161,7 +183,6 @@ namespace Myths_Server
                 SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.y, y));
                 SendMessageToAllUsers(new CallMessage(targetId));*/
                 fightHandler.FireEvent(new EntityCallEvent(targetId, playerId, x, y));
-                Console.WriteLine("DEBUGG DEPLOY = " + deployement);
                 if(deployement <2)
                 {
                     deployement++;

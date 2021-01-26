@@ -28,25 +28,19 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public override void Execute(Context context, FightHandler fightHandler)
+        public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
-            if(ConditionValid(context))
+
+            Console.WriteLine("healing "+value+" hp  to " + fightHandler.Entities[targetId].Definition.Name);
+            //check Full life
+            Entity target = fightHandler.Entities[targetId];
+            if (target.GetStat(Stat.hp)< target.Stats[Stat.hp])
             {
-                foreach(int targetId in targets.GetTargets(context))
-                {
-                    Console.WriteLine("healing "+value+" hp  to " + fightHandler.Entities[targetId].Definition.Name);
-                    //check Full life
-                    Entity target = fightHandler.Entities[targetId];
-                    if (target.GetStat(Stat.hp)< target.Stats[Stat.hp])
-                    {
-                        //Not full health
-                        fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                            (int)MathF.Min(target.Stats[Stat.hp], target.GetStat(Stat.hp) + value)));
-                    }
-                    
-                    
-                }
+                //Not full health
+                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
+                    (int)MathF.Min(target.Stats[Stat.hp], target.GetStat(Stat.hp) + value)));
             }
+
         }
         #endregion
     }

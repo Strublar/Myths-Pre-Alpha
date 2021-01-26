@@ -17,8 +17,8 @@ namespace Myths_Server
         protected int id;
         protected int targetId;
         protected int sourceId;
+        protected Context context;
 
-        
 
         #endregion
 
@@ -26,6 +26,7 @@ namespace Myths_Server
         public int Id { get => id; set => id = value; }
         public int TargetId { get => targetId; set => targetId = value; }
         public int SourceId { get => sourceId; set => sourceId = value; }
+        public Context Context { get => context; set => context = value; }
         #endregion
 
         #region Constructor
@@ -34,6 +35,16 @@ namespace Myths_Server
             this.id = Event.GetNextId();
             this.targetId = targetId;
             this.sourceId = sourceId;
+            this.context = null;
+        }
+
+        public Event(int targetId, int sourceId, Context context)
+        {
+            this.id = Event.GetNextId();
+            this.targetId = targetId;
+            this.sourceId = sourceId;
+            this.context = context;
+
         }
         #endregion
 

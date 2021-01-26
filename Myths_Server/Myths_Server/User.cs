@@ -65,6 +65,7 @@ namespace Myths_Server
             InitMessageProcessor();
 
             this.client = client;
+            client.NoDelay = true;
             this.clientStream = this.client.GetStream();
 
             listeningClient = new Thread(new ThreadStart(ListeningSocket));
@@ -97,8 +98,8 @@ namespace Myths_Server
         public void ListeningSocket()
         {
             Console.WriteLine("New Client " + id + " Listening Thread opened");
-
-            while (true)
+            bool endSession = false;
+            while (!endSession)
             {
                 StreamReader sr = new StreamReader(clientStream);
                 StreamWriter sw = new StreamWriter(clientStream);
@@ -121,6 +122,11 @@ namespace Myths_Server
                     {
                         Console.WriteLine("Empty message recieved, Terminating Session");
                         clientStream.Close();
+                        endSession = true;
+                        if(game != null)
+                        {
+                            game.EndGame();
+                        }
                         break;
                     }
                     ProcessMessage(buffer);
@@ -131,6 +137,11 @@ namespace Myths_Server
                     Console.WriteLine("Something went wrong. \n" + e);
                     //sw.WriteLine(e.ToString());
                     clientStream.Close();
+                    endSession = true;
+                    if (game != null)
+                    {
+                        game.EndGame();
+                    }
                     break;
 
                 }

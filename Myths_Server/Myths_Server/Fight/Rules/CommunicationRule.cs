@@ -52,6 +52,7 @@ namespace Myths_Server
                     stat == Stat.gaugeDark ||
                     stat == Stat.isDead ||
                     stat == Stat.canUlt ||
+                    stat == Stat.isEngaged ||
                     stat == Stat.canMove)
                 {
                     fightHandler.Game.SendMessageToAllUsers(new EntityStatChangedMessage(statEvent.TargetId, statEvent.StatId,

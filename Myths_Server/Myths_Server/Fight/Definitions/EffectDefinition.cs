@@ -17,6 +17,7 @@ namespace Myths_Server
         private TargetSelector targetSelector;
         private TargetSelector sourceSelector;
         private List<Condition> conditions;
+        private bool isAbsolute;
         #endregion
 
         #region Getters & Setters
@@ -27,6 +28,7 @@ namespace Myths_Server
         internal TargetSelector TargetSelector { get => targetSelector; set => targetSelector = value; }
         internal TargetSelector SourceSelector { get => sourceSelector; set => sourceSelector = value; }
         internal List<Condition> Conditions { get => conditions; set => conditions = value; }
+        public bool IsAbsolute { get => isAbsolute; set => isAbsolute = value; }
 
 
         #endregion
@@ -89,12 +91,15 @@ namespace Myths_Server
                         newEffectDefinition.sourceSelector = sourceSelector;
                         newEffectDefinition.sourceSelector.Value = Int32.Parse(fields[7]);
                     }
+                    //Absolute
+                    bool isAbsolute = int.Parse(fields[8]) == 1 ? true : false;
+                    newEffectDefinition.IsAbsolute = isAbsolute;
                     //Conditions
                     int fieldLength = fields.Length;
                     newEffectDefinition.conditions = new List<Condition>();
-                    if(fieldLength>8)
+                    if(fieldLength>9)
                     {
-                        for(int i = 8;i<fieldLength;i+=2)
+                        for(int i = 9;i<fieldLength;i+=2)
                         {
                             Type conditionType = Type.GetType("Myths_Server." + fields[i]);
                             if(conditionType != null)

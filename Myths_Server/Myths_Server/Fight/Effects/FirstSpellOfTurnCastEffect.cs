@@ -28,20 +28,16 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public override void Execute(Context context, FightHandler fightHandler)
+        public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
-            if(ConditionValid(context))
-            {
-                foreach(int targetId in targets.GetTargets(context))
-                {
-                    Console.WriteLine("First spell of turn cast");
-                    EntityCastSpellEvent triggeringEvent = (EntityCastSpellEvent)context.TriggeringEvent;
-                    fightHandler.FireEvent(new FirstSpellOfTurnCastEvent(targetId, targetId,
-                        triggeringEvent.SpellId));
 
-                    
-                }
-            }
+
+            Console.WriteLine("First spell of turn cast");
+            EntityCastSpellEvent triggeringEvent = (EntityCastSpellEvent)context.TriggeringEvent;
+            fightHandler.FireEvent(new FirstSpellOfTurnCastEvent(targetId, targetId,
+                triggeringEvent.SpellId));
+
+
         }
         #endregion
     }

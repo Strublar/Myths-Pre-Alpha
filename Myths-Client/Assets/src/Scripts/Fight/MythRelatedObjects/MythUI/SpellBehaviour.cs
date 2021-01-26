@@ -115,9 +115,13 @@ public class SpellBehaviour : MonoBehaviour
     #region Control Methods
     public void OnDrag()
     {
-        GameManager.gm.selectedUnit = linkedSpell.Owner;
-        GameManager.gm.selectedSpell = linkedSpell;
-        TileBehaviour.UpdateCastingTiles(linkedSpell.Owner, linkedSpell);
+        if(linkedSpell.Owner.Stats[Stat.isCalled] == 1)
+        {
+            GameManager.gm.selectedUnit = linkedSpell.Owner;
+            GameManager.gm.selectedSpell = linkedSpell;
+            TileBehaviour.UpdateCastingTiles(linkedSpell.Owner, linkedSpell);
+        }
+        
 
     }
 
@@ -130,20 +134,9 @@ public class SpellBehaviour : MonoBehaviour
         {
             Debug.Log("Casting " + GameManager.gm.selectedSpell.Name + " on tile " + GameManager.gm.selectedTile.x
                     + " " + GameManager.gm.selectedTile.y);
-            if (Utils.LineOfSight3(GameManager.gm.selectedUnit.Stats[Stat.x],
-                GameManager.gm.selectedUnit.Stats[Stat.y],
-                GameManager.gm.selectedTile.x,
-                GameManager.gm.selectedTile.y))
-            {
 
-                Debug.Log("On LOS");
-                Server.SendMessageToServer(new CastSpellMessage(linkedSpell.Owner.Id, linkedSpell.Id,
-                    GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
-            }
-            else
-            {
-                Debug.Log("Hors LOS");
-            }
+            Server.SendMessageToServer(new CastSpellMessage(linkedSpell.Owner.Id, linkedSpell.Id,
+                GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
             
         }
         TileBehaviour.ResetTiles();

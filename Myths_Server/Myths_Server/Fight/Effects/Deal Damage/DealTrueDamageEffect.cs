@@ -28,20 +28,14 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public override void Execute(Context context, FightHandler fightHandler)
+        public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
-            if(ConditionValid(context))
-            {
-                foreach(int targetId in targets.GetTargets(context))
-                {
-                    Console.WriteLine("Dealing "+value+" true damage to " + fightHandler.Entities[targetId].Definition.Name);
-                    //check broken guard
-                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                        fightHandler.Entities[targetId].GetStat(Stat.hp) - value));
-                    
-                    
-                }
-            }
+
+            Console.WriteLine("Dealing "+value+" true damage to " + fightHandler.Entities[targetId].Definition.Name);
+            //check broken guard
+            fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
+                fightHandler.Entities[targetId].GetStat(Stat.hp) - value));
+
         }
         #endregion
     }

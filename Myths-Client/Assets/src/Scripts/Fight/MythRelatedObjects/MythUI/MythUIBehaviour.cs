@@ -185,7 +185,7 @@ public class MythUIBehaviour : MonoBehaviour
                 {
 
                     if(unitOnTile is Myth && unitOnTile.OwnerId == GameManager.gm.localPlayerId &&
-                        unitOnTile.Stats[Stat.canRecall] == 1)
+                        unitOnTile.Stats[Stat.isEngaged] == 0)
                     {
                         int counterCalled = 0;
                         foreach (Entity entity in GameManager.gm.entities.Values)

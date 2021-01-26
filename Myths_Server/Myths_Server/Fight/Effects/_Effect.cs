@@ -17,8 +17,9 @@ namespace Myths_Server
         protected TargetSelector targets;
         protected TargetSelector sources;
         protected List<Condition> conditions;
+        protected Context effectContext;
+        protected bool isAbsolute;
 
-        
         #endregion
 
         #region Getters & Setters
@@ -27,6 +28,8 @@ namespace Myths_Server
         public List<Condition> Conditions { get => conditions; set => conditions = value; }
         public int Value { get => value; set => this.value = value; }
         public string Name { get => name; set => name = value; }
+        public bool IsAbsolute { get => isAbsolute; set => isAbsolute = value; }
+        public Context EffectContext { get => effectContext; set => effectContext = value; }
         #endregion
 
         #region Constructor
@@ -60,6 +63,7 @@ namespace Myths_Server
                 newEffect.value = effectDefinition.Value;
                 newEffect.Conditions = effectDefinition.Conditions;
                 newEffect.Name = effectDefinition.Name;
+                newEffect.isAbsolute = effectDefinition.IsAbsolute;
                 return newEffect;
             }
             return null;
@@ -68,16 +72,30 @@ namespace Myths_Server
 
         #region Methods
 
-        public virtual void Execute(Context context, FightHandler fightHandler)
+        public void Execute(Context context, FightHandler fightHandler)
+        {
+            
+            foreach (int targetId in targets.GetTargets(context))
+            {
+                if (ConditionValid(targetId, context))
+                {
+                    ExecuteOnTarget(targetId, context, fightHandler);
+                }
+            }
+            
+        }
+
+        public virtual void ExecuteOnTarget(int targetId,Context context, FightHandler fightHandler)
         {
 
         }
 
-        public bool ConditionValid(Context context)
+
+        public bool ConditionValid(int targetId, Context context)
         {
             foreach(Condition condition in conditions)
             {
-                if(!condition.IsValid(context))
+                if(!condition.IsValid(targetId, context))
                 {
                     return false;
                 }

@@ -14,7 +14,7 @@ namespace Myths_Server
         private FightHandler fightHandler;
         private int holderId;
         private int sourceId;
-        private int x, y;
+        private int x, y, originX, originY;
         private Event triggeringEvent;
         #endregion
 
@@ -25,6 +25,8 @@ namespace Myths_Server
         public int Y { get => y; set => y = value; }
         internal FightHandler FightHandler { get => fightHandler; set => fightHandler = value; }
         internal Event TriggeringEvent { get => triggeringEvent; set => triggeringEvent = value; }
+        public int OriginX { get => originX; set => originX = value; }
+        public int OriginY { get => originY; set => originY = value; }
         #endregion
 
         #region Constructor

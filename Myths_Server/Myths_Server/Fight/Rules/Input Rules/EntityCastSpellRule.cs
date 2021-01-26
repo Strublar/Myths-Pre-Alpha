@@ -48,10 +48,7 @@ namespace Myths_Server
                     
                     
 
-                    Context context = new Context(fightHandler, newEvent.SourceId, newEvent.SourceId);
-                    context.X = castEvent.X;
-                    context.Y = castEvent.Y;
-                    int[] targetIds = spellCast.TargetSelector.GetTargets(context);
+                    
 
                     fightHandler.FireEvent(new EntityStatChangedEvent(castEvent.SourceId, castEvent.SourceId, Stat.energy,
                             fightHandler.Entities[castEvent.SourceId].GetStat(Stat.energy) - actualCost));
@@ -108,19 +105,54 @@ namespace Myths_Server
                             break;
                     }
 
+
+                    Context context = new Context(fightHandler, newEvent.SourceId, newEvent.SourceId);
+                    context.X = castEvent.X;
+                    context.Y = castEvent.Y;
+                    context.OriginX = caster.GetStat(Stat.x);
+                    context.OriginY = caster.GetStat(Stat.y);
+
+
+                    #region Effects distribution
                     List<Effect> effects = new List<Effect>();
+                    List<Effect> absoluteEffects = new List<Effect>();
                     foreach(EffectDefinition effectDef in spellCast.Effects)
                     {
-                        effects.Add(Effect.BuildFrom(effectDef));
+                        Effect newEffect = Effect.BuildFrom(effectDef);
+                        newEffect.EffectContext = context;
+                        if (effectDef.IsAbsolute)
+                        {
+                            absoluteEffects.Add(newEffect);
+                        }
+                        else
+                        {
+                            effects.Add(newEffect);
+                        }
+                        
                     }
+                    #endregion
 
-                    foreach(int target in targetIds)
+                    #region Absolute effects
+                    ListeningEffect newListeningEffectAbsolute = new ListeningEffect(caster.Id, 
+                            InstantTrigger.GetInstantTrigger(),
+                            InstantTrigger.GetInstantTrigger(), absoluteEffects);
+                    fightHandler.ListeningEffects.Add(newListeningEffectAbsolute);
+
+                    fightHandler.FireEvent(new ListeningEffectPlacedEvent(castEvent.SourceId, castEvent.SourceId, 
+                        newListeningEffectAbsolute.Id));
+                    #endregion
+
+
+
+                    int[] targetIds = spellCast.TargetSelector.GetTargets(context);
+                    foreach (int target in targetIds)
                     {
                         ListeningEffect newListeningEffect = new ListeningEffect(target, InstantTrigger.GetInstantTrigger(),
                             InstantTrigger.GetInstantTrigger(), effects);
                         fightHandler.ListeningEffects.Add(newListeningEffect);
-
-                        fightHandler.FireEvent(new ListeningEffectPlacedEvent(target, castEvent.SourceId, newListeningEffect.Id));
+                        Event targetEvent = new ListeningEffectPlacedEvent(target, castEvent.SourceId, newListeningEffect.Id);
+                        targetEvent.Context = context;
+                        fightHandler.FireEvent(targetEvent);
 
                         
 

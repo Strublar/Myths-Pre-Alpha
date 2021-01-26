@@ -147,10 +147,21 @@ namespace Myths_Server
             List<ListeningEffect> triggeringEffects = new List<ListeningEffect>();
             foreach (ListeningEffect listeningEffect in listeningEffects)
             {
-                Context context = new Context(this,
+                Context context;
+                if(newEvent.Context == null)
+                {
+                    context = new Context(this,
                         listeningEffect.HolderId,
                         newEvent.SourceId);
+                    
+                }
+                else
+                {
+                    context = newEvent.Context;
+                }
+                context.HolderId = listeningEffect.HolderId;
                 context.TriggeringEvent = newEvent;
+
                 if (listeningEffect.ShouldTriggerExecution(newEvent, context))
                 {
                     Console.WriteLine("Listening Effect Executed");
@@ -161,12 +172,22 @@ namespace Myths_Server
 
             foreach(ListeningEffect listeningEffect in triggeringEffects)
             {
-                Context context = new Context(this,
+                Context context;
+                if (newEvent.Context == null)
+                {
+                    context = new Context(this,
                         listeningEffect.HolderId,
                         newEvent.SourceId);
+                    context.X = entities[listeningEffect.HolderId].GetStat(Stat.x);
+                    context.Y = entities[listeningEffect.HolderId].GetStat(Stat.y);
+                }
+                else
+                {
+                    context = newEvent.Context;
+                }
+                context.HolderId = listeningEffect.HolderId;
                 context.TriggeringEvent = newEvent;
-                context.X = entities[listeningEffect.HolderId].GetStat(Stat.x);
-                context.Y = entities[listeningEffect.HolderId].GetStat(Stat.y);
+                
                 listeningEffect.Execute(newEvent, context, this);
             }
             

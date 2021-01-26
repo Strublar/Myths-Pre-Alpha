@@ -57,6 +57,7 @@ namespace Myths_Server
                         Unit deadUnit = (Unit)fightHandler.Entities[newEvent.TargetId];
                         fightHandler.FireEvent(new EndGameEvent(deadUnit.Owner.Id,
                             deadUnit.Owner.Id));
+                        fightHandler.Game.EndGame();
                     }
                 }
             }

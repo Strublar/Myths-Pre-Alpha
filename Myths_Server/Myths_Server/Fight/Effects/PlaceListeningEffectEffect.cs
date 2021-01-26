@@ -28,26 +28,20 @@ namespace Myths_Server
         #endregion
 
         #region Methods
-        public override void Execute(Context context, FightHandler fightHandler)
+        public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
-            if(ConditionValid(context))
-            {
-                foreach(int targetId in targets.GetTargets(context))
-                {
-                    Console.WriteLine("Placing new listening effect");
 
-                    ListeningEffectDefinition leDef = ListeningEffectDefinition.BuildFrom(value);
+            Console.WriteLine("Placing new listening effect");
 
-                    ListeningEffect newListeningEffect = new ListeningEffect(targetId, leDef);
+            ListeningEffectDefinition leDef = ListeningEffectDefinition.BuildFrom(value);
 
-                    fightHandler.ListeningEffects.Add(newListeningEffect);
+            ListeningEffect newListeningEffect = new ListeningEffect(targetId, leDef);
 
-                    fightHandler.FireEvent(
-                        new ListeningEffectPlacedEvent(newListeningEffect.HolderId, newListeningEffect.HolderId, newListeningEffect.Id));
+            fightHandler.ListeningEffects.Add(newListeningEffect);
 
+            fightHandler.FireEvent(
+                new ListeningEffectPlacedEvent(newListeningEffect.HolderId, newListeningEffect.HolderId, newListeningEffect.Id));
 
-                }
-            }
         }
         #endregion
     }
