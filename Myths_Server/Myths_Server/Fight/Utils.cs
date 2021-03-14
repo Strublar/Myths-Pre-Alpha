@@ -58,7 +58,29 @@ namespace Myths_Server
             return costReduction;
         }
 
+        public static Stat GetGaugeFromMastery(Mastery mastery)
+        {
+            switch (mastery)
+            {
+                case Mastery.arcane:
+                    return Stat.gaugeArcane;
+                case Mastery.light:
+                    return Stat.gaugeLight;
+                case Mastery.dark:
+                    return Stat.gaugeDark;
+                case Mastery.fire:
+                    return Stat.gaugeFire;
+                case Mastery.earth:
+                    return Stat.gaugeEarth;
+                case Mastery.air:
+                    return Stat.gaugeAir;
+                case Mastery.water:
+                    return Stat.gaugeWater;
+            }
+            return Stat.gaugeArcane;
+        }
     }
+    
 }
 
 

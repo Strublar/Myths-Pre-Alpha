@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public HealEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public HealEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,14 +31,14 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine("healing "+value+" hp  to " + fightHandler.Entities[targetId].Definition.Name);
+            Console.WriteLine("healing "+ values[0] + " hp  to " + fightHandler.Entities[targetId].Definition.Name);
             //check Full life
             Entity target = fightHandler.Entities[targetId];
             if (target.GetStat(Stat.hp)< target.Stats[Stat.hp])
             {
                 //Not full health
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                    (int)MathF.Min(target.Stats[Stat.hp], target.GetStat(Stat.hp) + value)));
+                    (int)MathF.Min(target.Stats[Stat.hp], target.GetStat(Stat.hp) + values[0])));
             }
 
         }

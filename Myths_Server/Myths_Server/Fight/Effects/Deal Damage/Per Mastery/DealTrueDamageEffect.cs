@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public DealTrueDamagePerMasteryEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public DealTrueDamagePerMasteryEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,30 +31,38 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            int computedValue = 0;
+            int element = values.Count > 2 ? values[2] : 0;
+            int computedValue = values[0];
             Entity source = fightHandler.Entities[context.SourceId];
-            if (source.GetStat(Stat.mastery1) != 0)
+            if (source.GetStat(Stat.mastery1) == element ||
+                (source.GetStat(Stat.mastery1) != 0 && element == -1))
             {
-                computedValue += value;
+                computedValue += values[1];
             }
-            if (source.GetStat(Stat.mastery2) != 0)
+            if (source.GetStat(Stat.mastery2) == element ||
+                (source.GetStat(Stat.mastery2) != 0 && element == -1))
             {
-                computedValue += value;
+                computedValue += values[1];
             }
-            if (source.GetStat(Stat.mastery2) != 0)
+            if (source.GetStat(Stat.mastery3) == element ||
+                (source.GetStat(Stat.mastery3) != 0 && element == -1))
             {
-                computedValue += value;
+                computedValue += values[1];
             }
 
+            int isTemp = values.Count > 3 ? values[3] : 0;
+            Effect newEffect = new DealTrueDamageEffect(
+                sources, targets, new List<int> { computedValue, isTemp });
+            newEffect.ExecuteOnTarget(targetId, context, fightHandler);
 
-            Console.WriteLine("Dealing "+ computedValue + " true damage to " + fightHandler.Entities[targetId].Definition.Name);
+            /*Console.WriteLine("Dealing "+ computedValue + " true damage to " + fightHandler.Entities[targetId].Definition.Name);
             //check broken guard
             fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                fightHandler.Entities[targetId].GetStat(Stat.hp) - computedValue));
-                    
-                    
-                
-            
+                fightHandler.Entities[targetId].GetStat(Stat.hp) - computedValue));*/
+
+
+
+
         }
         #endregion
     }

@@ -273,9 +273,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13074}
     - Class: 114
-      Script: {instanceID: 33236}
+      Script: {instanceID: 17802}
     - Class: 114
-      Script: {instanceID: 33534}
+      Script: {instanceID: 17804}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -927,4 +927,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/LoginScene.unity
   - Assets/Scenes/FightScene.unity
-  playerPath: C:/Users/daluz/Desktop/Myths - Unity/Myths/Myths-Pre-Alpha/Myths-Client/Build/Myths.exe
+  playerPath: D:/Desktop/Myths - Unity/Current/Myths/Myths-Pre-Alpha/Myths-Client/Build/Myths.exe

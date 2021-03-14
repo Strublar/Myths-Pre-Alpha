@@ -1,0 +1,13 @@
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Release\netcoreapp3.1\Myths_Server.exe
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Release\netcoreapp3.1\Myths_Server.deps.json
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Release\netcoreapp3.1\Myths_Server.runtimeconfig.json
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Release\netcoreapp3.1\Myths_Server.runtimeconfig.dev.json
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Release\netcoreapp3.1\Myths_Server.dll
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\bin\Release\netcoreapp3.1\Myths_Server.pdb
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.csprojAssemblyReference.cache
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.AssemblyInfoInputs.cache
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.AssemblyInfo.cs
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.csproj.CoreCompileInputs.cache
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.dll
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.pdb
+D:\Desktop\Myths - Unity\Myths\Myths-Pre-Alpha\Myths_Server\Myths_Server\obj\Release\netcoreapp3.1\Myths_Server.genruntimeconfig.cache

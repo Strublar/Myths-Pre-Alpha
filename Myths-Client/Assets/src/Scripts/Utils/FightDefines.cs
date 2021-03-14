@@ -28,7 +28,9 @@ public enum Stat
     canAttack,
     canMove,
     canRecall,
-    canUlt,
+    canUlt1,
+    canUlt2,
+    canUlt3,
 
     //State stats
     isDead,

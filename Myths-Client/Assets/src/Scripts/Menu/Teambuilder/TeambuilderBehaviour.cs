@@ -45,32 +45,32 @@ public class TeambuilderBehaviour : MonoBehaviour
 
     public void Prebuilt1()
     {
-        //Fire team.
+        //Mono Earth team.
         team.myths[0].LinkedMyth = Myth.ParseMyth(4);
         team.myths[0].UpdateMyth();
-        team.myths[1].LinkedMyth = Myth.ParseMyth(0);
+        team.myths[1].LinkedMyth = Myth.ParseMyth(2);
         team.myths[1].UpdateMyth();
-        team.myths[2].LinkedMyth = Myth.ParseMyth(3);
+        team.myths[2].LinkedMyth = Myth.ParseMyth(0);
         team.myths[2].UpdateMyth();
-        team.myths[3].LinkedMyth = Myth.ParseMyth(9);
+        team.myths[3].LinkedMyth = Myth.ParseMyth(12);
         team.myths[3].UpdateMyth();
-        team.myths[4].LinkedMyth = Myth.ParseMyth(1);
+        team.myths[4].LinkedMyth = Myth.ParseMyth(3);
         team.myths[4].UpdateMyth();
         UpdateLeaveButton();
     }
 
     public void Prebuilt2()
     {
-        //Dark Team
-        team.myths[0].LinkedMyth = Myth.ParseMyth(8);
+        //Mono Air Team
+        team.myths[0].LinkedMyth = Myth.ParseMyth(7);
         team.myths[0].UpdateMyth();
-        team.myths[1].LinkedMyth = Myth.ParseMyth(13);
+        team.myths[1].LinkedMyth = Myth.ParseMyth(12);
         team.myths[1].UpdateMyth();
-        team.myths[2].LinkedMyth = Myth.ParseMyth(12);
+        team.myths[2].LinkedMyth = Myth.ParseMyth(5);
         team.myths[2].UpdateMyth();
-        team.myths[3].LinkedMyth = Myth.ParseMyth(11);
+        team.myths[3].LinkedMyth = Myth.ParseMyth(1);
         team.myths[3].UpdateMyth();
-        team.myths[4].LinkedMyth = Myth.ParseMyth(2);
+        team.myths[4].LinkedMyth = Myth.ParseMyth(3);
         team.myths[4].UpdateMyth();
         UpdateLeaveButton();
     }
@@ -82,11 +82,11 @@ public class TeambuilderBehaviour : MonoBehaviour
         team.myths[0].UpdateMyth();
         team.myths[1].LinkedMyth = Myth.ParseMyth(8);
         team.myths[1].UpdateMyth();
-        team.myths[2].LinkedMyth = Myth.ParseMyth(3);
+        team.myths[2].LinkedMyth = Myth.ParseMyth(13);
         team.myths[2].UpdateMyth();
-        team.myths[3].LinkedMyth = Myth.ParseMyth(12);
+        team.myths[3].LinkedMyth = Myth.ParseMyth(9);
         team.myths[3].UpdateMyth();
-        team.myths[4].LinkedMyth = Myth.ParseMyth(1);
+        team.myths[4].LinkedMyth = Myth.ParseMyth(6);
         team.myths[4].UpdateMyth();
         UpdateLeaveButton();
     }

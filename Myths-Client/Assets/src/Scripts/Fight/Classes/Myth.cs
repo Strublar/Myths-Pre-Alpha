@@ -30,7 +30,9 @@ public class Myth : Unit
         this.Stats.Add(Stat.energy, 0);
         this.Stats.Add(Stat.isEngaged, 0);
         this.Stats.Add(Stat.canRecall, 0);
-        this.Stats.Add(Stat.canUlt, 1);
+        this.Stats.Add(Stat.canUlt1, 1);
+        this.Stats.Add(Stat.canUlt2, 1);
+        this.Stats.Add(Stat.canUlt3, 1);
         spells = new List<Spell>();
         //TODO Change les sorts
         GetSpells(unitId);

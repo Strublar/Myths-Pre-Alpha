@@ -12,7 +12,7 @@ namespace Myths_Server
     class Effect
     {
         #region Attributes
-        protected int value;
+        protected List<int> values;
         protected string name;
         protected TargetSelector targets;
         protected TargetSelector sources;
@@ -26,7 +26,7 @@ namespace Myths_Server
         public TargetSelector Targets { get => targets; set => targets = value; }
         public TargetSelector Sources { get => sources; set => sources = value; }
         public List<Condition> Conditions { get => conditions; set => conditions = value; }
-        public int Value { get => value; set => this.value = value; }
+        public List<int> Values { get => values; set => this.values = value; }
         public string Name { get => name; set => name = value; }
         public bool IsAbsolute { get => isAbsolute; set => isAbsolute = value; }
         public Context EffectContext { get => effectContext; set => effectContext = value; }
@@ -37,21 +37,16 @@ namespace Myths_Server
         {
 
         }
-        public Effect(TargetSelector sources, TargetSelector targets, int value)
+        public Effect(TargetSelector sources, TargetSelector targets, List<int> values)
         {
             this.targets = targets;
             this.sources = sources;
             this.conditions = new List<Condition>();
-            this.value = value;
+            this.values = values;
         }
         #endregion
 
         #region Static Methods
-        public static void BuildFrom(string serializedEffectType,string effectValue,
-            string targetSelector, string tsValue, string sourceSelector, string ssValue)
-        {
-
-        }
 
         public static Effect BuildFrom(EffectDefinition effectDefinition)
         {
@@ -60,7 +55,7 @@ namespace Myths_Server
             {
                 newEffect.targets = effectDefinition.TargetSelector;
                 newEffect.sources = effectDefinition.SourceSelector;
-                newEffect.value = effectDefinition.Value;
+                newEffect.values = effectDefinition.Values;
                 newEffect.Conditions = effectDefinition.Conditions;
                 newEffect.Name = effectDefinition.Name;
                 newEffect.isAbsolute = effectDefinition.IsAbsolute;

@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public LoseCallEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public LoseCallEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,11 +31,11 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" loses "+value+" calls");
+            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" loses "+ values[0] + " calls");
 
             Entity target = fightHandler.Entities[targetId];
             fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
-                Stat.calls, target.GetStat(Stat.calls) - value));
+                Stat.calls, target.GetStat(Stat.calls) - values[0]));
 
         }
         #endregion

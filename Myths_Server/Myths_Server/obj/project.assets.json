@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\daluz\\Desktop\\Myths - Unity\\Myths\\Myths-Pre-Alpha\\Myths_Server\\Myths_Server\\Myths_Server.csproj",
+      "projectUniqueName": "D:\\Desktop\\Myths - Unity\\Current\\Myths\\Myths-Pre-Alpha\\Myths_Server\\Myths_Server\\Myths_Server.csproj",
       "projectName": "Myths_Server",
-      "projectPath": "C:\\Users\\daluz\\Desktop\\Myths - Unity\\Myths\\Myths-Pre-Alpha\\Myths_Server\\Myths_Server\\Myths_Server.csproj",
+      "projectPath": "D:\\Desktop\\Myths - Unity\\Current\\Myths\\Myths-Pre-Alpha\\Myths_Server\\Myths_Server\\Myths_Server.csproj",
       "packagesPath": "C:\\Users\\daluz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\daluz\\Desktop\\Myths - Unity\\Myths\\Myths-Pre-Alpha\\Myths_Server\\Myths_Server\\obj\\",
+      "outputPath": "D:\\Desktop\\Myths - Unity\\Current\\Myths\\Myths-Pre-Alpha\\Myths_Server\\Myths_Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

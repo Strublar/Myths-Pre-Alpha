@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public DealTrueDamageEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public DealTrueDamageEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,10 +31,10 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine("Dealing "+value+" true damage to " + fightHandler.Entities[targetId].Definition.Name);
+            Console.WriteLine("Dealing "+values[0]+" true damage to " + fightHandler.Entities[targetId].Definition.Name);
             //check broken guard
             fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                fightHandler.Entities[targetId].GetStat(Stat.hp) - value));
+                fightHandler.Entities[targetId].GetStat(Stat.hp) - values[0]));
 
         }
         #endregion

@@ -87,13 +87,14 @@ public class GameManager : MonoBehaviour
         if(unitsOnTile.Count == 1)
         {
             unitOnTile = unitsOnTile[0];
+            return unitOnTile;
         }
         else if(unitsOnTile.Count > 1)
         {
-            throw new System.Exception("There can't be multiple units on this tile : " + x + " " + y);
+            Console.WriteLine("There can't be multiple units on this tile : " + x + " " + y);
         }
-
-        return unitOnTile;
+        return null;
+        
     }
 
     public int GetDistance(int x1, int y1, int x2, int y2)

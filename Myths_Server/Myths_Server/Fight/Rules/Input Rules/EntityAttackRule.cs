@@ -32,13 +32,15 @@ namespace Myths_Server
                 //Deal damages
                 if (source.GetStat(Stat.attackType) == 1)
                 {
+                    List<int> values = new List<int> { fightHandler.Entities[newEvent.SourceId].GetStat(Stat.attack) };
                     effects.Add(new DealPhysicalDamageEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                    fightHandler.Entities[newEvent.SourceId].GetStat(Stat.attack)));
+                    values));
                 }
                 else if(source.GetStat(Stat.attackType) == 2)
                 {
+                    List<int> values = new List<int> { fightHandler.Entities[newEvent.SourceId].GetStat(Stat.attack) };
                     effects.Add(new DealMagicalDamageEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                    fightHandler.Entities[newEvent.SourceId].GetStat(Stat.attack)));
+                    values));
                 }
                 //notify damage done
                 ListeningEffect newListeningEffect = 
@@ -51,112 +53,20 @@ namespace Myths_Server
 
                 //Release Mastery
                 List<Effect> effectsGauge = new List<Effect>();
-                switch (source.GetStat(Stat.mastery1))
-                {
-                    case (int)Mastery.arcane:
-                        effectsGauge.Add(new GainArcaneGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.light:
-                        effectsGauge.Add(new GainLightGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.dark:
-                        effectsGauge.Add(new GainDarkGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.fire:
-                        effectsGauge.Add(new GainFireGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.earth:
-                        effectsGauge.Add(new GainEarthGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
+                #region Convert Mastery
 
-                    case (int)Mastery.air:
-                        effectsGauge.Add(new GainAirGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.water:
-                        effectsGauge.Add(new GainWaterGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-
-                }
-
-                switch (source.GetStat(Stat.mastery2))
-                {
-                    case (int)Mastery.arcane:
-                        effectsGauge.Add(new GainArcaneGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.light:
-                        effectsGauge.Add(new GainLightGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.dark:
-                        effectsGauge.Add(new GainDarkGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.fire:
-                        effectsGauge.Add(new GainFireGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.earth:
-                        effectsGauge.Add(new GainEarthGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.air:
-                        effectsGauge.Add(new GainAirGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.water:
-                        effectsGauge.Add(new GainWaterGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-
-                }
-
-                switch (source.GetStat(Stat.mastery3))
-                {
-                    case (int)Mastery.arcane:
-                        effectsGauge.Add(new GainArcaneGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.light:
-                        effectsGauge.Add(new GainLightGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.dark:
-                        effectsGauge.Add(new GainDarkGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.fire:
-                        effectsGauge.Add(new GainFireGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.earth:
-                        effectsGauge.Add(new GainEarthGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.air:
-                        effectsGauge.Add(new GainAirGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-                    case (int)Mastery.water:
-                        effectsGauge.Add(new GainWaterGaugeEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                            1));
-                        break;
-
-                }
+                effectsGauge.Add(new GainGaugePerMasteryEffect(new EventSourceSelector(), new EventTargetSelector(),
+                    new List<int> { -1, -1, 1 }));
 
                 ListeningEffect newListeningEffectGauge =
                     new ListeningEffect(source.Owner.Id, InstantTrigger.GetInstantTrigger(), InstantTrigger.GetInstantTrigger(), effectsGauge);
                 fightHandler.ListeningEffects.Add(newListeningEffectGauge);
 
-                fightHandler.FireEvent(new ListeningEffectPlacedEvent(source.Id, newListeningEffectGauge.HolderId,
+                fightHandler.FireEvent(new ListeningEffectPlacedEvent(newListeningEffectGauge.HolderId, source.Id,
                     newListeningEffectGauge.Id));
+
+                /*fightHandler.FireEvent(new ListeningEffectPlacedEvent(source.Id, newListeningEffectGauge.HolderId,
+                    newListeningEffectGauge.Id));*/
 
                 int tmp1 = source.GetStat(Stat.mastery1),
                     tmp2 = source.GetStat(Stat.mastery2),
@@ -164,12 +74,17 @@ namespace Myths_Server
                 fightHandler.FireEvent(new EntityStatChangedEvent(source.Id, source.Id, Stat.mastery1, 0));
                 fightHandler.FireEvent(new EntityStatChangedEvent(source.Id, source.Id, Stat.mastery2, 0));
                 fightHandler.FireEvent(new EntityStatChangedEvent(source.Id, source.Id, Stat.mastery3, 0));
-                if(tmp1 != 0)
+                if (tmp1 != 0)
                     fightHandler.FireEvent(new ConsumeMasteryEvent(source.Id, source.Id, tmp1));
-                if(tmp2 != 0)
+                if (tmp2 != 0)
                     fightHandler.FireEvent(new ConsumeMasteryEvent(source.Id, source.Id, tmp2));
-                if(tmp3 != 0)
+                if (tmp3 != 0)
                     fightHandler.FireEvent(new ConsumeMasteryEvent(source.Id, source.Id, tmp3));
+                #endregion
+
+
+
+
                 //Update that entity can't attack anymore this turn
                 fightHandler.FireEvent(new EntityStatChangedEvent(newEvent.SourceId, newEvent.SourceId, Stat.canAttack, 0));
 

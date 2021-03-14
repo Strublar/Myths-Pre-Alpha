@@ -41,7 +41,7 @@ namespace Myths_Server
                         counter++;
 
                     }
-                    if (ev is BeginTurnEvent)
+                    if (ev is BeginTurnEvent || ev is EntityCalledEvent)
                     {
                         counter = 0;
                     }

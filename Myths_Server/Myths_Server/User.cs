@@ -250,7 +250,8 @@ namespace Myths_Server
             int playerId = Utils.ParseInt(message, 5);
             int x = Utils.ParseInt(message, 9);
             int y = Utils.ParseInt(message, 13);
-            object[] parameters = { targetId,playerId,x,y };
+            bool isSwitch = (message[17] == 1);
+            object[] parameters = { targetId,playerId,x,y,isSwitch };
             if (game.CurrentPlayer == this)
             {
                 this.game.WorkerQueue.Enqueue(this.game.OnCall);

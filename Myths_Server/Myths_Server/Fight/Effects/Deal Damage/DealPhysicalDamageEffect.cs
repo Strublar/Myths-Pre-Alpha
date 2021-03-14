@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public DealPhysicalDamageEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public DealPhysicalDamageEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,17 +31,17 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId,Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine("Dealing "+value+" physical damage to " + fightHandler.Entities[targetId].Definition.Name);
+            Console.WriteLine("Dealing "+ values[0] + " physical damage to " + fightHandler.Entities[targetId].Definition.Name);
             //check broken guard
             if(fightHandler.Entities[targetId].GetStat(Stat.armor) <= 0 ||
                 fightHandler.Entities[targetId].GetStat(Stat.barrier) <= 0)//Guard broken
             {
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                    fightHandler.Entities[targetId].GetStat(Stat.hp) - value));
+                    fightHandler.Entities[targetId].GetStat(Stat.hp) - values[0]));
             }
-            else if (fightHandler.Entities[targetId].GetStat(Stat.armor) < value)
+            else if (fightHandler.Entities[targetId].GetStat(Stat.armor) < values[0])
             {
-                int hpLost = value - fightHandler.Entities[targetId].GetStat(Stat.armor);
+                int hpLost = values[0] - fightHandler.Entities[targetId].GetStat(Stat.armor);
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.armor,0));
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
                     fightHandler.Entities[targetId].GetStat(Stat.hp) - hpLost));
@@ -49,7 +49,7 @@ namespace Myths_Server
             else
             {
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.armor,
-                    fightHandler.Entities[targetId].GetStat(Stat.armor)-value));
+                    fightHandler.Entities[targetId].GetStat(Stat.armor)- values[0]));
             }
                     
         }

@@ -213,7 +213,6 @@ public class MythUIBehaviour : MonoBehaviour
 
     public void OnDrop()
     {
-        Debug.Log("WOLOLO");
         if (GameManager.gm.selectedTile != null)
         {
             if (GameManager.gm.selectedTile.currentTexture == GameManager.gm.selectedTile.textureTileSummoning)
@@ -238,7 +237,7 @@ public class MythUIBehaviour : MonoBehaviour
 
                     Server.SendMessageToServer(new CallMessage(GameManager.gm.selectedUnit.Id,
                     GameManager.gm.players[GameManager.gm.localPlayerId].Id,
-                    GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
+                    GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y,true));
                 }
                 else if(unitOnTile == null)
                 {
@@ -246,7 +245,7 @@ public class MythUIBehaviour : MonoBehaviour
 
                     Server.SendMessageToServer(new CallMessage(GameManager.gm.selectedUnit.Id,
                         GameManager.gm.players[GameManager.gm.localPlayerId].Id,
-                        GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
+                        GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y,false));
                 }
                 
                 

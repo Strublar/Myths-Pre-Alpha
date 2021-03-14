@@ -30,7 +30,9 @@ namespace Myths_Server
         canAttack,
         canMove,
         canRecall,
-        canUlt,
+        canUlt1,
+        canUlt2,
+        canUlt3,
 
         //State stats
         isDead,
@@ -57,6 +59,9 @@ namespace Myths_Server
         earth = 4,
         air = 5,
         light = 6,
-        dark = 7
+        dark = 7,
+        any = -1
     }
+
+    
 }

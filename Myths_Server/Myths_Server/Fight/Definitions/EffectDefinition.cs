@@ -13,7 +13,7 @@ namespace Myths_Server
         private int id;
         private string name;
         private Type effectType;
-        private int value;
+        private List<int> values;
         private TargetSelector targetSelector;
         private TargetSelector sourceSelector;
         private List<Condition> conditions;
@@ -24,7 +24,7 @@ namespace Myths_Server
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public Type EffectType { get => effectType; set => effectType = value; }
-        public int Value { get => value; set => this.value = value; }
+        public List<int> Values { get => values; set => this.values = value; }
         internal TargetSelector TargetSelector { get => targetSelector; set => targetSelector = value; }
         internal TargetSelector SourceSelector { get => sourceSelector; set => sourceSelector = value; }
         internal List<Condition> Conditions { get => conditions; set => conditions = value; }
@@ -37,13 +37,13 @@ namespace Myths_Server
         public EffectDefinition()
         { }
 
-        public EffectDefinition(int id, string name, Type effectType, int value, TargetSelector targetSelector,
+        public EffectDefinition(int id, string name, Type effectType, List<int> values, TargetSelector targetSelector,
             TargetSelector sourceSelector, List<Condition> conditions)
         {
             this.id = id;
             this.name = name;
             this.effectType = effectType;
-            this.value = value;
+            this.values = values;
             this.targetSelector = targetSelector;
             this.sourceSelector = sourceSelector;
             this.conditions = conditions;
@@ -70,10 +70,17 @@ namespace Myths_Server
                     EffectDefinition newEffectDefinition = new EffectDefinition();
                     newEffectDefinition.Name = fields[1];
                     newEffectDefinition.EffectType = Type.GetType("Myths_Server." + fields[2]);
-                    newEffectDefinition.value = Int32.Parse(fields[3]);
+
+                    //Effect Values
+                    newEffectDefinition.values = new List<int>();
+                    string[] subStr = fields[3].Split(",");
+                    foreach(string sub in subStr)
+                    {
+                        newEffectDefinition.values.Add(int.Parse(sub));
+                    }
+                    
 
 
-                    //TODO PARAMS 
                     //TargetSelector
                     Type targetSelectorType = Type.GetType("Myths_Server." + fields[4]);
                     object targetSelectorObject = Activator.CreateInstance(targetSelectorType);

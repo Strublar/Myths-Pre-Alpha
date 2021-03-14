@@ -1473,7 +1473,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fire team
+  m_Text: Mono Earth
 --- !u!222 &394101993
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4350,7 +4350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dark Team
+  m_Text: Mono Air
 --- !u!222 &1393627070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6581,7 +6581,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Balance Team
+  m_Text: Balance
 --- !u!222 &2133323676
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public TeleportEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public TeleportEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }

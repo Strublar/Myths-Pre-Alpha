@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public GainMobilityPerMasteryEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public GainMobilityPerMasteryEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,28 +31,35 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            int computedValue = 0;
+            int element = values.Count > 2 ? values[2] : 0;
+            int computedValue = values[0];
             Entity source = fightHandler.Entities[context.SourceId];
-            if (source.GetStat(Stat.mastery1) != 0)
+            if (source.GetStat(Stat.mastery1) == element ||
+                (source.GetStat(Stat.mastery1) != 0 && element == -1))
             {
-                computedValue += value;
+                computedValue += values[1];
             }
-            if (source.GetStat(Stat.mastery2) != 0)
+            if (source.GetStat(Stat.mastery2) == element ||
+                (source.GetStat(Stat.mastery2) != 0 && element == -1))
             {
-                computedValue += value;
+                computedValue += values[1];
             }
-            if (source.GetStat(Stat.mastery2) != 0)
+            if (source.GetStat(Stat.mastery3) == element ||
+                (source.GetStat(Stat.mastery3) != 0 && element == -1))
             {
-                computedValue += value;
+                computedValue += values[1];
             }
 
-            value = computedValue;
+            int isTemp = values.Count > 3 ? values[3] : 0;
+            Effect newEffect = new GainMobilityEffect(
+                sources, targets, new List<int> { computedValue, isTemp });
+            newEffect.ExecuteOnTarget(targetId, context, fightHandler);
 
-            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" Gains "+value+" mobility");
+            /*Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" Gains "+computedValue+" mobility");
 
             Entity target = fightHandler.Entities[targetId];
             fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
-                Stat.mobility, target.GetStat(Stat.mobility) + value));
+                Stat.mobility, target.GetStat(Stat.mobility) + computedValue));*/
 
         }
         #endregion

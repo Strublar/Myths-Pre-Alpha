@@ -344,6 +344,7 @@ MonoBehaviour:
   canMove: {fileID: 3930199408556450372}
   recallButton: {fileID: 5507464685634234486}
   background: {fileID: 4677676088562917250}
+  energyObject: {fileID: 3702664764663959461}
 --- !u!1 &5437395603365733210
 GameObject:
   m_ObjectHideFlags: 0

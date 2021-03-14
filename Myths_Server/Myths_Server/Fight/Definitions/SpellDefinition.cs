@@ -15,7 +15,7 @@ namespace Myths_Server
         private TargetSelector targetSelector;
         private List<EffectDefinition> effects;
         private int energyCost, minRange, maxRange;
-        private bool isUlt;
+        private byte isUlt;
         private Mastery element;
 
         #endregion
@@ -29,7 +29,7 @@ namespace Myths_Server
         internal TargetSelector TargetSelector { get => targetSelector; set => targetSelector = value; }
         internal List<EffectDefinition> Effects { get => effects; set => effects = value; }
         public Mastery Element { get => element; set => element = value; }
-        public bool IsUlt { get => isUlt; set => isUlt = value; }
+        public byte IsUlt { get => isUlt; set => isUlt = value; }
 
         #endregion
 
@@ -70,7 +70,7 @@ namespace Myths_Server
                     newSpellDefinition.Element = (Mastery)Int32.Parse(fields[5]);
 
                     //isUlt
-                    newSpellDefinition.isUlt = (Int32.Parse(fields[6]) == 1) ? true : false;
+                    newSpellDefinition.isUlt = byte.Parse(fields[6]);
                     //TargetSelector
                     Type targetSelectorType = Type.GetType("Myths_Server." + fields[7]);
                     object targetSelectorObject = Activator.CreateInstance(targetSelectorType);

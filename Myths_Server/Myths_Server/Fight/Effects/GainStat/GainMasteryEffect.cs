@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public GainMasteryEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public GainMasteryEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -32,27 +32,32 @@ namespace Myths_Server
         {
 
             Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" Gains mastery");
-
             Entity target = fightHandler.Entities[targetId];
-            if(target.GetStat(Stat.mastery1)==0)
+            int count = values.Count > 1 ? values[1] : 1;
+            for(int i =0; i< count;i++)
             {
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery1, value));
-                fightHandler.FireEvent(new GainMasteryEvent(targetId, targetId, value));
+                if (target.GetStat(Stat.mastery1) == 0)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery1, values[0]));
+                    fightHandler.FireEvent(new GainMasteryEvent(targetId, targetId, values[0]));
+                }
+                else if (target.GetStat(Stat.mastery2) == 0)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2, values[0]));
+                    fightHandler.FireEvent(new GainMasteryEvent(targetId, targetId, values[0]));
+                }
+                else if (target.GetStat(Stat.mastery3) == 0)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, values[0]));
+                    fightHandler.FireEvent(new GainMasteryEvent(targetId, targetId, values[0]));
+                }
+                else
+                {
+                    Console.WriteLine("Mastery overdrawn");
+                }
             }
-            else if(target.GetStat(Stat.mastery2) == 0)
-            {
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2, value));
-                fightHandler.FireEvent(new GainMasteryEvent(targetId, targetId, value));
-            }
-            else if (target.GetStat(Stat.mastery3) == 0)
-            {
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, value));
-                fightHandler.FireEvent(new GainMasteryEvent(targetId, targetId, value));
-            }
-            else
-            {
-                Console.WriteLine("Mastery overdrawn");
-            }
+            
+            
 
         }
         #endregion

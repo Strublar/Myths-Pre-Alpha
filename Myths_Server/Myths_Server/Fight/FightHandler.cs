@@ -257,16 +257,16 @@ namespace Myths_Server
 
             if(player1.Initiative<=player2.Initiative)
             {
+                game.ChangeCurrentPlayer();
                 FireEvent(new EntityStatChangedEvent(player1.Id, player1.Id, Stat.calls, 1));
                 FireEvent(new EntityStatChangedEvent(player2.Id, player2.Id, Stat.calls, 2));
-                FireEvent(new BeginTurnEvent(player1.Id, player1.Id));
+                FireEvent(new BeginTurnEvent(player2.Id, player2.Id));
             }
             else
             {
-                game.ChangeCurrentPlayer();
                 FireEvent(new EntityStatChangedEvent(player1.Id, player2.Id, Stat.calls, 2));
                 FireEvent(new EntityStatChangedEvent(player2.Id, player2.Id, Stat.calls, 1));
-                FireEvent(new BeginTurnEvent(player2.Id, player2.Id));
+                FireEvent(new BeginTurnEvent(player1.Id, player1.Id));
             }
             
         }

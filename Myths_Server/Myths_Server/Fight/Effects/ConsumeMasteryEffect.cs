@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public ConsumeMasteryEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public ConsumeMasteryEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -32,33 +32,36 @@ namespace Myths_Server
         {
 
             Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" consume  mastery");
-
-            Entity target = fightHandler.Entities[targetId];
-            if(target.GetStat(Stat.mastery1)==value)
+            int count = values.Count > 1 ? values[1] : 1;
+            for (int i = 0; i < count; i++)
             {
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery1,
-                    target.GetStat(Stat.mastery2)));
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2,
-                    target.GetStat(Stat.mastery3)));
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
-                fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, value));
-            }
-            else if(target.GetStat(Stat.mastery2) == value)
-            {
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2, 0));
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2,
-                    target.GetStat(Stat.mastery3)));
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
-                fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, value));
-            }
-            else if (target.GetStat(Stat.mastery3) == value)
-            {
-                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
-                fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, value));
-            }
-            else
-            {
-                Console.WriteLine("no Mastery consumed");
+                Entity target = fightHandler.Entities[targetId];
+                if (target.GetStat(Stat.mastery1) == values[0] && count > 0)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery1,
+                        target.GetStat(Stat.mastery2)));
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2,
+                        target.GetStat(Stat.mastery3)));
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
+                    fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, values[0]));
+                }
+                if (target.GetStat(Stat.mastery2) == values[0] && count > 0)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2, 0));
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2,
+                        target.GetStat(Stat.mastery3)));
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
+                    fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, values[0]));
+                }
+                if (target.GetStat(Stat.mastery3) == values[0] && count > 0)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
+                    fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, values[0]));
+                }
+                if (count > 0)
+                {
+                    Console.WriteLine("no Mastery consumed");
+                }
             }
 
         }

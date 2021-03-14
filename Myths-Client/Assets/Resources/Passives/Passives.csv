@@ -3,27 +3,27 @@ Id;Name;description
 1;Tir de precision;Pousse de 2 cases les personnages en zone 1
 2;Enracinement;-2 mobilite aux ennemis en zone 1 jusqu'a la fin de leur prochain tour
 3;Evocation;+1 maitrise Feu, Terre et Air
-4;Protecteur;Les allies en zone 1 gagnent 3 armure et 3 barriere
-5;omg;+1 maitrise arcane a tous les allies
-6;Prete a combattre;+1 mobilite jusqua la fin du tour
-7;Presence malveillante;Tous les personnages gagnent une maitrise tenebre
-8;Cri de guerre;+4 attaque jusqu'a la fin du tour
+4;Protecteur;Se soigne de 43 pv
+5;omg;Gagne 1 maitrise feu et 1 jauge eau
+6;Presence reconfortante;Tous les allies gagnent 1 maitriselumiere
+7;Symbole du matin;Tous les personnages gagnent une maitrise tenebre
+8;Fureur des sables;+3 atk ce tour
 9;Culte;+3 jauge arcane
 10;Regonfler;Perds 15 pv
-11;Traquer;Les ennemis isoles gagnent 1 maitrise tenebre
-12;Provocation;Attire de 2 cases les ennemis alignes jusqu'a 3 cases
+11;Traquer;Devient Engage
+12;Provocation;Se desengage
 13;Maitre de scene;Tous les allies gagnent 1 energie ce tour
 14;Magma;Attaque : Gagne 1 jauge feu et terre
 15;Pas leger;+1 maitrise air lorsqu'il se deplace
 16;Ecorces regeneratrices;Quand un allie gagne de l'armure, il se soigne de 2
 17;Maitre des elements;+1 attaque par maitrise
 18;Reformation;Attaque : Recharge son armure et sa barriere
-19;viiiiite;+1 mobilite
-20;Foi;Fin de tour : Se soigne de 3
-21;Malfaisance;Fin de tour : Inflige 3 degats magiques aux ennemis avec une maitrise tenebre
-22;Patchwork;Debut de tour : Consomme une maitrise Tenebre : Gagne 3 attaque ce tour, Consomme une maitrise Roche : Gagne 3 armure et 3 barriere
+19;Machinerie;Debut de tour : +2 Energie si le lanceur a au moins 61 armure
+20;Foi;Fin de tour : Se soigne de 4
+21;Malfaisance;Fin de tour : Consomme 1 maitrise tenebre sur tous les ennemis : Inflige 2 degats magique et ils perdent 1 energie ce tour
+22;Marcheur des sables;Debut de tour : Gagne 1 jauge par maitrise
 23;Sombre pacte;+1 energie
-24;Rafraichissement;Rappel : Se soigne de 15
-25;Etriper;Attaque : Consomme une maitrise tenebre de la cible pour infliger 4 degats physiques
-26;Rodeo;Gagne une maitrise arcane chaque fois qu'il est deplace
-27;changement d'acteur;+1 appel au rappel
+24;Rafraichissement;Rappel : Soigne tous les allies de 20
+25;Transformation;"Gagne 1 appel quand le lanceur lance le sort ""Pleine lune"""
+26;Rodeo;Gagne une maitrise air chaque fois qu'il est deplace
+27;Changement d'acteur;+1 appel au rappel

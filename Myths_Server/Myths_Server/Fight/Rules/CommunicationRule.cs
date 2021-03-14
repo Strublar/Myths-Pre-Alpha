@@ -51,7 +51,9 @@ namespace Myths_Server
                     stat == Stat.gaugeLight ||
                     stat == Stat.gaugeDark ||
                     stat == Stat.isDead ||
-                    stat == Stat.canUlt ||
+                    stat == Stat.canUlt1 ||
+                    stat == Stat.canUlt2 ||
+                    stat == Stat.canUlt3 ||
                     stat == Stat.isEngaged ||
                     stat == Stat.canMove)
                 {

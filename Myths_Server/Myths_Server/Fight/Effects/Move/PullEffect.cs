@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public PullEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public PullEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -44,7 +44,7 @@ namespace Myths_Server
                 //North
                 if(sourceY < targetY)
                 {
-                    for(int i=1;i<=value;i++)
+                    for(int i=1;i<= values[0]; i++)
                     {
                         if (targetY - i >= 0 && fightHandler.UnitOnTile(sourceX, targetY - i) == null)
                         {
@@ -61,7 +61,7 @@ namespace Myths_Server
                 }
                 else //South
                 {
-                    for (int i = 1; i <= value; i++)
+                    for (int i = 1; i <= values[0]; i++)
                     {
                         if (targetY + i <= 4 && fightHandler.UnitOnTile(sourceX, targetY + i) == null)
                         {
@@ -82,7 +82,7 @@ namespace Myths_Server
                 //West
                 if (sourceX < targetX)
                 {
-                    for (int i = 1; i <= value; i++)
+                    for (int i = 1; i <= values[0]; i++)
                     {
                         if (targetX - i >= 0 && fightHandler.UnitOnTile(targetX - i, sourceY) == null)
                         {
@@ -99,7 +99,7 @@ namespace Myths_Server
                 }
                 else //East
                 {
-                    for (int i = 1; i <= value; i++)
+                    for (int i = 1; i <= values[0]; i++)
                     {
                         if (targetX + i <=6 && fightHandler.UnitOnTile(targetX + i, sourceY) == null)
                         {

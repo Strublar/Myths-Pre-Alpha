@@ -176,14 +176,20 @@ namespace Myths_Server
             if (parameters[0] is int targetId &&
                 parameters[1] is int playerId &&
                 parameters[2] is int x &&
-                parameters[3] is int y)
+                parameters[3] is int y &&
+                parameters[4] is bool isSwitch)
             {
                 /*SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.isCalled, 1));
                 SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.x, x));
                 SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.y, y));
                 SendMessageToAllUsers(new CallMessage(targetId));*/
                 fightHandler.FireEvent(new EntityCallEvent(targetId, playerId, x, y));
-                if(deployement <2)
+                Console.WriteLine("IT IS A SWIIIITCH ??? : " + isSwitch);
+                if(isSwitch)
+                {
+                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.canMove, 0));
+                }
+                if(deployement <1)
                 {
                     deployement++;
                     fightHandler.FireEvent(new BeginTurnEvent(GetOtherPlayerId(), GetOtherPlayerId()));

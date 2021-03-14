@@ -91,7 +91,10 @@ namespace Myths_Server
                     stats.Add(Stat.isDead, 0);
                     stats.Add(Stat.isCalled, 0);
                     stats.Add(Stat.isEngaged, 0);
-                    stats.Add(Stat.canUlt, 1);
+                    stats.Add(Stat.canUlt1, 1);
+                    stats.Add(Stat.canUlt2, 1);
+                    stats.Add(Stat.canUlt3, 1);
+
                     EntityDefinition newEntity = new EntityDefinition(newEntityId, fields[1], stats);
                     //Passives Parsing
                     if (!fields[10].Equals(""))

@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public HealPerMasteryEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public HealPerMasteryEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -31,31 +31,39 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-                int computedValue = 0;
-                Entity source = fightHandler.Entities[context.SourceId];
-                if (source.GetStat(Stat.mastery1) != 0)
-                {
-                    computedValue += value;
-                }
-                if (source.GetStat(Stat.mastery2) != 0)
-                {
-                    computedValue += value;
-                }
-                if (source.GetStat(Stat.mastery2) != 0)
-                {
-                    computedValue += value;
-                }
-                value = computedValue;
+            int element = values.Count > 2 ? values[2] : 0;
+            int computedValue = values[0];
+            Entity source = fightHandler.Entities[context.SourceId];
+            if (source.GetStat(Stat.mastery1) == element ||
+                (source.GetStat(Stat.mastery1) != 0 && element == -1))
+            {
+                computedValue += values[1];
+            }
+            if (source.GetStat(Stat.mastery2) == element ||
+                (source.GetStat(Stat.mastery2) != 0 && element == -1))
+            {
+                computedValue += values[1];
+            }
+            if (source.GetStat(Stat.mastery3) == element ||
+                (source.GetStat(Stat.mastery3) != 0 && element == -1))
+            {
+                computedValue += values[1];
+            }
 
-                Console.WriteLine("healing "+value+" hp  to " + fightHandler.Entities[targetId].Definition.Name);
-                //check Full life
-                Entity target = fightHandler.Entities[targetId];
-                if (target.GetStat(Stat.hp)< target.Stats[Stat.hp])
-                {
-                    //Not full health
-                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
-                        (int)MathF.Min(target.Stats[Stat.hp], target.GetStat(Stat.hp) + value)));
-                }
+            int isTemp = values.Count > 3 ? values[3] : 0;
+            Effect newEffect = new HealEffect(
+                sources, targets, new List<int> { computedValue, isTemp });
+            newEffect.ExecuteOnTarget(targetId, context, fightHandler);
+
+            /*Console.WriteLine("healing "+ computedValue + " hp  to " + fightHandler.Entities[targetId].Definition.Name);
+            //check Full life
+            Entity target = fightHandler.Entities[targetId];
+            if (target.GetStat(Stat.hp)< target.Stats[Stat.hp])
+            {
+                //Not full health
+                fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.hp,
+                    (int)MathF.Min(target.Stats[Stat.hp], target.GetStat(Stat.hp) + computedValue)));
+            }*/
 
         }
         #endregion

@@ -34,9 +34,10 @@ namespace Myths_Server
                 Console.WriteLine("Gain Mastery rule activated");
                 SpellDefinition spellCast = SpellDefinition.BuildFrom(castEvent.SpellId);
 
+                
                 List<Effect> effects = new List<Effect> {
                     new GainMasteryEffect(new EffectHolderSelector(), new EffectHolderSelector(),
-                    (int)spellCast.Element)
+                    new List<int>{(int)spellCast.Element })
                 };
                 ListeningEffect newListeningEffect = new ListeningEffect(castEvent.SourceId, InstantTrigger.GetInstantTrigger(),
                     InstantTrigger.GetInstantTrigger(), effects);

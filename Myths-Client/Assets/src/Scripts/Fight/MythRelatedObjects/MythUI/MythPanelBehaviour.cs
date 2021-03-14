@@ -22,16 +22,6 @@ public class MythPanelBehaviour : MonoBehaviour
     #endregion
 
 
-    #region Unity Methods
-    
-    #endregion
-
-    #region Display Methods
-
-
-
-
-    #endregion
 
     #region Control Methods
 
@@ -98,23 +88,42 @@ public class MythPanelBehaviour : MonoBehaviour
         }
         else
         {
+
             recallButton.SetActive(false);
-            if(linkedMyth.Stats[Stat.canUlt] == 1)
+            //Ultimate 1
+            if(linkedMyth.Stats[Stat.canUlt1] == 1)
             {
                 ults[0].gameObject.SetActive(true);
-                ults[1].gameObject.SetActive(true);
-                ults[2].gameObject.SetActive(true);
+                
                 ults[0].Init(linkedMyth.Spells[4]);
-                ults[1].Init(linkedMyth.Spells[5]);
-                ults[2].Init(linkedMyth.Spells[6]);
             }
             else
             {
                 ults[0].gameObject.SetActive(false);
+            }
+            //Ultimate 2
+            if (linkedMyth.Stats[Stat.canUlt2] == 1)
+            {
+                ults[1].gameObject.SetActive(true);
+
+                ults[1].Init(linkedMyth.Spells[5]);
+            }
+            else
+            {
                 ults[1].gameObject.SetActive(false);
+            }
+            //Ultimate 3
+            if (linkedMyth.Stats[Stat.canUlt3] == 1)
+            {
+                ults[2].gameObject.SetActive(true);
+
+                ults[2].Init(linkedMyth.Spells[6]);
+            }
+            else
+            {
                 ults[2].gameObject.SetActive(false);
             }
-            
+
         }
         
     }

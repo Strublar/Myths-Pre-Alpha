@@ -20,8 +20,8 @@ namespace Myths_Server
         {
         }
 
-        public PlaceListeningEffectEffect(TargetSelector sources, TargetSelector targets, int value) 
-            : base(sources, targets, value)
+        public PlaceListeningEffectEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
+            : base(sources, targets, values)
         {
 
         }
@@ -33,7 +33,7 @@ namespace Myths_Server
 
             Console.WriteLine("Placing new listening effect");
 
-            ListeningEffectDefinition leDef = ListeningEffectDefinition.BuildFrom(value);
+            ListeningEffectDefinition leDef = ListeningEffectDefinition.BuildFrom(values[0]);
 
             ListeningEffect newListeningEffect = new ListeningEffect(targetId, leDef);
 
