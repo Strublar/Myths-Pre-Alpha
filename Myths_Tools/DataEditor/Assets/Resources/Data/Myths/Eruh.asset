@@ -19,138 +19,280 @@ MonoBehaviour:
   armor: 25
   hp: 40
   mobility: 3
-  energy: 5
-  masteryPassives:
-  - id: 0
-    passiveName: Eruh Fire Mastery
+  energy: 1
+  passives:
+  - passiveName: TestPassive
+    id: 0
     icon: {fileID: 0}
-    description: 'Mastery(3) : -1 cost of next fire spell'
+    description: 'End turn : Deal 3 damage to all enemies'
     executionTriggers:
     - selector: 1
-      eventType: 0
-      conditions:
-      - conditionType: 0
-        selector:
-          selector: 0
-          value: 0
-        mustBeTrue: 1
+      eventType: 1
+      conditions: []
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 3
+        temporary: 0
         stat: 0
-        statOperation: 2
+      targets:
+        selector: 3
         value: 0
-    effects:
-    - effects:
-      - effectType: 4
-        targets:
-          selector: 0
-          value: 0
-        element: 2
-        amount: 1
-        temporary: 0
-        stat: 0
       conditions: []
-  - id: 1
-    passiveName: Eruh Earth Mastery
-    icon: {fileID: 0}
-    description: 'Mastery(4) : +1 Fire Mastery'
-    executionTriggers:
-    - selector: 1
-      eventType: 0
-      conditions: []
-    effects:
-    - effects:
-      - effectType: 2
-        targets:
-          selector: 0
-          value: 0
-        element: 2
-        amount: 1
-        temporary: 0
-        stat: 0
-      conditions: []
-  passives: []
   spells:
-  - id: 0
-    spellName: Lava Flow
-    Element: 2
+  - spellName: Lava Flow
+    id: 0
+    element: 0
     isUltimate: 0
+    isMastery: 0
     icon: {fileID: 0}
     description: Deal 3 damage
     cost: 1
-    masteryCount: 1
+    masteryGeneration: 1
+    masteryCost: 2
     minRange: 1
     maxRange: 3
     effects:
     - effects:
       - effectType: 0
-        targets:
-          selector: 0
-          value: 0
         element: 0
         amount: 3
         temporary: 0
         stat: 0
+      targets:
+        selector: 0
+        value: 0
       conditions: []
-  - id: 0
-    spellName: Lava Flow
-    Element: 2
+  - spellName: Lava Flow
+    id: 0
+    element: 0
     isUltimate: 0
+    isMastery: 0
     icon: {fileID: 0}
     description: Deal 3 damage
     cost: 1
-    masteryCount: 1
+    masteryGeneration: 0
+    masteryCost: 0
     minRange: 1
     maxRange: 3
     effects:
     - effects:
       - effectType: 0
-        targets:
-          selector: 0
-          value: 0
         element: 0
         amount: 3
         temporary: 0
         stat: 0
+      targets:
+        selector: 0
+        value: 0
       conditions: []
-  - id: 0
-    spellName: Lava Flow
-    Element: 2
+  - spellName: Lava Flow
+    id: 0
+    element: 0
     isUltimate: 0
+    isMastery: 0
     icon: {fileID: 0}
     description: Deal 3 damage
     cost: 1
-    masteryCount: 1
+    masteryGeneration: 0
+    masteryCost: 0
     minRange: 1
     maxRange: 3
     effects:
     - effects:
       - effectType: 0
-        targets:
-          selector: 0
-          value: 0
         element: 0
         amount: 3
         temporary: 0
         stat: 0
+      targets:
+        selector: 0
+        value: 0
       conditions: []
-  - id: 0
-    spellName: Lava Flow
-    Element: 2
+  - spellName: Lava Flow
+    id: 0
+    element: 0
     isUltimate: 0
+    isMastery: 0
     icon: {fileID: 0}
     description: Deal 3 damage
     cost: 1
-    masteryCount: 1
+    masteryGeneration: 0
+    masteryCost: 0
     minRange: 1
     maxRange: 3
     effects:
     - effects:
       - effectType: 0
-        targets:
-          selector: 0
-          value: 0
         element: 0
         amount: 3
         temporary: 0
         stat: 0
+      targets:
+        selector: 0
+        value: 0
       conditions: []
-  ultimates: []
+  masterySpells:
+  - spellName: Lava Flow
+    id: 0
+    element: 0
+    isUltimate: 0
+    isMastery: 1
+    icon: {fileID: 0}
+    description: Deal 5 damage
+    cost: 1
+    masteryGeneration: 0
+    masteryCost: 2
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 5
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 0
+        value: 0
+      conditions: []
+  - spellName: Lava Flow
+    id: 0
+    element: 0
+    isUltimate: 0
+    isMastery: 1
+    icon: {fileID: 0}
+    description: Deal 5 damage
+    cost: 1
+    masteryGeneration: 0
+    masteryCost: 2
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 5
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 0
+        value: 0
+      conditions: []
+  - spellName: Lava Flow
+    id: 0
+    element: 0
+    isUltimate: 0
+    isMastery: 1
+    icon: {fileID: 0}
+    description: Deal 5 damage
+    cost: 1
+    masteryGeneration: 0
+    masteryCost: 2
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 5
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 0
+        value: 0
+      conditions: []
+  - spellName: Lava Flow
+    id: 0
+    element: 0
+    isUltimate: 0
+    isMastery: 1
+    icon: {fileID: 0}
+    description: Deal 5 damage
+    cost: 1
+    masteryGeneration: 0
+    masteryCost: 2
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 5
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 0
+        value: 0
+      conditions: []
+  ultimates:
+  - spellName: TestUlti
+    id: 0
+    element: 0
+    isUltimate: 1
+    isMastery: 0
+    icon: {fileID: 0}
+    description: Deal 8 damages
+    cost: 1
+    masteryGeneration: 3
+    masteryCost: 0
+    minRange: 1
+    maxRange: 5
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 8
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 3
+        value: 0
+      conditions: []
+  - spellName: TestUlti
+    id: 0
+    element: 0
+    isUltimate: 1
+    isMastery: 0
+    icon: {fileID: 0}
+    description: Deal 8 damages
+    cost: 1
+    masteryGeneration: 3
+    masteryCost: 0
+    minRange: 1
+    maxRange: 5
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 8
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 3
+        value: 0
+      conditions: []
+  - spellName: TestUlti
+    id: 0
+    element: 0
+    isUltimate: 1
+    isMastery: 0
+    icon: {fileID: 0}
+    description: Deal 8 damages
+    cost: 1
+    masteryGeneration: 3
+    masteryCost: 0
+    minRange: 1
+    maxRange: 5
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 8
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 3
+        value: 0
+      conditions: []
