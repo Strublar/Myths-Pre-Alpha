@@ -1,0 +1,9 @@
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\bin\Debug\netstandard2.0\Myths_Library.deps.json
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\bin\Debug\netstandard2.0\Myths_Library.dll
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\bin\Debug\netstandard2.0\Myths_Library.pdb
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\obj\Debug\netstandard2.0\Myths_Library.csprojAssemblyReference.cache
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\obj\Debug\netstandard2.0\Myths_Library.AssemblyInfoInputs.cache
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\obj\Debug\netstandard2.0\Myths_Library.AssemblyInfo.cs
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\obj\Debug\netstandard2.0\Myths_Library.dll
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\obj\Debug\netstandard2.0\Myths_Library.pdb
+D:\Desktop\Myths - Unity\Current\Myths\Myths-Pre-Alpha\Myths_Library\Myths_Library\obj\Debug\netstandard2.0\Myths_Library.csproj.CoreCompileInputs.cache

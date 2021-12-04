@@ -5,8 +5,8 @@ Id;Name;energyCost;minrange;maxrange;Element;isUlt;TargetSelector;value;EffectId
 3;Météor;8;1;3;2;0;SquareEnemySelector;1;4;;;;;
 4;Fleche rapide;2;2;3;5;0;EffectSourceSelector;0;12;13;14;15;;
 5;Tir harcelant;3;3;4;5;0;SimpleSelector;0;16;;;;;
-6;Tir du traqueur;3;2;3;4;0;EffectSourceSelector;0;17;18;;;;
-7;Tir puissant;8;2;3;4;0;SimpleSelector;0;19;20;;;;
+6;Tir du traqueur;3;2;3;7;0;EffectSourceSelector;0;17;18;;;;
+7;Tir puissant;8;2;3;7;0;SimpleSelector;0;19;20;;;;
 8;Ecorce;2;0;2;4;0;SimpleSelector;0;28;;;;;
 9;Embourber;3;1;3;3;0;SimpleSelector;0;29;30;;;;
 10;Frappe tronc;5;1;2;4;0;SimpleSelector;0;31;32;;;;
@@ -36,7 +36,7 @@ Id;Name;energyCost;minrange;maxrange;Element;isUlt;TargetSelector;value;EffectId
 34;Lame des sables;3;1;1;4;0;EffectSourceSelector;0;134;135;;;;
 35;Tempête de sable;7;0;0;4;0;SimpleEnemiesSelector;2;136;;;;;
 36;Trait de l'ombre;4;1;3;7;0;SimpleSelector;0;145;146;147;148;;
-37;Projectile d'arcane;2;1;3;1;0;SimpleSelector;0;149;150;151;;;
+37;Projectile d'arcane;2;1;3;1;0;EffectSourceSelector;0;149;150;151;;;
 38;Rituel occulte;4;0;0;7;0;SimpleSelector;2;152;;;;;
 39;Voile occulte;5;0;3;1;0;SimpleSelector;0;153;154;;;;
 40;Debordement de magma;0;0;0;2;1;SimpleSelector;0;5;6;;;;
@@ -45,7 +45,7 @@ Id;Name;energyCost;minrange;maxrange;Element;isUlt;TargetSelector;value;EffectId
 43;Tir de précision;5;2;3;7;1;SimpleSelector;0;21;;;;;
 44;Tir de barrage;1;2;3;5;2;EffectSourceSelector;0;22;23;;;;
 45;Fleche repoussante;3;1;3;5;3;SimpleSelector;0;24;25;;;;
-46;Seisme;8;0;0;4;1;SimpleSelector;2;35;;;;;
+46;Seisme;8;0;0;4;1;SimpleEnemiesSelector;2;35;;;;;
 47;Branchages;5;0;0;4;2;AllAlliesSelector;0;36;;;;;
 48;Racines;3;0;0;3;3;AllEnemiesSelector;0;37;;;;;
 49;Deferlement;3;1;3;2;1;SimpleSelector;0;51;;;;;
@@ -67,13 +67,13 @@ Id;Name;energyCost;minrange;maxrange;Element;isUlt;TargetSelector;value;EffectId
 65;Dune;0;0;0;4;2;SimpleSelector;0;138;139;140;;;
 66;Sillonner;2;1;3;5;3;EffectSourceSelector;0;141;142;;;;
 67;Don de pouvoir;4;1;3;7;1;SimpleSelector;0;155;156;;;;
-68;Silence;2;1;3;7;2;SimpleSelector;1;157;;;;;
+68;Silence;2;1;3;7;2;SimpleEnemiesSelector;1;157;;;;;
 69;Appel spirituel;6;0;0;1;3;SimpleSelector;0;158;;;;;
 70;Gonflage;5;0;0;3;0;SimpleSelector;0;160;161;;;;
 71;Vents ascendants;3;0;3;5;0;EffectSourceSelector;0;162;163;;;;
 72;Crachat sous pression;2;1;2;3;0;EffectSourceSelector;0;164;165;;;;
 73;Tornade de plume;5;1;2;5;0;SimpleEnemiesSelector;1;166;167;;;;
-74;Reservoir;0;0;0;6;1;SimpleSelector;0;168;;;;;
+74;Reservoir;0;0;0;3;1;SimpleSelector;0;168;;;;;
 75;Emplumer;3;1;2;5;2;SimpleSelector;0;169;170;;;;
 76;Bombe à eau;5;1;3;3;3;EffectSourceSelector;0;171;172;;;;
 77;Griffure;3;1;1;7;0;EffectSourceSelector;0;175;176;177;;;

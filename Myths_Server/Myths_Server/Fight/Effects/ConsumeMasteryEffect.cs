@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -45,7 +46,7 @@ namespace Myths_Server
                     fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
                     fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, values[0]));
                 }
-                if (target.GetStat(Stat.mastery2) == values[0] && count > 0)
+                else if (target.GetStat(Stat.mastery2) == values[0] && count > 0)
                 {
                     fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2, 0));
                     fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery2,
@@ -53,7 +54,7 @@ namespace Myths_Server
                     fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
                     fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, values[0]));
                 }
-                if (target.GetStat(Stat.mastery3) == values[0] && count > 0)
+                else if (target.GetStat(Stat.mastery3) == values[0] && count > 0)
                 {
                     fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.mastery3, 0));
                     fightHandler.FireEvent(new ConsumeMasteryEvent(targetId, targetId, values[0]));

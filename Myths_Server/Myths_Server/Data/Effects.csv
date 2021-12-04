@@ -5,7 +5,7 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 3;Pyroclaste_Damage;DealMagicalDamageEffect;8;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
 4;Meteor_Damage;DealMagicalDamageEffect;8;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
 5;Debordement_Master1;GainMasteryEffect;2;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
-6;Debordement_Master2;GainFireGaugeEffect;4;EffectHolderOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
+6;Debordement_Master2;GainGaugeEffect;2,4;EffectHolderOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
 7;Apocalypse_Damage;DealMagicalDamageEffect;6;SimpleEnemiesSelector;1;EffectSourceSelector;0;0;;;;;;
 8;Tremblment_Damage;DealMagicalDamageEffect;17;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
 9;Eruh_Call_Mastery1;GainMasteryEffect;2,2;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
@@ -40,7 +40,7 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 38;Terrestran_Call_Lose_Mobility;LoseMobilityEffect;2,1;SimpleEnemiesSelector;1;EffectSourceSelector;0;0;;;;;;
 39;Terrestran_Passive_Heal;HealEffect;2;EventTargetSelector;0;EffectSourceSelector;0;0;;;;;;
 40;Frappe_Elem_Damage;DealMagicalDamageEffect;4;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
-41;Frappe_Elem_Gauge;GainGaugePerMasteryEffect;-1,-1;EffectSourceOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
+41;Frappe_Elem_Gauge;GainGaugePerMasteryEffect;-2;EffectSourceOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
 42;Decharge_elem_Damage;DealMagicalDamageEffect;3;EffectHolderSelector;0;EffectSourceSelector;0;0;SourceHasNotAttackCondition;8;;;;
 43;Decharge_elem_Cond_Damage;DealMagicalDamageEffect;5;EffectHolderSelector;0;EffectSourceSelector;0;0;SourceHasAttackCondition;8;;;;
 44;Vent_Arriere_Buff;GainAttackEffect;3,1;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
@@ -143,12 +143,12 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 141;Sillonner_Damage;DealPhysicalDamageEffect;10;BetweenEnemySelector;0;EffectSourceSelector;0;0;;;;;;
 142;Sillonner_Dash;TeleportEffect;0;EffectSourceSelector;0;EffectSourceSelector;0;0;;;;;;
 143;Skordal_Call_Atk;GainAttackEffect;3,1;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
-144;Skordal_Passive_Gauge;GainGaugePerMasteryEffect;-1,-1;EffectSourceOwnerSelector;0;EffectHolderSelector;0;0;;;;;;
+144;Skordal_Passive_Gauge;GainGaugePerMasteryEffect;-2;EffectSourceOwnerSelector;0;EffectHolderSelector;0;0;;;;;;
 145;Trait_Ombre_Damage;DealMagicalDamageEffect;4;EffectHolderSelector;0;EffectSourceSelector;0;0;TargetHasNotMasteryCondition;7;;;;
 146;Trait_Ombre_Cond_Damage;DealMagicalDamageEffect;6;EffectHolderSelector;0;EffectSourceSelector;0;0;TargetHasMasteryCondition;7;;;;
 147;Trait_Ombre_Mast;GainMasteryEffect;7;EffectSourceSelector;0;EffectSourceSelector;0;0;TargetHasMasteryCondition;7;;;;
 148;Trait_Ombre_Consume_Mastery;ConsumeMasteryEffect;7;EffectHolderSelector;0;EffectSourceSelector;0;0;TargetHasMasteryCondition;7;;;;
-149;Projectile_Arcane_Damage;DealMagicalDamageEffect;2;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
+149;Projectile_Arcane_Damage;DealMagicalDamageEffect;2;SimpleSelector;0;EffectSourceSelector;0;0;;;;;;
 150;Projectile_Arcane_Mastery;GainMasteryEffect;1;EffectSourceSelector;0;EffectSourceSelector;0;0;SourceHasBarrierCondition;4;;;;
 151;Projectile_Arcane_Conso;LoseBarrierEffect;4;EffectSourceSelector;0;EffectSourceSelector;0;0;SourceHasBarrierCondition;4;;;;
 152;Rituel_Occulte_Mastery;GainMasteryEffect;7;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
@@ -159,7 +159,7 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 157;Silence_Lose_Energy;LoseEnergyEffect;5;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
 158;Appel_Spirituel_Calls;GainCallEffect;2;EffectHolderOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
 159;Manwella_Call_Gauge;GainGaugeEffect;1,3;EffectHolderOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
-160;Gonflage_Heal;HealEffect;6;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
+160;Gonflage_Heal;HealEffect;7;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
 161;Gonflage_Mastery;GainGaugeEffect;3,2;EffectSourceOwnerSelector;0;EffectSourceSelector;0;0;;;;;;
 162;Vents_Asc_Mast1;GainMasteryEffect;5;SimpleSelector;0;EffectSourceSelector;0;0;;;;;;
 163;Vent_Asc_Mast1;GainMasteryEffect;5;EffectSourceSelector;0;EffectSourceSelector;0;0;;;;;;
@@ -173,7 +173,7 @@ id;Name;EffectType;Effect Value;TargetSelector;Ts value;Source Selector;Ss value
 171;Bombe_Eau_Damage;DealMagicalDamageEffect;17;SimpleSelector;1;EffectSourceSelector;0;0;;;;;;
 172;Bombe_Eau_Recoil;DealTrueDamageEffect;10;EffectSourceSelector;0;EffectSourceSelector;0;0;;;;;;
 173;Gluss_Call;DealTrueDamageEffect;15;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
-174;Gluss_Passive_Heal;HealEffect;20;EffectHolderSelector;0;EffectSourceSelector;0;0;;;;;;
+174;Gluss_Passive_Heal;HealEffect;20;AllAlliesSelector;0;EffectSourceSelector;0;0;;;;;;
 175;Griffure_Damage;DealPhysicalDamageEffect;3;SimpleSelector;0;EffectSourceSelector;0;0;SourceHasNotMasteryCondition;7;;;;
 176;Griffure_Damage_Cond;DealPhysicalDamageEffect;6;SimpleSelector;0;EffectSourceSelector;0;0;SourceHasMasteryCondition;7;;;;
 177;Griffure_Conso_Mast;ConsumeMasteryEffect;7;EffectSourceSelector;0;EffectSourceSelector;0;0;SourceHasMasteryCondition;7;;;;

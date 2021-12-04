@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -39,7 +40,7 @@ namespace Myths_Server
             {
                 computedValue += values[1];
             }
-            if (source.GetStat(Stat.mastery2) == element ||
+            if (source.GetStat(statId: Stat.mastery2) == element ||
                 (source.GetStat(Stat.mastery2) != 0 && element == -1))
             {
                 computedValue += values[1];

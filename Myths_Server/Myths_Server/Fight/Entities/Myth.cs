@@ -1,5 +1,6 @@
 
-﻿using System;
+using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -28,10 +29,10 @@ namespace Myths_Server
         #region Methods
         public void InitMyth(FightHandler fightHandler, byte teamIndex, int unitId)
         {
-            fightHandler.Game.SendMessageToAllUsers(
+            /*fightHandler.Game.SendMessageToAllUsers(
                 new InitMythMessage(Team, teamIndex, Id, unitId,
                 this.GetStat(Stat.hp), this.GetStat(Stat.armor), this.GetStat(Stat.barrier), this.GetStat(Stat.attack),
-                this.GetStat(Stat.range), this.GetStat(Stat.attackType), this.GetStat(Stat.mobility)));
+                this.GetStat(Stat.range), this.GetStat(Stat.attackType), this.GetStat(Stat.mobility)));*/
         }
         #endregion
     }

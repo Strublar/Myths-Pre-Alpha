@@ -5,10 +5,10 @@ Id;Name;energyCost;minrange;maxrange;Element;Shape;description
 3;Meteor;8;1;3;2;Normal NoLOS;Inflige 8 degats magiques aux ennemis en zone carree (sans ligne de vue)
 4;Fleche rapide;2;2;3;5;Normal;Inflige 2 degats physiques Convertit une maitrise air en jauge: +2 degats
 5;Tir harcelant;3;3;4;5;Normal NoLOS;Inflige 4 degats physiques (sans ligne de vue)
-6;Tir du traqueur;3;2;3;4;Normal;Inflige 3 degats physiques et le lanceur gagne 1 maitrise tenebre
-7;Tir puissant;8;2;3;4;Normal;Inflige 11 degats physiques et gagne 3 jauge tenebre
+6;Tir du traqueur;3;2;3;7;Normal;Inflige 3 degats physiques et le lanceur gagne 1 maitrise tenebre
+7;Tir puissant;8;2;3;7;Normal;Inflige 11 degats physiques et gagne 3 jauge tenebre
 8;Ecorce;2;0;2;4;Normal;La cible gagne 3 armure +1 par maitrise terre
-9;Embourber;3;1;3;3;Normal;Inflige 2 degats physiques Flux : -1 mobilite pour la cible pendant 1 tour
+9;Embourber;3;1;3;3;Normal;Inflige 2 degats physiques. Si le sort consomme des jauges eau : -1 mobilite pour la cible pendant 1 tour
 10;Frappe tronc;5;1;2;4;Normal;Inflige 6 degats physiques Si le lanceur a au moins 51 armure : +1 maitrise terre
 11;Racine aggripante;3;1;3;3;Line;Inflige 2 degat physique en ligne et attire d'une case
 12;Frappe elementaire;4;1;3;4;Normal;Inflige 4 degats magiques et gagne 1 jauge par maitrise
@@ -22,12 +22,12 @@ Id;Name;energyCost;minrange;maxrange;Element;Shape;description
 20;Pieces detachees;2;1;3;3;Normal;Inflige 2 degats physique Consomme 6 armure : +2 degats
 21;Carabine a vapeur;4;1;3;2;Normal;Inflige 3 degats physiques. Consomme toutes vos maitrises feu : +2 degats et 1 jauge eau par maitrise
 22;Surregime;3;0;0;2;Normal;+1 maitrise feu et 1 mobilite ce tour
-23;Reparation;2;0;3;3;Normal;La cible gagne 3 armure Flux : +2 armure
+23;Reparation;2;0;3;3;Normal;La cible gagne 3 armure. Si le sort consomme des jauges eau : +2 armure
 24;Lueur ardente;3;0;2;2;Normal;La cible gagne 3 attaque ce tour
 25;Lance de feu;4;1;1;2;Normal;Inflige 5 degats physiques Si le lanceur a plus de 12 attaque : Gagne 2 maitrises feu
 26;Aube radieuse;6;0;0;6;Normal;Les allies en zone 2 gagnent une maitrise Feu et Lumiere
 27;Priere de soin;3;0;2;6;Normal;Soigne la cible de 4 points de vie Consomme une maitrise lumiere sur la cible : Soigne 3 de plus
-28;Flot maudit;2;1;2;3;Normal;Inflige 3 degats magiques Flux : La cible gagne une maitrise tenebre
+28;Flot maudit;2;1;2;3;Normal;Inflige 3 degats magiques Si le sort consomme des jauges eau : La cible gagne une maitrise tenebre
 29;Noyer;3;1;3;3;Normal;Inflge 3 degats magiques et gagne 1 jauge eau
 30;Cauchemar;8;1;1;7;Normal;Inflige 13 degats magiques et la cible perds 3 energie pendant 1 tour
 31;Malfaisance;2;1;2;7;Normal;La cible et le lanceur gagnent 1 maitrise tenebre
@@ -69,11 +69,11 @@ Id;Name;energyCost;minrange;maxrange;Element;Shape;description
 67;Don de pouvoir;4;1;3;7;Normal;La cible gagne 6 energie et 5 attaque ce tour
 68;Silence;2;1;3;7;Normal;Les ennemis en zone 1 perdent 5 energie au prochain tour
 69;Appel spirituel;6;0;0;1;Normal;+2 appels
-70;Gonflage;5;0;0;3;Normal;Se soigne de 7 et gagne 2 maitrises eau
+70;Gonflage;5;0;0;3;Normal;Se soigne de 7 et gagne 2 jauges eau
 71;Vents ascendants;3;0;3;5;Normal;La cible et le lanceur gagnent une maitrise air
 72;Crachat sous pression;2;1;2;3;Normal;Inflige 2 degats magiques Flux : +2 degats
 73;Tornade de plume;5;1;2;5;Normal;Les ennemis en zone 1 perdent 2 atk et 2 energie pendant 1 tour
-74;Reservoir;0;0;0;6;Normal;Se soigne de 17
+74;Reservoir;0;0;0;3;Normal;Se soigne de 17
 75;Emplumer;3;1;2;5;Normal;La cible perd 5 energie et 7 attaque au prochain tour
 76;Bombe a eau;5;1;3;3;Normal;Inflige 17 degats magiques en zone 1 et perds 10 pv
 77;Griffure;3;1;1;7;Normal;Inflige 3 degats physiques Consomme une maitrise tenebre : +3 Degats
@@ -84,7 +84,7 @@ Id;Name;energyCost;minrange;maxrange;Element;Shape;description
 82;Pleine lune;0;0;0;7;Normal;Se desengage, gagne 3 matrises tenebre, 2 energie et 6 attaque ce tour
 83;Griffe de la nuit;5;1;1;7;Normal;Inflige 15 degats physiques et gagne 3 maitrises tenebre
 84;Sillage;3;1;2;5;Line Tile NoLOS;Se deplace en ligne et inflige 2 degats magiques aux ennemis traverses
-85;Eclair rapide;2;1;2;5;Normal;Inflige 2 degats magiques Canalise une maitrise Air : +1 jauge air
+85;Eclair rapide;2;1;2;5;Normal;Inflige 2 degats magiques Convertit une maitrise Air en jauge : +1 jauge air
 86;Aterrissage;5;0;0;6;Normal;Engagement : Se soigne de 8 et gagne 3 maitrises lumiere
 87;Heurt;3;1;1;6;Normal;Inflige 3 degats magique Consomme une maitrise Lumiere : +2 degats et Pousse d'une case
 88;Dans les airs;3;0;0;5;Normal;Repousse les personnages en zone 1 de 2 cases et se desengage

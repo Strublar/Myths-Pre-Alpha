@@ -109,6 +109,7 @@ public class Server : MonoBehaviour
     connection:
         try
         {
+            Debug.Log("Connecting to : " + ip);
             //TcpClient client = new TcpClient("90.92.24.188", 1301);
             //TcpClient client = new TcpClient("127.0.0.1", 1301);
 

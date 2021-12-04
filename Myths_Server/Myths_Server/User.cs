@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
@@ -30,7 +31,7 @@ namespace Myths_Server
         private Game game;
         private int[] team;
 
-        private Dictionary<byte, Action<byte[]>> messageProcessor;
+        private MessageProcessor messageProcessor;
         #endregion
 
         #region Getters & Setters
@@ -75,7 +76,7 @@ namespace Myths_Server
 
         public void InitMessageProcessor()
         {
-            messageProcessor = new Dictionary<byte, Action<byte[]>>();
+           /* messageProcessor = new Dictionary<byte, Action<byte[]>>();
             messageProcessor.Add((byte)ClientMessageType.Login, Login);
             messageProcessor.Add((byte)ClientMessageType.Logout, Logout);
             messageProcessor.Add((byte)ClientMessageType.JoinQueue, JoinQueue);
@@ -85,7 +86,13 @@ namespace Myths_Server
             messageProcessor.Add((byte)ClientMessageType.Attack, OnAttack);
             messageProcessor.Add((byte)ClientMessageType.CastSpell, OnCastSpell);
             messageProcessor.Add((byte)ClientMessageType.Move, OnMove);
-            messageProcessor.Add((byte)ClientMessageType.EndTurn, OnEndTurn);
+            messageProcessor.Add((byte)ClientMessageType.EndTurn, OnEndTurn);*/
+
+            messageProcessor = new MessageProcessor();
+            messageProcessor.processor.Add(typeof(LoginMessage), Login);
+            messageProcessor.processor.Add(typeof(LogoutMessage), Logout);
+            messageProcessor.processor.Add(typeof(JoinQueueMessage), JoinQueue);
+            messageProcessor.processor.Add(typeof(LeaveQueueMessage), LeaveQueue);
         }
         #endregion
 
@@ -158,7 +165,11 @@ namespace Myths_Server
          */
         public void ProcessMessage(byte[] message)
         {
-            messageProcessor[message[0]].Invoke(message);
+
+
+            Message messageObject = messageProcessor.GenerateClientMessage(message);
+            messageObject.ParseMessage(message);
+            messageProcessor.processor[messageObject.GetType()].Invoke(messageObject);
         }
 
         
@@ -174,9 +185,9 @@ namespace Myths_Server
          * Sets up the user to a logged in state with its username
          * @param newUserName : User name
          */
-        public void Login(byte[] message)
+        public void Login(Message message)
         {
-            string newUserName = Encoding.UTF8.GetString(message, 1, message.Length - 2);
+            string newUserName =  (message as LoginMessage).username;
             username = newUserName.Trim('\n').Trim().Trim('\0').Trim('\r');
             Console.WriteLine("User " + id + " has logged in with name " + username+" Test length : "+username.Length);
             this.currentUserMode = UserMode.LoggedIn;
@@ -187,7 +198,7 @@ namespace Myths_Server
          * Logout
          * Remove the user from logged in state
          */
-        public void Logout(byte[] message)
+        public void Logout(Message message)
         {
             username = null;
             Console.WriteLine("User " + id + " has logged out");
@@ -199,19 +210,13 @@ namespace Myths_Server
          * EnterQueue
          * Put the user in the matchmaking queue
          */
-        public void JoinQueue(byte[] message)
+        public void JoinQueue(Message message)
         {
             Console.WriteLine("User " + id + " has entered queue");
             this.currentUserMode = UserMode.InQueue;
 
-            this.Team = new int[]
-            {
-                Utils.ParseInt(message,1),
-                Utils.ParseInt(message,5),
-                Utils.ParseInt(message,9),
-                Utils.ParseInt(message,13),
-                Utils.ParseInt(message,17),
-            };
+
+
             MythsServer.SendMessage(this, new QueueJoinedMessage());
             MythsServer.UserJoinQueue(this);
         }
@@ -219,7 +224,7 @@ namespace Myths_Server
          * LeaveQueue
          * Remove the user from the matchmaking
          */
-        public void LeaveQueue(byte[] message)
+        public void LeaveQueue(Message message)
         {
             Console.WriteLine("User " + id + " has left queue");
             this.currentUserMode = UserMode.LoggedIn;

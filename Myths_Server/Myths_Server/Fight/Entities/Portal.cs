@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,8 +21,8 @@ namespace Myths_Server
         public Portal(FightHandler fightHandler, int portalId ) : 
             base(fightHandler, GetPortalDefinition(portalId), -1 )
         {
-            fightHandler.Game.SendMessageToAllUsers(
-                new InitPortalMessage(this.Id, this.GetStat(Stat.x), this.GetStat(Stat.y)));
+            /*fightHandler.Game.SendMessageToAllUsers(
+                new InitPortalMessage(this.Id, this.GetStat(Stat.x), this.GetStat(Stat.y)));*/
         }
         #endregion
 

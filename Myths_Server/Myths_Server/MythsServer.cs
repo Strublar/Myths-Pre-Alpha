@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -32,12 +33,9 @@ namespace Myths_Server
         #endregion
 
         #region Main Function
+
         public static void Main(String[] args)
         {
-            //Init message processor
-
-            
-
             MythsServer server = new MythsServer();
         }
         #endregion

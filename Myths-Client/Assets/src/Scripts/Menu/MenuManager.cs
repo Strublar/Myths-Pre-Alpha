@@ -102,7 +102,7 @@ public class MenuManager : MonoBehaviour
         connectingText.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
 
         //Thread connectionThread = new Thread(() => Server.Connect("90.92.24.188"));
-        Thread connectionThread = new Thread(() => Server.Connect("109.221.60.90"));
+        Thread connectionThread = new Thread(() => Server.Connect("90.100.222.219"));
         //Thread connectionThread = new Thread(() => Server.Connect("51.38.239.230"));
 
         connectionThread.IsBackground = true;

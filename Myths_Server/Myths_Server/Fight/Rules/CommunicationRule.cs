@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -28,7 +29,7 @@ namespace Myths_Server
 
         public override void OnAfterEvent(Event newEvent, FightHandler fightHandler)
         {
-            if(newEvent is EntityStatChangedEvent statEvent)
+            /*if(newEvent is EntityStatChangedEvent statEvent)
             {
                 Stat stat = (Stat)statEvent.StatId;
                 if (stat == Stat.hp ||
@@ -119,7 +120,7 @@ namespace Myths_Server
                 fightHandler.Game.SendMessageToAllUsers(new CapturePortalMessage(captureEvent.TargetId,
                     fightHandler.Entities[captureEvent.TargetId].Team));
             }
-
+            */
         }
         #endregion
     }

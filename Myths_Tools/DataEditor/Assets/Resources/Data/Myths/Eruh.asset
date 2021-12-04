@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48594fe3d58507244a1453249b6f3afd, type: 3}
+  m_Name: Eruh
+  m_EditorClassIdentifier: 
+  id: 0
+  mythName: Eruh
+  elements: 0200000004000000
+  mana: 2
+  armor: 25
+  hp: 40
+  mobility: 3
+  energy: 5
+  masteryPassives:
+  - id: 0
+    passiveName: Eruh Fire Mastery
+    icon: {fileID: 0}
+    description: 'Mastery(3) : -1 cost of next fire spell'
+    executionTriggers:
+    - selector: 1
+      eventType: 0
+      conditions:
+      - conditionType: 0
+        selector:
+          selector: 0
+          value: 0
+        mustBeTrue: 1
+        stat: 0
+        statOperation: 2
+        value: 0
+    effects:
+    - effects:
+      - effectType: 4
+        targets:
+          selector: 0
+          value: 0
+        element: 2
+        amount: 1
+        temporary: 0
+        stat: 0
+      conditions: []
+  - id: 1
+    passiveName: Eruh Earth Mastery
+    icon: {fileID: 0}
+    description: 'Mastery(4) : +1 Fire Mastery'
+    executionTriggers:
+    - selector: 1
+      eventType: 0
+      conditions: []
+    effects:
+    - effects:
+      - effectType: 2
+        targets:
+          selector: 0
+          value: 0
+        element: 2
+        amount: 1
+        temporary: 0
+        stat: 0
+      conditions: []
+  passives: []
+  spells:
+  - id: 0
+    spellName: Lava Flow
+    Element: 2
+    isUltimate: 0
+    icon: {fileID: 0}
+    description: Deal 3 damage
+    cost: 1
+    masteryCount: 1
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        targets:
+          selector: 0
+          value: 0
+        element: 0
+        amount: 3
+        temporary: 0
+        stat: 0
+      conditions: []
+  - id: 0
+    spellName: Lava Flow
+    Element: 2
+    isUltimate: 0
+    icon: {fileID: 0}
+    description: Deal 3 damage
+    cost: 1
+    masteryCount: 1
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        targets:
+          selector: 0
+          value: 0
+        element: 0
+        amount: 3
+        temporary: 0
+        stat: 0
+      conditions: []
+  - id: 0
+    spellName: Lava Flow
+    Element: 2
+    isUltimate: 0
+    icon: {fileID: 0}
+    description: Deal 3 damage
+    cost: 1
+    masteryCount: 1
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        targets:
+          selector: 0
+          value: 0
+        element: 0
+        amount: 3
+        temporary: 0
+        stat: 0
+      conditions: []
+  - id: 0
+    spellName: Lava Flow
+    Element: 2
+    isUltimate: 0
+    icon: {fileID: 0}
+    description: Deal 3 damage
+    cost: 1
+    masteryCount: 1
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        targets:
+          selector: 0
+          value: 0
+        element: 0
+        amount: 3
+        temporary: 0
+        stat: 0
+      conditions: []
+  ultimates: []

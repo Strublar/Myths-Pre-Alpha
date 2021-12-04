@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualBasic.FileIO;
+using Myths_Library;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Myths_Server
 {
@@ -45,6 +47,7 @@ namespace Myths_Server
         #region Methods
         public static EntityDefinition BuildFrom(int newEntityId)
         {
+
             string dir = Environment.CurrentDirectory;
             string fileName = "../../../Data/Entities.csv";
             string path = Path.GetFullPath(fileName, dir);
@@ -62,18 +65,6 @@ namespace Myths_Server
                     //Stats Parsing
                     Dictionary<Stat, int> stats = new Dictionary<Stat, int>();
 
-                    //Hp
-                    stats.Add(Stat.hp, Int32.Parse(fields[2]));
-                    //Armor
-                    stats.Add(Stat.armor, Int32.Parse(fields[3]));
-                    //Barrier
-                    stats.Add(Stat.barrier, Int32.Parse(fields[4]));
-                    //Attack
-                    stats.Add(Stat.attack, Int32.Parse(fields[5]));
-                    //Range
-                    stats.Add(Stat.range, Int32.Parse(fields[6]));
-                    //Atk type
-                    stats.Add(Stat.attackType, Int32.Parse(fields[7]));
                     //Mobility
                     stats.Add(Stat.mobility, Int32.Parse(fields[8]));
                     //Energy
@@ -84,7 +75,6 @@ namespace Myths_Server
                     stats.Add(Stat.x, 0);
                     stats.Add(Stat.y, 0);
                     //Control
-                    stats.Add(Stat.canAttack, 0);
                     stats.Add(Stat.canMove, 0);
                     stats.Add(Stat.canRecall, 0);
                     //State

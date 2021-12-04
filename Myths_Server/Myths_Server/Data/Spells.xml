@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MythsPool>
+	<Myth id="0" name="Eruh" hp="0" armor="0" barrier="0" attack="0" range="0" attackType="physical" mobility="0" energy="0"/>
+
+</MythsPool>

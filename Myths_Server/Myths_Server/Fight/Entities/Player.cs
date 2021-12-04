@@ -37,8 +37,8 @@ namespace Myths_Server
             this.name = fightHandler.Game.Users[this.Team].Username;
             Console.WriteLine("Send player " + this.Team + " to " + this.Team + " and " + (1 - this.Team));
             //Thread.Sleep(100);//Warning : Used because messages are not recieved
-            fightHandler.Game.SendMessageToUserIndex(this.Team, new InitPlayerMessage(this.Team,this.Id,true,this.name));
-            fightHandler.Game.SendMessageToUserIndex(1- this.Team, new InitPlayerMessage(this.Team, this.Id, false, this.name));
+            /*fightHandler.Game.SendMessageToUserIndex(this.Team, new InitPlayerMessage(this.Team,this.Id,true,this.name));
+            fightHandler.Game.SendMessageToUserIndex(1- this.Team, new InitPlayerMessage(this.Team, this.Id, false, this.name));*/
         }
         #endregion
 
