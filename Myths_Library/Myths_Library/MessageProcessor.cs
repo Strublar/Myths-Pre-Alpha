@@ -34,6 +34,8 @@ namespace Myths_Library
             serverMessageGenerator.Add((byte)ServerMessageType.QueueLeft, typeof(QueueLeftMessage));
             serverMessageGenerator.Add((byte)ServerMessageType.MatchFound, typeof(MatchFoundMessage));
 
+            serverMessageGenerator.Add((byte)ServerMessageType.InitPlayer, typeof(InitPlayerMessage));
+            serverMessageGenerator.Add((byte)ServerMessageType.InitMyth, typeof(InitMythMessage));
 
             //Fight messages
             //Start game messages

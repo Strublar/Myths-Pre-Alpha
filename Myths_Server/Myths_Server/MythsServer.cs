@@ -6,7 +6,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace Myths_Server
 {

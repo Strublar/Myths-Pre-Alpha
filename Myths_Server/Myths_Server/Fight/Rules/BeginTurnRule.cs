@@ -31,9 +31,9 @@ namespace Myths_Server
 
                 if(target is Unit && target.GetStat(Stat.isCalled) == 1)
                 {
-                    Console.WriteLine("Begin Turn rule activated for " + fightHandler.Entities[newEvent.SourceId].Definition.Name);
+                    Console.WriteLine("Begin Turn rule activated for " + fightHandler.Entities[newEvent.SourceId].Name);
                     fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canMove, 1));
-                    fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canAttack, 1));
+
                     if(target.GetStat(Stat.isEngaged) == 0)
                     {
                         fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canRecall, 1));

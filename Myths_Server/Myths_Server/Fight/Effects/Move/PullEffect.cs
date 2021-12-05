@@ -32,7 +32,7 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" is pushed");
+            Console.WriteLine( fightHandler.Entities[targetId].Name+" is pushed");
 
             Entity target = fightHandler.Entities[targetId];
             int sourceX = fightHandler.Entities[context.SourceId].GetStat(Stat.x);

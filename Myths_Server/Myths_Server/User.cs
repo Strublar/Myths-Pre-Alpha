@@ -29,7 +29,7 @@ namespace Myths_Server
         private NetworkStream clientStream = null;
         private Thread listeningClient = null;
         private Game game;
-        private int[] team;
+        private TeamSet team;
 
         private MessageProcessor messageProcessor;
         #endregion
@@ -43,7 +43,8 @@ namespace Myths_Server
         public UserMode CurrentUserMode { get => currentUserMode; set => currentUserMode = value; }
 
         public Game Game { get => game; set => game = value; }
-        public int[] Team { get => team; set => team = value; }
+        public TeamSet Team { get => team; set => team = value; }
+
 
         #endregion
 
@@ -214,6 +215,7 @@ namespace Myths_Server
         {
             Console.WriteLine("User " + id + " has entered queue");
             this.currentUserMode = UserMode.InQueue;
+            team = (message as JoinQueueMessage).teamSet;
 
 
 

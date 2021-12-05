@@ -32,7 +32,7 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine(fightHandler.Entities[targetId].Definition.Name+
+            Console.WriteLine(fightHandler.Entities[targetId].Name+
                 " becomes engaged ");
 
             fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.isEngaged, 0));

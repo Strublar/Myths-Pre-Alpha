@@ -34,7 +34,7 @@ namespace Myths_Server
 
             if(targetId != context.SourceId)
             {
-                Console.WriteLine(fightHandler.Entities[targetId].Definition.Name + " is pushed");
+                Console.WriteLine(fightHandler.Entities[targetId].Name + " is pushed");
 
                 Entity target = fightHandler.Entities[targetId];
                 int sourceX = fightHandler.Entities[context.SourceId].GetStat(Stat.x);

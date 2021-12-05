@@ -24,7 +24,7 @@ namespace Myths_Server
         public override void OnEvent(Event newEvent, FightHandler fightHandler)
         {
             
-            if(newEvent is EntityCastSpellEvent castEvent)
+            /*if(newEvent is EntityCastSpellEvent castEvent)
             {
                 Console.WriteLine("Cast Spell rule activated");
                 SpellDefinition spellCast = SpellDefinition.BuildFrom(castEvent.SpellId);
@@ -85,18 +85,7 @@ namespace Myths_Server
                     }
                     #endregion
 
-                    #region Gauge Consumption save
-                    int[] tmpMast = new int[]
-                    {
-                        caster.Owner.GetStat(Stat.gaugeArcane),
-                        caster.Owner.GetStat(Stat.gaugeLight),
-                        caster.Owner.GetStat(Stat.gaugeDark),
-                        caster.Owner.GetStat(Stat.gaugeFire),
-                        caster.Owner.GetStat(Stat.gaugeEarth),
-                        caster.Owner.GetStat(Stat.gaugeAir),
-                        caster.Owner.GetStat(Stat.gaugeWater)
-                    };
-                    #endregion
+                   
 
                     Context context = new Context(fightHandler, newEvent.SourceId, newEvent.SourceId);
                     context.X = castEvent.X;
@@ -145,70 +134,13 @@ namespace Myths_Server
                         fightHandler.FireEvent(targetEvent);
                     }
 
-                    #region Consume Gauges
-                    switch (spellCast.Element)
-                    {
-                        case Mastery.arcane:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            break;
-                        case Mastery.light:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeLight,
-                                caster.Owner.GetStat(Stat.gaugeLight) - tmpMast[1]));
-                            break;
-                        case Mastery.dark:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeDark,
-                                caster.Owner.GetStat(Stat.gaugeDark) - tmpMast[2]));
-                            break;
-                        case Mastery.fire:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeFire,
-                                caster.Owner.GetStat(Stat.gaugeFire) - tmpMast[3]));
-                            break;
-                        case Mastery.earth:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeEarth,
-                                caster.Owner.GetStat(Stat.gaugeEarth) - tmpMast[4]));
-                            break;
-                        case Mastery.air:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeAir,
-                                caster.Owner.GetStat(Stat.gaugeAir) - tmpMast[5]));
-                            break;
-                        case Mastery.water:
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeArcane,
-                                caster.Owner.GetStat(Stat.gaugeArcane) - tmpMast[0]));
-                            fightHandler.FireEvent(
-                                new EntityStatChangedEvent(caster.Owner.Id, caster.Owner.Id, Stat.gaugeWater,
-                                caster.Owner.GetStat(Stat.gaugeWater) - tmpMast[6]));
-                            break;
-                    }
-                    #endregion
+                    
                 }
                 else
                 {
                     Console.WriteLine("Spell cast out of range or not enough energy");
                 }
-            }
+            }*/
         }
 
         public override void OnAfterEvent(Event newEvent, FightHandler fightHandler)

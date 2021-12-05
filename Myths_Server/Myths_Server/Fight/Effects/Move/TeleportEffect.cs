@@ -39,7 +39,7 @@ namespace Myths_Server
                     
             if (fightHandler.UnitOnTile(targetX,targetY) == null)
             {
-                Console.WriteLine(fightHandler.Entities[targetId].Definition.Name + " is teleported to " + targetX + " " + targetY);
+                Console.WriteLine(fightHandler.Entities[targetId].Name + " is teleported to " + targetX + " " + targetY);
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
                 Stat.x, targetX));
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,

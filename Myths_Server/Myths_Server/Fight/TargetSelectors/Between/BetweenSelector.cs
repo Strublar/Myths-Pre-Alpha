@@ -29,9 +29,8 @@ namespace Myths_Server
             int maxX = Math.Max(context.OriginX, context.X);
             int minY = Math.Min(context.OriginY, context.Y);
             int maxY = Math.Max(context.OriginY, context.Y);
-            Console.WriteLine("Testing between : " + minX + " <= X <= " + maxX);
-            Console.WriteLine(minY + " <= Y <= " + maxY);
-            Console.WriteLine("Source is " + origin.Definition.Name);
+
+
             int[] targetIds = (from ent in context.FightHandler.Entities.Values
                                where ent is Unit && ent.GetStat(Stat.isCalled) == 1 &&
                                ent != origin &&
@@ -40,7 +39,7 @@ namespace Myths_Server
                                select ent.Id).ToArray();
             foreach(int id in targetIds)
             {
-                Console.WriteLine("Result : " + context.FightHandler.Entities[id].Definition.Name);
+                Console.WriteLine("Result : " + context.FightHandler.Entities[id].Name);
             }
             return targetIds;
         }

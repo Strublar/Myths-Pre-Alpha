@@ -45,7 +45,7 @@ namespace Myths_Server
                     {
                         Entity target = fightHandler.Entities[newEvent.TargetId];
                         //consume mastery
-                        int tmp1 = target.GetStat(Stat.mastery1),
+                        /*int tmp1 = target.GetStat(Stat.mastery1),
                         tmp2 = target.GetStat(Stat.mastery2),
                         tmp3 = target.GetStat(Stat.mastery3);
                         fightHandler.FireEvent(new EntityStatChangedEvent(newEvent.TargetId, newEvent.TargetId,
@@ -59,7 +59,7 @@ namespace Myths_Server
                         if (tmp2 != 0)
                             fightHandler.FireEvent(new ConsumeMasteryEvent(target.Id, target.Id, tmp2));
                         if (tmp3 != 0)
-                            fightHandler.FireEvent(new ConsumeMasteryEvent(target.Id, target.Id, tmp3));
+                            fightHandler.FireEvent(new ConsumeMasteryEvent(target.Id, target.Id, tmp3));*/
 
                         //State
                         fightHandler.FireEvent(new EntityStatChangedEvent(newEvent.TargetId, newEvent.TargetId,
@@ -70,8 +70,8 @@ namespace Myths_Server
                         //Reset armor and barrier
                         fightHandler.FireEvent(new EntityStatChangedEvent(newEvent.TargetId, newEvent.TargetId,
                             Stat.armor, target.Stats[Stat.armor]));
-                        fightHandler.FireEvent(new EntityStatChangedEvent(newEvent.TargetId, newEvent.TargetId,
-                            Stat.barrier, target.Stats[Stat.barrier]));
+
+
                     }
                     else
                     {

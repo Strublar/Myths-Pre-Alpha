@@ -9,21 +9,21 @@ namespace Myths_Server
     {
         #region Attributes
         private Player owner;
-
+        private List<ListeningEffectDefinition> passives;
         #endregion
 
         #region Getters & Setters
         public Player Owner { get => owner; set => owner = value; }
+        internal List<ListeningEffectDefinition> Passives { get => passives; set => passives = value; }
 
         #endregion
 
         #region Constructor
-        public Unit(FightHandler fightHandler,int id,EntityDefinition definition, int team, Player owner) : base(fightHandler,definition,team)
+        public Unit(FightHandler fightHandler, int team, Player owner) : base(fightHandler,team)
         {
             this.owner = owner;
-            this.Stats.Add(Stat.mastery1, 0);
-            this.Stats.Add(Stat.mastery2, 0);
-            this.Stats.Add(Stat.mastery3, 0);
+            this.Passives = new List<ListeningEffectDefinition>();
+
         }
 
         #endregion

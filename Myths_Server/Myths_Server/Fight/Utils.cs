@@ -26,7 +26,7 @@ namespace Myths_Server
         public static int GetCostReduction(Entity player, Mastery element)
         {
             int costReduction = 0;
-            switch (element)
+            /*switch (element)
             {
                 case Mastery.arcane:
                     costReduction += player.GetStat(Stat.gaugeArcane);
@@ -56,31 +56,11 @@ namespace Myths_Server
                     costReduction += player.GetStat(Stat.gaugeWater);
                     break;
 
-            }
+            }*/
             return costReduction;
         }
 
-        public static Stat GetGaugeFromMastery(Mastery mastery)
-        {
-            switch (mastery)
-            {
-                case Mastery.arcane:
-                    return Stat.gaugeArcane;
-                case Mastery.light:
-                    return Stat.gaugeLight;
-                case Mastery.dark:
-                    return Stat.gaugeDark;
-                case Mastery.fire:
-                    return Stat.gaugeFire;
-                case Mastery.earth:
-                    return Stat.gaugeEarth;
-                case Mastery.air:
-                    return Stat.gaugeAir;
-                case Mastery.water:
-                    return Stat.gaugeWater;
-            }
-            return Stat.gaugeArcane;
-        }
+        
     }
     
 }

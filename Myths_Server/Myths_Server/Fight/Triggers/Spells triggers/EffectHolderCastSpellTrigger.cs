@@ -23,8 +23,8 @@ namespace Myths_Server
         {
             if(newEvent is EntityCastSpellEvent castSpellEvent)
             {
-                Console.WriteLine("Ding ding "+context.FightHandler.Entities[castSpellEvent.SourceId].Definition.Name +
-                    " vs "+ context.FightHandler.Entities[context.HolderId].Definition.Name);
+                Console.WriteLine("Ding ding "+context.FightHandler.Entities[castSpellEvent.SourceId].Name +
+                    " vs "+ context.FightHandler.Entities[context.HolderId].Name);
                 if (castSpellEvent.SourceId == context.HolderId)
                 {
                     Console.WriteLine("dong ding");

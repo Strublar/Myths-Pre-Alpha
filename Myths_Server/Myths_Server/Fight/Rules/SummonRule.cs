@@ -34,10 +34,10 @@ namespace Myths_Server
                 {
 
                     Entity summonedEntity = fightHandler.Entities[newEvent.TargetId];
-                    Console.WriteLine("SummonRule executed for " + summonedEntity.Definition.Name);
+                    Console.WriteLine("SummonRule executed for " + summonedEntity.Name);
                     if (summonedEntity != null)
                     {
-                        foreach (ListeningEffectDefinition listeningEffectDefinition
+                        /*foreach (ListeningEffectDefinition listeningEffectDefinition
                             in summonedEntity.Definition.BaseListeningEffects)
                         {
                             ListeningEffect newListeningEffect =
@@ -45,7 +45,7 @@ namespace Myths_Server
                             fightHandler.ListeningEffects.Add(newListeningEffect);
                             fightHandler.FireEvent(new ListeningEffectPlacedEvent(newEvent.TargetId, newEvent.TargetId,
                                 newListeningEffect.Id));
-                        }
+                        }*/
                     }
                 }
             }

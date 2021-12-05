@@ -168,7 +168,24 @@ public class MenuManager : MonoBehaviour
             selectedTeam.myths[3].LinkedMyth.Id,
             selectedTeam.myths[4].LinkedMyth.Id
             ));*/
-        Server.SendMessageToServer(new JoinQueueMessage());
+
+        //SELECTED TEAM (TMP)
+        TeamSet team = new TeamSet();
+        List<MythSet> sets = new List<MythSet>();
+        for(int i=0;i<5;i++)
+        {
+            MythSet set = new MythSet();
+            set.id = 0;
+            set.passive = 0;
+            set.spells = new byte[]
+            {
+                0,1,2,3
+            };
+            sets.Add(set);
+        }
+        team.myths = sets.ToArray();
+
+        Server.SendMessageToServer(new JoinQueueMessage(team));
 
         //Update menu window
         loggedInWindow.SetActive(false);

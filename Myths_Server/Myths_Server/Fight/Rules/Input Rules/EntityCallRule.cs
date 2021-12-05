@@ -54,8 +54,6 @@ namespace Myths_Server
                         fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.TargetId, callEvent.TargetId,
                             Stat.energy, fightHandler.Entities[newEvent.TargetId].Stats[Stat.energy]));
                         fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.TargetId, callEvent.TargetId,
-                            Stat.canAttack, 1));
-                        fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.TargetId, callEvent.TargetId,
                             Stat.canMove, 1));
                         fightHandler.FireEvent(new EntityStatChangedEvent(callEvent.SourceId, callEvent.SourceId,
                             Stat.calls, fightHandler.Entities[newEvent.SourceId].GetStat(Stat.calls)-1));

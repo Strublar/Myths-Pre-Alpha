@@ -40,6 +40,25 @@ MonoBehaviour:
         selector: 3
         value: 0
       conditions: []
+  - passiveName: TestPassive2
+    id: 0
+    icon: {fileID: 0}
+    description: 'End turn : Deal 4 damage to all characters'
+    executionTriggers:
+    - selector: 1
+      eventType: 1
+      conditions: []
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 4
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 5
+        value: 0
+      conditions: []
   spells:
   - spellName: Lava Flow
     id: 0

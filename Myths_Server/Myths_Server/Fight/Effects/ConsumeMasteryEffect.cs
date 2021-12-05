@@ -32,9 +32,9 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine( fightHandler.Entities[targetId].Definition.Name+" consume  mastery");
+            Console.WriteLine( fightHandler.Entities[targetId].Name+" consume  mastery");
             int count = values.Count > 1 ? values[1] : 1;
-            for (int i = 0; i < count; i++)
+            /*for (int i = 0; i < count; i++)
             {
                 Entity target = fightHandler.Entities[targetId];
                 if (target.GetStat(Stat.mastery1) == values[0] && count > 0)
@@ -63,7 +63,7 @@ namespace Myths_Server
                 {
                     Console.WriteLine("no Mastery consumed");
                 }
-            }
+            }*/
 
         }
         #endregion

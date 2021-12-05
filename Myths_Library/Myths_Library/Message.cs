@@ -95,6 +95,12 @@ namespace Myths_Library
             return buffer[index - 1];
         }
 
+        public bool ParseBool(byte[] buffer)
+        {
+            index++;
+            return buffer[index - 1] == 1;
+        }
+
 
         #endregion
 

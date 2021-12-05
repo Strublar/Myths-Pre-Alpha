@@ -1,5 +1,6 @@
 
-﻿using System;
+using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -9,12 +10,10 @@ namespace Myths_Server
     class Player : Entity
     {
         #region Attributes
-        private string name;
         private int initiative;
         #endregion
 
         #region Getters & Setters
-        public string Name { get => name; set => name = value; }
         public int Initiative { get => initiative; set => initiative = value; }
 
         #endregion
@@ -32,13 +31,17 @@ namespace Myths_Server
         #region Methods
         public void InitPlayer(FightHandler fightHandler)
         {
-            this.Definition = EntityDefinition.GetPlayerDefinition();
-            this.Stats = this.Definition.BaseStats;
-            this.name = fightHandler.Game.Users[this.Team].Username;
+
+            this.Stats = new Dictionary<Stat, int>
+            {
+                { Stat.calls, 0 },
+                { Stat.mana, 0 }
+            };
+            this.Name = fightHandler.Game.Users[this.Team].Username;
             Console.WriteLine("Send player " + this.Team + " to " + this.Team + " and " + (1 - this.Team));
             //Thread.Sleep(100);//Warning : Used because messages are not recieved
-            /*fightHandler.Game.SendMessageToUserIndex(this.Team, new InitPlayerMessage(this.Team,this.Id,true,this.name));
-            fightHandler.Game.SendMessageToUserIndex(1- this.Team, new InitPlayerMessage(this.Team, this.Id, false, this.name));*/
+            fightHandler.Game.SendMessageToUserIndex(this.Team, new InitPlayerMessage(this.Team,this.Id,true,this.Name));
+            fightHandler.Game.SendMessageToUserIndex(1- this.Team, new InitPlayerMessage(this.Team, this.Id, false, this.Name));
         }
         #endregion
 

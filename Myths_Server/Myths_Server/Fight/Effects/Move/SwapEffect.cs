@@ -39,7 +39,7 @@ namespace Myths_Server
             int targetX = target.GetStat(Stat.x);
             int targetY = target.GetStat(Stat.y);
 
-            Console.WriteLine(origin.Definition.Name + " swap position with " + target.Definition.Name);
+            Console.WriteLine(origin.Name + " swap position with " + target.Name);
 
             fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId,
             Stat.x, originX));

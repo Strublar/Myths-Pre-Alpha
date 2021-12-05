@@ -43,8 +43,9 @@ public class Server : MonoBehaviour
         messageProcessor.processor.Add(typeof(QueueJoinedMessage), OnQueueJoined);
         messageProcessor.processor.Add(typeof(QueueLeftMessage), OnQueueLeft);
         messageProcessor.processor.Add(typeof(MatchFoundMessage), OnMatchFound);
+        messageProcessor.processor.Add(typeof(InitPlayerMessage), OnInitPlayer);
+        messageProcessor.processor.Add(typeof(InitMythMessage), OnInitMyth);
 
-    
 
         Server.workerQueue = new Queue<byte[]>();
 
@@ -269,26 +270,37 @@ public class Server : MonoBehaviour
     #endregion
 
     #region Fight Messages
-/*
+
     #region Start Game
-    private static void OnInitPlayer(byte[] message)
+    private static void OnInitPlayer(Message message)
     {
         Debug.Log("Init Player message recieved");
         
+        if((message as InitPlayerMessage).isLocalPlayer)
+        {
+            Debug.Log("I am : " + (message as InitPlayerMessage).playerName);
+        }
+        else
+        {
+            Debug.Log("opponent is : " + (message as InitPlayerMessage).playerName);
+        }
 
-        int playerId = Utils.ParseInt(message, 1);
+        /*int playerId = Utils.ParseInt(message, 1);
         int entityId = Utils.ParseInt(message, 5);
         bool isLocalPlayer = (message[9] == 0) ? false : true;
         string playerName = Encoding.UTF8.GetString(message, 10, 32);
         object[] parameters = { playerId, entityId, playerName, isLocalPlayer };
         GameManager.fightUpdates.Enqueue(GameManager.OnInitPlayer);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
+        GameManager.fightUpdatesParam.Enqueue(parameters);*/
     }
 
-    private static void OnInitMyth(byte[] message)
+    private static void OnInitMyth(Message message)
     {
         Debug.Log("Init Myth message recieved");
-        int playerId = Utils.ParseInt(message, 1);
+
+
+        Debug.Log("Myth id is " + (message as InitMythMessage).set.id);
+        /*int playerId = Utils.ParseInt(message, 1);
         byte teamIndex = message[5];
         int entityId = Utils.ParseInt(message, 6);
         int unitId = Utils.ParseInt(message, 10);
@@ -301,10 +313,12 @@ public class Server : MonoBehaviour
         int mobility = Utils.ParseInt(message, 38);
         object[] parameters = { playerId, teamIndex, entityId, unitId, hp, armor, barrier, attack, range, attackType, mobility };
         GameManager.fightUpdates.Enqueue(GameManager.OnInitMyth);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
+        GameManager.fightUpdatesParam.Enqueue(parameters);*/
 
     }
 
+    #endregion
+    /*
     private static void OnStartGame(byte[] message)
     {
         //Nothing from now

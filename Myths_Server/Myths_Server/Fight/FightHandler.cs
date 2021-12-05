@@ -32,17 +32,15 @@ namespace Myths_Server
         #endregion
 
         #region Constructor
-        public FightHandler(Game game, int[] team1, int[] team2)
+        public FightHandler(Game game, TeamSet team1, TeamSet team2)
         {
             this.Game = game;
             //Initialisation
             entities = new Dictionary<int, Entity>();
             rules = new List<Rule>() {
-                new EntityAttackRule(),
                 new SummonRule(),
                 new EntityCallRule(),
                 new EntityMoveRule(),
-                new PortalRule(),
                 new BeginTurnRule(),
                 new FirstSpellOfTurnRule(),
                 new EndTurnRule(),
@@ -50,7 +48,6 @@ namespace Myths_Server
                 new DeathRule(),
                 new NeverAloneRule(),
                 new EntityCastSpellRule(),
-                new GainMasteryRule(),
                 new CommunicationRule() 
             };
             listeningEffects = new List<ListeningEffect>();
@@ -62,25 +59,25 @@ namespace Myths_Server
             Player player2 = new Player(this,1);
             
             game.InitPlayerEntities(player1.Id, player2.Id);
-            Myth myth10 = new Myth(this, team1[0], player1.Team,0, player1);
-            Myth myth11 = new Myth(this, team1[1], player1.Team, 1, player1);
-            Myth myth12 = new Myth(this, team1[2], player1.Team, 2, player1);
-            Myth myth13 = new Myth(this, team1[3], player1.Team, 3, player1);
-            Myth myth14 = new Myth(this, team1[4], player1.Team, 4, player1);
+            Myth myth10 = new Myth(this, team1.myths[0], player1.Team,0, player1);
+            Myth myth11 = new Myth(this, team1.myths[1], player1.Team, 1, player1);
+            Myth myth12 = new Myth(this, team1.myths[2], player1.Team, 2, player1);
+            Myth myth13 = new Myth(this, team1.myths[3], player1.Team, 3, player1);
+            Myth myth14 = new Myth(this, team1.myths[4], player1.Team, 4, player1);
 
-            Myth myth20 = new Myth(this, team2[0], player2.Team, 0, player2);
-            Myth myth21 = new Myth(this, team2[1], player2.Team, 1, player2);
-            Myth myth22 = new Myth(this, team2[2], player2.Team, 2, player2);
-            Myth myth23 = new Myth(this, team2[3], player2.Team, 3, player2);
-            Myth myth24 = new Myth(this, team2[4], player2.Team, 4, player2) ;
+            Myth myth20 = new Myth(this, team2.myths[0], player2.Team, 0, player2);
+            Myth myth21 = new Myth(this, team2.myths[1], player2.Team, 1, player2);
+            Myth myth22 = new Myth(this, team2.myths[2], player2.Team, 2, player2);
+            Myth myth23 = new Myth(this, team2.myths[3], player2.Team, 3, player2);
+            Myth myth24 = new Myth(this, team2.myths[4], player2.Team, 4, player2) ;
 
-            Portal portal1 = new Portal(this, 0);
-            Portal portal2 = new Portal(this, 1);
+            /*Portal portal1 = new Portal(this, 0);
+            Portal portal2 = new Portal(this, 1);*/
 
             /*FireEvent(new EntityCallEvent(myth10.Id, player1.Id, 0, 2));
             FireEvent(new EntityCallEvent(myth20.Id, player2.Id, 6, 2));*/
 
-            InitGame(player1, player2);
+            //InitGame(player1, player2);
             
             //FireEvent(new BeginTurnEvent(myth10.Id, myth10.Id));
 
@@ -96,12 +93,12 @@ namespace Myths_Server
             if(newEvent is EntityStatChangedEvent statEvent)
             {
                 Console.WriteLine("New Event Fired : " + newEvent.GetType().ToString()+" "+ statEvent.StatId +
-                    " on "+ entities[statEvent.TargetId].Definition.Name);
+                    " on "+ entities[statEvent.TargetId].Name);
             }
             else if (newEvent is ListeningEffectPlacedEvent LEevent)
             {
                 Console.WriteLine("New Event Fired : " + newEvent.GetType().ToString() 
-                    +" ID is "+LEevent.ListeningEffectId+" on " + entities[LEevent.TargetId].Definition.Name);
+                    +" ID is "+LEevent.ListeningEffectId+" on " + entities[LEevent.TargetId].Name);
 
             }
             else
