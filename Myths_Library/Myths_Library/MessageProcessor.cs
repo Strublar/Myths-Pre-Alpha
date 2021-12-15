@@ -19,6 +19,11 @@ namespace Myths_Library
             clientMessageGenerator.Add((byte)ClientMessageType.Logout, typeof(LogoutMessage));
             clientMessageGenerator.Add((byte)ClientMessageType.JoinQueue, typeof(JoinQueueMessage));
             clientMessageGenerator.Add((byte)ClientMessageType.LeaveQueue, typeof(LeaveQueueMessage));
+            clientMessageGenerator.Add((byte)ClientMessageType.Call, typeof(CallMessage));
+            clientMessageGenerator.Add((byte)ClientMessageType.Move, typeof(MoveMessage));
+            clientMessageGenerator.Add((byte)ClientMessageType.EndTurn, typeof(EndTurnMessage));
+            clientMessageGenerator.Add((byte)ClientMessageType.Recall, typeof(UnCallMessage));
+
             /*clientMessageGenerator.Add((byte)ClientMessageType.Call, OnCall);
             clientMessageGenerator.Add((byte)ClientMessageType.Recall, OnRecall);
             clientMessageGenerator.Add((byte)ClientMessageType.Attack, OnAttack);
@@ -37,6 +42,11 @@ namespace Myths_Library
             serverMessageGenerator.Add((byte)ServerMessageType.InitPlayer, typeof(InitPlayerMessage));
             serverMessageGenerator.Add((byte)ServerMessageType.InitMyth, typeof(InitMythMessage));
 
+            serverMessageGenerator.Add((byte)ServerMessageType.EntityStatChanged, typeof(EntityStatChangedMessage));
+            serverMessageGenerator.Add((byte)ServerMessageType.UnitCalled, typeof(EntityCalledMessage));
+            serverMessageGenerator.Add((byte)ServerMessageType.UnitUncalled, typeof(EntityUnCalledMessage));
+            serverMessageGenerator.Add((byte)ServerMessageType.BeginTurn, typeof(BeginTurnMessage));
+            serverMessageGenerator.Add((byte)ServerMessageType.UnitMoved, typeof(EntityMovedMessage));
             //Fight messages
             //Start game messages
             /*serverMessageGenerator.Add((byte)ServerMessageType.InitPlayer, OnInitPlayer);

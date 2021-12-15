@@ -26,10 +26,10 @@ namespace Myths_Server
             if(newEvent is EndTurnEvent)
             {
                 Console.WriteLine("End turn rule activated");
-                //+1 call
-                fightHandler.FireEvent(new EntityStatChangedEvent(fightHandler.Game.GetCurrentPlayerId(),
+                //+1 call - Not used anymore
+                /*fightHandler.FireEvent(new EntityStatChangedEvent(fightHandler.Game.GetCurrentPlayerId(),
                     fightHandler.Game.GetCurrentPlayerId(), Stat.calls,
-                    fightHandler.Entities[fightHandler.Game.GetCurrentPlayerId()].GetStat(Stat.calls) + 1));
+                    fightHandler.Entities[fightHandler.Game.GetCurrentPlayerId()].GetStat(Stat.calls) + 1));*/
 
                 //Energy refill
                 foreach(Entity entity in fightHandler.Entities.Values)
@@ -58,7 +58,7 @@ namespace Myths_Server
                     
                     if (ent.Team == currentTeam && (ent.GetStat(Stat.isCalled) == 1 || ent is Player))
                     {
-                        fightHandler.FireEvent(new BeginTurnEvent(ent.Id,ent.Id));
+                        fightHandler.FireEvent(new BeginTurnEvent(ent.Id,ent.Id,false));
                     }
                 }
                 

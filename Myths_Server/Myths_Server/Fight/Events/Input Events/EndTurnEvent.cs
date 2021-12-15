@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +16,7 @@ namespace Myths_Server
         #region Constructor
         public EndTurnEvent(int targetId, int sourceId) : base(targetId, sourceId)
         {
-
+            EventType = GameEventType.endTurn;
         }
 
 

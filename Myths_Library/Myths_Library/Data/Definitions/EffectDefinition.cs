@@ -21,9 +21,19 @@ namespace Myths_Library
     public enum EffectType : byte
     {
         dealDamage,
+        dealTrueDamage,
         heal,
+        gainArmor,
         gainMastery,
         modifyStat,
-        reduceSpellCost,
+        placeListeningEffect,
+        push,
+        pull,
+        swap,
+        teleport,
+        consumeMastery,
+        transferDefenses,
+
+        
     }
 }

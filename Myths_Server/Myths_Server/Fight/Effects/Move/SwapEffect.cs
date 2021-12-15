@@ -21,8 +21,8 @@ namespace Myths_Server
         {
         }
 
-        public SwapEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
-            : base(sources, targets, values)
+        public SwapEffect(EffectDefinition definition) 
+            : base(definition)
         {
 
         }

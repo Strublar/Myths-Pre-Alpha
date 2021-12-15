@@ -8,18 +8,20 @@ namespace Myths_Library
     {
         public int playerId;
         public int teamIndex;
+        public int entityId;
         public MythSet set;
         public InitMythMessage()
         {
-            this.messageType = (byte)ServerMessageType.InitPlayer;
+            this.messageType = (byte)ServerMessageType.InitMyth;
         }
 
-        public InitMythMessage(int playerId, int teamIndex, MythSet set)
+        public InitMythMessage(int playerId, int teamIndex,int entityId, MythSet set)
         {
-            this.messageType = (byte)ServerMessageType.InitPlayer;
+            this.messageType = (byte)ServerMessageType.InitMyth;
             this.set = set;
             this.playerId = playerId;
             this.teamIndex = teamIndex;
+            this.entityId = entityId;
         }
 
         public override byte[] GetBytes()
@@ -29,13 +31,13 @@ namespace Myths_Library
 
             returnArray = Message.AddInt(this, returnArray, playerId);
             returnArray = Message.AddInt(this, returnArray, teamIndex);
+            returnArray = Message.AddInt(this, returnArray, entityId);
             returnArray = Message.AddInt(this, returnArray, set.id);
             returnArray = Message.AddByte(this, returnArray, set.passive);
 
             returnArray = Message.AddByte(this, returnArray, set.spells[0]);
             returnArray = Message.AddByte(this, returnArray, set.spells[1]);
             returnArray = Message.AddByte(this, returnArray, set.spells[2]);
-            returnArray = Message.AddByte(this, returnArray, set.spells[3]);
             return returnArray;
         }
 
@@ -45,13 +47,13 @@ namespace Myths_Library
             set = new MythSet();
             playerId = ParseInt(message);
             teamIndex = ParseInt(message);
+            entityId = ParseInt(message);
 
             set.id = ParseInt(message);
             set.passive = ParseByte(message);
             set.spells[0] = ParseByte(message);
             set.spells[1] = ParseByte(message);
             set.spells[2] = ParseByte(message);
-            set.spells[3] = ParseByte(message);
 
         }
     }

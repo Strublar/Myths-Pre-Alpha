@@ -14,8 +14,8 @@ namespace Myths_Server
 
         private FightHandler fightHandler;
         private Thread workerThread;
-        private Queue<Action<object[]>> workerQueue;
-        private Queue<object[]> workerQueueParameters;
+        private Queue<Action<Message>> workerQueue;
+        private Queue<Message> workerQueueParameters;
 
         //Game variables
         private User currentPlayer;
@@ -29,8 +29,8 @@ namespace Myths_Server
         public List<User> Users { get => users; set => users = value; }
 
         internal FightHandler FightHandler { get => fightHandler; set => fightHandler = value; }
-        public Queue<Action<object[]>> WorkerQueue { get => workerQueue; set => workerQueue = value; }
-        public Queue<object[]> WorkerQueueParameters { get => workerQueueParameters; set => workerQueueParameters = value; }
+        public Queue<Action<Message>> WorkerQueue { get => workerQueue; set => workerQueue = value; }
+        public Queue<Message> WorkerQueueParameters { get => workerQueueParameters; set => workerQueueParameters = value; }
         public User CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
         public Dictionary<User, int> PlayerEntities { get => playerEntities; set => playerEntities = value; }
         public bool GameEnded { get => gameEnded; set => gameEnded = value; }
@@ -43,8 +43,8 @@ namespace Myths_Server
             //Test Region
             this.users = users;
 
-            this.WorkerQueue = new Queue<Action<object[]>>();
-            this.workerQueueParameters = new Queue<object[]>();
+            this.WorkerQueue = new Queue<Action<Message>>();
+            this.workerQueueParameters = new Queue<Message>();
             this.PlayerEntities = new Dictionary<User, int>();
             Console.WriteLine("Starting a new Game");
 
@@ -155,6 +155,7 @@ namespace Myths_Server
                 {
                     WorkerQueue.Dequeue().Invoke(WorkerQueueParameters.Dequeue());
                 }
+                Thread.Sleep(5);
             }
         }
 
@@ -162,88 +163,94 @@ namespace Myths_Server
 
         #region Methods
 
-        public void OnAttack(object[] parameters)
-        {
-            if(parameters[0] is int attackerId &&
-                parameters[1] is int targetId)
-            {
-                //SendMessageToAllUsers(new AttackMessage(attackerId));
-                fightHandler.FireEvent(new EntityAttackEvent(targetId, attackerId));
-            }
-        }
 
-        public void OnCall(object[] parameters)
+        public void OnCall(Message message)
         {
-            if (parameters[0] is int targetId &&
-                parameters[1] is int playerId &&
-                parameters[2] is int x &&
-                parameters[3] is int y &&
-                parameters[4] is bool isSwitch)
-            {
+
+            CallMessage mess = message as CallMessage;
                 /*SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.isCalled, 1));
                 SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.x, x));
                 SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.y, y));
                 SendMessageToAllUsers(new CallMessage(targetId));*/
-                fightHandler.FireEvent(new EntityCallEvent(targetId, playerId, x, y));
-                Console.WriteLine("IT IS A SWIIIITCH ??? : " + isSwitch);
-                if(isSwitch)
-                {
-                    fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.canMove, 0));
-                }
-                if(deployement <1)
-                {
-                    deployement++;
-                    fightHandler.FireEvent(new BeginTurnEvent(GetOtherPlayerId(), GetOtherPlayerId()));
-                }
+            fightHandler.FireEvent(new EntityCallEvent(mess.targetId, mess.playerId, mess.x, mess.y));
 
+            List<int> deploymentOrder = new List<int>
+            {
+
+                GetOtherPlayerId(),
+                GetCurrentPlayerId(),
+                GetOtherPlayerId(),
+                GetCurrentPlayerId(),
+                GetOtherPlayerId(),
+                GetCurrentPlayerId()
+            };
+            if (mess.isSwitch)
+            {
+                fightHandler.FireEvent(new EntityStatChangedEvent(mess.targetId, mess.targetId, Stat.canMove, 0));
             }
+
+            #region Deployment
+            if (deployement <5)
+            {
+                
+                fightHandler.FireEvent(new BeginTurnEvent(deploymentOrder[deployement], deploymentOrder[deployement], true));
+                /*fightHandler.FireEvent(new EntityStatChangedEvent(deploymentOrder[deployement], deploymentOrder[deployement], Stat.masteryEarth, 1));
+                fightHandler.FireEvent(new EntityStatChangedEvent(deploymentOrder[deployement], deploymentOrder[deployement], Stat.masteryFire, 1));*/
+                Console.WriteLine("Turn to : " + deploymentOrder[deployement]);
+                if (GetCurrentPlayerId() != deploymentOrder[deployement])
+                    fightHandler.Game.ChangeCurrentPlayer();
+                deployement++;
+            }
+            else if(deployement == 5)
+            {
+                fightHandler.FireEvent(new EndTurnEvent(deploymentOrder[deployement], deploymentOrder[deployement]));
+                Console.WriteLine("Turn to : " + deploymentOrder[deployement]);
+                if (GetCurrentPlayerId() != deploymentOrder[deployement])
+                    fightHandler.Game.ChangeCurrentPlayer();
+                deployement++;
+            }
+            #endregion
+
         }
 
-        public void OnCastSpell(object[] parameters)
+        public void OnCastSpell(Message message)
         {
-            if (parameters[0] is int casterId &&
+            /*if (parameters[0] is int casterId &&
                 parameters[1] is int spellId &&
                 parameters[2] is int x &&
                 parameters[3] is int y)
             {
                 fightHandler.FireEvent(new EntityCastSpellEvent(casterId, casterId, spellId, x, y));
-            }
+            }*/
         }
 
-        public void OnEndTurn(object[] parameters)
+        public void OnEndTurn(Message message)
         {
-            if(parameters[0] is User user)
-            {
-                if (user == currentPlayer)
-                {
-                    fightHandler.FireEvent(new EndTurnEvent(GetCurrentPlayerId(), GetCurrentPlayerId()));
-                }
-            }
+
+            fightHandler.FireEvent(new EndTurnEvent(GetCurrentPlayerId(), GetCurrentPlayerId()));
+                
+
+        }
+
+        public void OnMove(Message message)
+        {
+
+            MoveMessage mess = message as MoveMessage;
+            /*SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.x, x));
+            SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.y, y));
+            SendMessageToAllUsers(new MoveMessage(targetId));*/
+            fightHandler.FireEvent(new EntityMoveEvent(mess.targetId, mess.targetId, mess.x, mess.y));
             
         }
 
-        public void OnMove(object[] parameters)
+        public void OnRecall(Message message)
         {
-            if (parameters[0] is int targetId &&
-                parameters[1] is int x &&
-                parameters[2] is int y)
-            {
-                /*SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.x, x));
-                SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.y, y));
-                SendMessageToAllUsers(new MoveMessage(targetId));*/
-                fightHandler.FireEvent(new EntityMoveEvent(targetId,targetId, x, y));
-            }
-        }
 
-        public void OnRecall(object[] parameters)
-        {
-            if (parameters[0] is int targetId &&
-                parameters[1] is int playerId)
-            {
-                /*SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.isCalled, 0));
-                SendMessageToAllUsers(new UnCallMessage(targetId));*/
-                fightHandler.FireEvent(new EntityRecallEvent(targetId, playerId));
-            }
+            /*SendMessageToAllUsers(new EntityStatChangedMessage(targetId, Stat.isCalled, 0));
+            SendMessageToAllUsers(new UnCallMessage(targetId));*/
+            UnCallMessage mess = message as UnCallMessage;
+            fightHandler.FireEvent(new EntityRecallEvent(mess.targetId, mess.playerId));
+            
         }
         #endregion
 

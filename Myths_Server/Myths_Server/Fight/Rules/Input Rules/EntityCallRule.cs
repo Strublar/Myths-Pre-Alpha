@@ -26,8 +26,7 @@ namespace Myths_Server
             if(newEvent is EntityCallEvent callEvent)
             {
                 Console.WriteLine("Call rule activated");
-                if(fightHandler.UnitOnTile(callEvent.X,callEvent.Y) == null &&
-                    fightHandler.Entities[newEvent.SourceId].GetStat(Stat.calls)>0)
+                if(fightHandler.UnitOnTile(callEvent.X,callEvent.Y) == null)
                 {
                     int calledCounter = 0;
                     foreach (Entity entity in fightHandler.Entities.Values)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,8 +21,8 @@ namespace Myths_Server
         {
         }
 
-        public PlaceListeningEffectEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
-            : base(sources, targets, values)
+        public PlaceListeningEffectEffect(EffectDefinition definition) 
+            : base(definition)
         {
 
         }
@@ -31,7 +32,7 @@ namespace Myths_Server
         public override void ExecuteOnTarget(int targetId, Context context, FightHandler fightHandler)
         {
 
-            Console.WriteLine("Placing new listening effect");
+           /* Console.WriteLine("Placing new listening effect");
 
             ListeningEffectDefinition leDef = ListeningEffectDefinition.BuildFrom(values[0]);
 
@@ -40,7 +41,7 @@ namespace Myths_Server
             fightHandler.ListeningEffects.Add(newListeningEffect);
 
             fightHandler.FireEvent(
-                new ListeningEffectPlacedEvent(newListeningEffect.HolderId, newListeningEffect.HolderId, newListeningEffect.Id));
+                new ListeningEffectPlacedEvent(newListeningEffect.HolderId, newListeningEffect.HolderId, newListeningEffect.Id));*/
 
         }
         #endregion

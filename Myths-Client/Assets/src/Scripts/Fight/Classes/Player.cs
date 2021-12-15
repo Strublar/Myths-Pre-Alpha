@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,14 +34,16 @@ public class Player : Entity
         };
         this.Stats.Add(Stat.calls, 0);
 
-        //Gauges
-        this.Stats.Add(Stat.gaugeArcane, 0);
-        this.Stats.Add(Stat.gaugeLight, 0);
-        this.Stats.Add(Stat.gaugeDark, 0);
-        this.Stats.Add(Stat.gaugeFire, 0);
-        this.Stats.Add(Stat.gaugeEarth, 0);
-        this.Stats.Add(Stat.gaugeAir, 0);
-        this.Stats.Add(Stat.gaugeWater, 0);
+        this.Stats.Add(Stat.mana, 0);
+
+        this.Stats.Add(Stat.masteryLight, 0);
+        this.Stats.Add(Stat.masteryFire, 0);
+        this.Stats.Add(Stat.masteryEarth, 0);
+        this.Stats.Add(Stat.masteryAir, 0);
+        this.Stats.Add(Stat.masteryWater, 0);
+        this.Stats.Add(Stat.masteryDark, 0);
+
+
     }
     #endregion
 }

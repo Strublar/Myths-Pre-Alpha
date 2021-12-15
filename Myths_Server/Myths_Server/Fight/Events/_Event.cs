@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace Myths_Server
      * Abstract Class
      * (TODO)
      */
-    class Event
+    public class Event
     {
         public static int nextEventId = 0;
 
@@ -17,7 +18,9 @@ namespace Myths_Server
         protected int id;
         protected int targetId;
         protected int sourceId;
+        private GameEventType eventType;
         protected Context context;
+        
 
 
         #endregion
@@ -27,6 +30,7 @@ namespace Myths_Server
         public int TargetId { get => targetId; set => targetId = value; }
         public int SourceId { get => sourceId; set => sourceId = value; }
         public Context Context { get => context; set => context = value; }
+        public GameEventType EventType { get => eventType; set => eventType = value; }
         #endregion
 
         #region Constructor

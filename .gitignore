@@ -9,6 +9,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/Myths-Client-0.1/
+/Myths-Client-0.1_clone_0/
+/Myths-Client_clone_0/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
@@ -59,3 +62,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.zip
+Myths-Client/Library/Artifacts/24/24fdf8f49a59b6e97bed9a21ac04e801

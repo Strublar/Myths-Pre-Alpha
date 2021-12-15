@@ -1,23 +1,31 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-
+using System.Xml;
+using System.Xml.Serialization;
 
 public class Myth : Unit
 {
     #region Attributes
 
-    private List<Spell> spells;
-    
+    private MythDefinition definition;
+    private List<SpellDefinition> spells;
+    private List<SpellDefinition> masterySpells;
+    private SpellDefinition[] ultimates;
     #endregion
 
     #region Getters & Setters
 
 
-    public List<Spell> Spells { get => spells; set => spells = value; }
+    public List<SpellDefinition> Spells { get => spells; set => spells = value; }
+    public List<SpellDefinition> MasterySpells { get => masterySpells; set => masterySpells = value; }
+    public SpellDefinition[] Ultimates { get => ultimates; set => ultimates = value; }
+    public MythDefinition Definition { get => definition; set => definition = value; }
     #endregion
 
     #region Constructor
@@ -25,97 +33,61 @@ public class Myth : Unit
     {
 
     }
-    public Myth(int ownerId, int entityId, int unitId) : base(ownerId,entityId,unitId)
+    public Myth(int ownerId, int entityId, MythSet set) : base(ownerId,entityId)
     {
+        Definition = BuildDefinition(set.id);
         this.Stats.Add(Stat.energy, 0);
         this.Stats.Add(Stat.isEngaged, 0);
         this.Stats.Add(Stat.canRecall, 0);
         this.Stats.Add(Stat.canUlt1, 1);
         this.Stats.Add(Stat.canUlt2, 1);
         this.Stats.Add(Stat.canUlt3, 1);
-        spells = new List<Spell>();
-        //TODO Change les sorts
-        GetSpells(unitId);
+        this.Stats.Add(Stat.mana,Definition.mana);
+        Stats[Stat.hp] = Definition.hp;
+        Stats[Stat.armor] = Definition.armor;
+        Stats[Stat.mobility] = Definition.mobility;
 
-        foreach(Spell spell in spells)
+        this.Spells = new List<SpellDefinition>();
+        this.MasterySpells = new List<SpellDefinition>();
+        for (int i = 0; i < 3; i++)
         {
-            spell.Owner = this;
+            this.Spells.Add(Definition.spellbook[set.spells[i]]);
+            this.MasterySpells.Add(Definition.masterySpellBook[set.spells[i]]);
         }
+
+        this.Ultimates = Definition.ultimates;
     }
 
-    public void GetSpells(int unitId)
+    public MythDefinition BuildDefinition(int mythId)
     {
+        MythDefinition definition = new MythDefinition();
+
         string dir = Environment.CurrentDirectory;
-        string csv = "/Assets/Resources/Units/Units.csv";
-        string path = Path.GetFullPath(dir + csv);
-        StreamReader strReader = new StreamReader(path);
+        string xml = "/Assets/Resources/Data/Myths/"+mythId+".xml";
+        string path = Path.GetFullPath(dir + xml);
 
-        string fileString = strReader.ReadToEnd();
-        string[] lines = fileString.Split('\n');
-        string[] fields = lines[unitId + 1].Split(';');
-        if (fields[0].Equals(unitId.ToString()))
+        int counter = 0;
+        retry:
+        try
         {
-            spells.Add(Spell.ParseSpell(int.Parse(fields[2])));
-            spells.Add(Spell.ParseSpell(int.Parse(fields[3])));
-            spells.Add(Spell.ParseSpell(int.Parse(fields[4])));
-            spells.Add(Spell.ParseSpell(int.Parse(fields[5])));
-
-            //Ults
-            spells.Add(Spell.ParseSpell(int.Parse(fields[6])));
-            spells.Add(Spell.ParseSpell(int.Parse(fields[7])));
-            spells.Add(Spell.ParseSpell(int.Parse(fields[8])));
+            XmlSerializer serializer = new XmlSerializer(typeof(MythDefinition));
+            FileStream fs = new FileStream(path, FileMode.Open);
+            XmlReader reader = XmlReader.Create(fs);
+            definition = (MythDefinition)serializer.Deserialize(reader);
+            fs.Close();
         }
-    }
-
-    public static Myth ParseMyth(int id)
-    {
-        Myth newMyth = new Myth();
-        newMyth.Id = id;
-        newMyth.Spells = new List<Spell>();
-        //TODO Change les sorts
-        newMyth.GetSpells(id);
-
-        foreach (Spell spell in newMyth.Spells)
+        catch (IOException)
         {
-            spell.Owner = newMyth;
-        }
-
-        newMyth.Stats.Add(Stat.hp, 0);
-        newMyth.Stats.Add(Stat.armor, 0);
-        newMyth.Stats.Add(Stat.barrier, 0);
-        newMyth.Stats.Add(Stat.attack, 0);
-        newMyth.Stats.Add(Stat.mobility, 2);
-        newMyth.Stats.Add(Stat.range, 1);
-        newMyth.Stats.Add(Stat.attackType, 1);
-        
-        newMyth.ParseUnit(id);
-        newMyth.GetStats(id);
-        return newMyth;
-    }
-    
-    public void GetStats(int id)
-    {
-        string dir = Environment.CurrentDirectory;
-        string csv = "/Assets/Resources/Units/UnitStats.csv";
-        string path = Path.GetFullPath(dir + csv);
-        StreamReader strReader = new StreamReader(path);
-
-        this.Stats = new Dictionary<Stat, int>();
-
-        string fileString = strReader.ReadToEnd();
-        string[] lines = fileString.Split('\n');
-        string[] fields = lines[id + 1].Split(';');
-        if (fields[0].Equals(id.ToString()))
-        {
-            this.Stats.Add(Stat.hp, int.Parse(fields[2]));
-            this.Stats.Add(Stat.armor, int.Parse(fields[3]));
-            this.Stats.Add(Stat.barrier, int.Parse(fields[4]));
-            this.Stats.Add(Stat.attack, int.Parse(fields[5]));
-            this.Stats.Add(Stat.range, int.Parse(fields[6]));
-            this.Stats.Add(Stat.attackType, int.Parse(fields[7]));
+            if(counter < 20)
+            {
+                Thread.Sleep(5);
+                goto retry;
+            }
             
         }
+        
 
+        return definition;
     }
 
     #endregion

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Myths_Library;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,7 +45,6 @@ public class SelectedMythPanelBehaviour : MonoBehaviour
             UpdateName();
             UpdateSpells();
             UpdatePassive();
-            UpdateAttackAndRange();
             UpdateTeambuilderAction();
         }
         
@@ -88,14 +88,14 @@ public class SelectedMythPanelBehaviour : MonoBehaviour
 
     public void UpdateSpells()
     {
-        for (int i = 0; i < 4; i++)
+        /*for (int i = 0; i < 4; i++)
         {
 
             spells[i].Init(linkedMyth.Spells[i]);
         }
         ult[0].Init(linkedMyth.Spells[4]);
         ult[1].Init(linkedMyth.Spells[5]);
-        ult[2].Init(linkedMyth.Spells[6]);
+        ult[2].Init(linkedMyth.Spells[6]);*/
     }
 
     public void UpdatePassive()
@@ -103,14 +103,7 @@ public class SelectedMythPanelBehaviour : MonoBehaviour
         passive.InitMyth(linkedMyth);
     }
 
-    public void UpdateAttackAndRange()
-    {
-        attackTag.text = linkedMyth.Stats[Stat.attack].ToString();
-        rangeTag.text = linkedMyth.Stats[Stat.range].ToString();
-        attackBg.color = (linkedMyth.Stats[Stat.attackType] == 1) ?
-            new Color32(255, 255, 0, 255)
-            : new Color32(200, 110, 255, 255);
-    }
+
     #endregion
 
     #region Control Methods
@@ -147,7 +140,7 @@ public class SelectedMythPanelBehaviour : MonoBehaviour
             team.AddMyth(linkedMyth);
         }
         UpdatePanel();
-        MenuManager.menuManager.teambuilder.UpdateLeaveButton();
+        //MenuManager.menuManager.teambuilder.UpdateLeaveButton();
     }
     #endregion
 }

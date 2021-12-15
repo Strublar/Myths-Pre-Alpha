@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 [Serializable]
 public class Trigger
 {
-    public TriggerSelector selector;
     public GameEventType eventType;
     public Condition[] conditions;
 
@@ -17,7 +16,6 @@ public class Trigger
 
         TriggerDefinition definition = new TriggerDefinition
         {
-            selector = selector,
             eventType = eventType
         };
 

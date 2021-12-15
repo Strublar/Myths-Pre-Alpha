@@ -9,7 +9,7 @@ namespace Myths_Server
      * Abstract Class
      * (TODO)
      */
-    class TargetSelector
+    public class TargetSelector
     {
         #region Attributes
         private int value = 0;

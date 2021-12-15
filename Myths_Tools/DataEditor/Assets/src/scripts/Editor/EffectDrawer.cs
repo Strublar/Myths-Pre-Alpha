@@ -27,23 +27,48 @@ public class EffectDrawer : PropertyDrawer
         DrawProperty(position, property, 0, "effectType");
         switch (type.intValue)
         {
+            case (int)EffectType.dealDamage:
+                DrawProperty(position, property, 1, "amount");
+                break;
+            case (int)EffectType.dealTrueDamage:
+                DrawProperty(position, property, 1, "amount");
+                break;
+            case (int)EffectType.heal:
+                DrawProperty(position, property, 1, "amount");
+                break;
+            case (int)EffectType.gainArmor:
+                DrawProperty(position, property, 1, "amount");
+                break;
             case (int)EffectType.gainMastery:
                 DrawProperty(position, property, 1, "element");
                 DrawProperty(position, property, 2, "amount");
                 break;
-            case (int)EffectType.dealDamage:
-                DrawProperty(position, property, 1, "amount");
-                
+            case (int)EffectType.placeListeningEffect:
+                //DrawProperty(position, property, 1, "amount");
                 break;
+            case (int)EffectType.push:
+                DrawProperty(position, property, 1, "amount");
+                break;
+            case (int)EffectType.pull:
+                DrawProperty(position, property, 1, "amount");
+                break;
+            case (int)EffectType.swap:
+                break;
+            case (int)EffectType.teleport:
+                break;
+            case (int)EffectType.consumeMastery:
+                DrawProperty(position, property, 1, "element");
+                DrawProperty(position, property, 2, "amount");
+                break;
+
             case (int)EffectType.modifyStat:
                 DrawProperty(position, property, 1, "stat");
                 DrawProperty(position, property, 2, "amount");
                 DrawProperty(position, property, 3, "temporary");
                 break;
-            case (int)EffectType.reduceSpellCost:
-                DrawProperty(position, property, 1, "element");
-                DrawProperty(position, property, 2, "amount");
+            case (int)EffectType.transferDefenses:
                 break;
+
             default:
                 break;
                 

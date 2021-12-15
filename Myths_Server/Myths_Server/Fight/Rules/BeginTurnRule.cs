@@ -29,21 +29,27 @@ namespace Myths_Server
                 
                 Entity target = fightHandler.Entities[newEvent.SourceId];
 
-                if(target is Unit && target.GetStat(Stat.isCalled) == 1)
+                if (!(newEvent as BeginTurnEvent).isDraft)
                 {
-                    Console.WriteLine("Begin Turn rule activated for " + fightHandler.Entities[newEvent.SourceId].Name);
-                    fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canMove, 1));
-
-                    if(target.GetStat(Stat.isEngaged) == 0)
+                    if (target is Unit && target.GetStat(Stat.isCalled) == 1)
                     {
-                        fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canRecall, 1));
+                        Console.WriteLine("Begin Turn rule activated for " + fightHandler.Entities[newEvent.SourceId].Name);
+                        fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canMove, 1));
+                        if (target.GetStat(Stat.isEngaged) == 0)
+                        {
+                            fightHandler.FireEvent(new EntityStatChangedEvent(target.Id, target.Id, Stat.canRecall, 1));
+                        }
+
+
                     }
-                    
+                    if (target is Player)
+                    {
+                        fightHandler.Game.ChangeCurrentPlayer();
+                    }
                 }
-                else if (target is Player)
-                {
-                    fightHandler.Game.ChangeCurrentPlayer();
-                }
+
+                
+                
             }
         }
 

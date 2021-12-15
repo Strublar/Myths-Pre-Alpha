@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Myths_Library;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +58,6 @@ public class TeambuilderMythBehaviour : MonoBehaviour
             UpdatePortrait();
             UpdateHp();
             UpdateArmor();
-            UpdateBarrier();
         }
 
     }
@@ -89,10 +89,6 @@ public class TeambuilderMythBehaviour : MonoBehaviour
         armorTag.text = linkedMyth.Stats[Stat.armor].ToString();
     }
 
-    public void UpdateBarrier()
-    {
-        barrierTag.text = linkedMyth.Stats[Stat.barrier].ToString();
-    }
 
 
     public void RemoveMyth()
@@ -113,8 +109,6 @@ public class TeambuilderMythBehaviour : MonoBehaviour
     public void UpdateTooltip()
     {
         string text = linkedMyth.Name
-            + "\nAttaque :  " + linkedMyth.Stats[Stat.attack]
-            + "\nPortee : " + linkedMyth.Stats[Stat.range]
             + "\nAppel : " + linkedMyth.Passives[0].Description
             + "\nPassif : " + linkedMyth.Passives[1].Description;
         toolTip.GetComponentInChildren<Text>().text = text;

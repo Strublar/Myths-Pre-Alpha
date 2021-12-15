@@ -6,9 +6,27 @@ namespace Myths_Library
 {
     public class FightDefines
     {
+        public static int GetDistance(int x1, int y1, int x2, int y2)
+        {
+            return (Math.Abs(x2 - x1) + Math.Abs(y2 - y1));
+        }
 
+        public static Stat GetStatFromMastery(Mastery element)
+        {
+            Dictionary<Mastery, Stat> converter = new Dictionary<Mastery, Stat>
+        {
+            {Mastery.fire,Stat.masteryFire },
+            {Mastery.water,Stat.masteryWater },
+            {Mastery.air,Stat.masteryAir },
+            {Mastery.earth,Stat.masteryEarth },
+            {Mastery.light,Stat.masteryLight },
+            {Mastery.dark,Stat.masteryDark }
+        };
+
+            return converter[element];
+        }
     }
-    public enum Stat
+    public enum Stat : byte
     {
         //Pure stats
 
@@ -37,7 +55,13 @@ namespace Myths_Library
         mana,
 
         //Player Stats
-        calls
+        calls,
+        masteryLight,
+        masteryDark,
+        masteryFire,
+        masteryWater,
+        masteryAir,
+        masteryEarth
     }
 
     public enum Mastery : int
@@ -55,7 +79,19 @@ namespace Myths_Library
 
     public enum GameEventType : int
     {
+        endTurn,
+        entityCall,
+        entityCastSpell,
+        entityMove,
+        entityRecall,
+        beginTurn,
+        endGame,
+        entityDies,
+        entityCalled,
+        entityMoved,
         entityStatChanged,
-        endTurn
+        firstSpellCast,
+        listeningEffectPlaced,
+        spellCast
     }
 }

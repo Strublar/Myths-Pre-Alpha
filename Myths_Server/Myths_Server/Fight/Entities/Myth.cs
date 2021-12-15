@@ -43,6 +43,7 @@ namespace Myths_Server
         public void InitMyth(FightHandler fightHandler, byte teamIndex, MythSet set)
         {
             MythDefinition definition = BuildDefinition(set.id);
+            this.Definition = definition;
             this.Name = definition.name;
             this.Elements = definition.elements;
 
@@ -52,10 +53,11 @@ namespace Myths_Server
                 {Stat.armor,definition.armor },
                 {Stat.mobility,definition.mobility },
                 {Stat.mana,definition.mana },
+                {Stat.energy,definition.energy },
 
                 {Stat.x,0 },
                 {Stat.y,0 },
-                {Stat.energy,0 },
+
                 {Stat.canMove,0 },
                 {Stat.canRecall,0 },
                 {Stat.canUlt1,0 },
@@ -67,16 +69,17 @@ namespace Myths_Server
             };
 
             this.Spells = new List<SpellDefinition>();
-            for(int i=0;i<4;i++)
+            this.masterySpells = new List<SpellDefinition>();
+            for (int i=0;i<3;i++)
             {
                 this.Spells.Add(definition.spellbook[set.spells[i]]);
-                this.MasterySpells.Add(definition.spellbook[set.spells[i]]);
+                this.MasterySpells.Add(definition.masterySpellBook[set.spells[i]]);
             }
 
             this.Ultimates = definition.ultimates;
 
 
-            fightHandler.Game.SendMessageToAllUsers(new InitMythMessage(Team, teamIndex, set));
+            fightHandler.Game.SendMessageToAllUsers(new InitMythMessage(Team, teamIndex,Id, set));
         }
 
         public MythDefinition BuildDefinition(int mythId)
@@ -86,12 +89,11 @@ namespace Myths_Server
             //Test Zone
             string path = "../../../Data/Myths/"+ mythId + ".xml";
 
-            string xml = File.ReadAllText(path);
             XmlSerializer serializer = new XmlSerializer(typeof(MythDefinition));
             FileStream fs = new FileStream(path, FileMode.Open);
             XmlReader reader = XmlReader.Create(fs);
             definition = (MythDefinition)serializer.Deserialize(reader);
-
+            fs.Close();
 
             return definition;
         }

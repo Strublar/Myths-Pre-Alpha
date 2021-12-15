@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,26 +30,19 @@ public class Unit : Entity
         
     }
 
-    public Unit(int ownerId,int entityId,int unitId) : base(entityId, unitId)
+    public Unit(int ownerId,int entityId) : base(entityId)
     {
         this.ownerId = ownerId;
         this.Stats.Add(Stat.hp, 0);
         this.Stats.Add(Stat.armor, 0);
-        this.Stats.Add(Stat.barrier, 0);
-        this.Stats.Add(Stat.attack, 0);
         this.Stats.Add(Stat.mobility, 2);
-        this.Stats.Add(Stat.range, 1);
-        this.Stats.Add(Stat.attackType, 1);
-        this.Stats.Add(Stat.canAttack, 0);
+
         this.Stats.Add(Stat.canMove, 0);
         this.Stats.Add(Stat.isCalled, 0);
         this.Stats.Add(Stat.isDead, 0);
         this.Stats.Add(Stat.x, 0);
         this.Stats.Add(Stat.y, 0);
-        this.Stats.Add(Stat.mastery1, 0);
-        this.Stats.Add(Stat.mastery2, 0);
-        this.Stats.Add(Stat.mastery3, 0);
-        ParseUnit(unitId);
+
     }
     #endregion
 

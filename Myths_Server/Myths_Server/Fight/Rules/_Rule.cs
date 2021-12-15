@@ -9,7 +9,7 @@ namespace Myths_Server
      * Abstract Class
      * (TODO)
      */
-    class Rule
+    public class Rule
     {
         #region Attributes
 

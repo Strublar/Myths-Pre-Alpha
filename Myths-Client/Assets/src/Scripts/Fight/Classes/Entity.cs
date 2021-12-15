@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ public class Entity
         GameManager.gm.entities.Add(id,this);
     }
 
-    public Entity(int id, int unitId)
+    public Entity(int id)
     {
         stats = new Dictionary<Stat, int>();
         this.id = id;

@@ -21,51 +21,38 @@ MonoBehaviour:
   mobility: 3
   energy: 1
   passives:
-  - passiveName: TestPassive
+  - passiveName: Test Passive
     id: 0
     icon: {fileID: 0}
-    description: 'End turn : Deal 3 damage to all enemies'
+    description: ' Move : deal 5 damages'
     executionTriggers:
-    - selector: 1
-      eventType: 1
-      conditions: []
-    effects:
-    - effects:
-      - effectType: 0
-        element: 0
-        amount: 3
-        temporary: 0
+    - eventType: 3
+      conditions:
+      - conditionType: 1
+        selector:
+          selector: 2
+          value: 0
+        inverse: 0
         stat: 0
-      targets:
-        selector: 3
         value: 0
-      conditions: []
-  - passiveName: TestPassive2
-    id: 0
-    icon: {fileID: 0}
-    description: 'End turn : Deal 4 damage to all characters'
-    executionTriggers:
-    - selector: 1
-      eventType: 1
-      conditions: []
     effects:
     - effects:
       - effectType: 0
         element: 0
-        amount: 4
+        amount: 5
         temporary: 0
         stat: 0
       targets:
-        selector: 5
+        selector: 1
         value: 0
       conditions: []
   spells:
   - spellName: Lava Flow
     id: 0
-    element: 0
+    element: 2
     isUltimate: 0
     isMastery: 0
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 49da65c9ffa634147b31ff3d929c2ddb, type: 3}
     description: Deal 3 damage
     cost: 1
     masteryGeneration: 1
@@ -83,16 +70,16 @@ MonoBehaviour:
         selector: 0
         value: 0
       conditions: []
-  - spellName: Lava Flow
+  - spellName: TestSpell2
     id: 0
-    element: 0
+    element: 4
     isUltimate: 0
     isMastery: 0
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: fb8f9d0c40cc5f147a8a7acf90e1a5aa, type: 3}
     description: Deal 3 damage
     cost: 1
-    masteryGeneration: 0
-    masteryCost: 0
+    masteryGeneration: 1
+    masteryCost: 3
     minRange: 1
     maxRange: 3
     effects:
@@ -106,16 +93,16 @@ MonoBehaviour:
         selector: 0
         value: 0
       conditions: []
-  - spellName: Lava Flow
+  - spellName: Test Spell 3
     id: 0
-    element: 0
+    element: 2
     isUltimate: 0
     isMastery: 0
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 442e63d9e94bdc145b7d280d7e3837f8, type: 3}
     description: Deal 3 damage
     cost: 1
-    masteryGeneration: 0
-    masteryCost: 0
+    masteryGeneration: 1
+    masteryCost: 4
     minRange: 1
     maxRange: 3
     effects:
@@ -158,7 +145,30 @@ MonoBehaviour:
     element: 0
     isUltimate: 0
     isMastery: 1
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 72844de9260c09b4e8f8de97fb333312, type: 3}
+    description: Deal 5 damage
+    cost: 1
+    masteryGeneration: 0
+    masteryCost: 2
+    minRange: 1
+    maxRange: 3
+    effects:
+    - effects:
+      - effectType: 0
+        element: 0
+        amount: 5
+        temporary: 0
+        stat: 0
+      targets:
+        selector: 0
+        value: 0
+      conditions: []
+  - spellName: TestSpell2
+    id: 0
+    element: 0
+    isUltimate: 0
+    isMastery: 1
+    icon: {fileID: 21300000, guid: ca33f391509463c44a904df9b0f08ff8, type: 3}
     description: Deal 5 damage
     cost: 1
     masteryGeneration: 0
@@ -181,30 +191,7 @@ MonoBehaviour:
     element: 0
     isUltimate: 0
     isMastery: 1
-    icon: {fileID: 0}
-    description: Deal 5 damage
-    cost: 1
-    masteryGeneration: 0
-    masteryCost: 2
-    minRange: 1
-    maxRange: 3
-    effects:
-    - effects:
-      - effectType: 0
-        element: 0
-        amount: 5
-        temporary: 0
-        stat: 0
-      targets:
-        selector: 0
-        value: 0
-      conditions: []
-  - spellName: Lava Flow
-    id: 0
-    element: 0
-    isUltimate: 0
-    isMastery: 1
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 8665badf0fe96924980c2016222cf5db, type: 3}
     description: Deal 5 damage
     cost: 1
     masteryGeneration: 0

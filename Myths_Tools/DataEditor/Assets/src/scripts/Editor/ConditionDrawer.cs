@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(Condition))]
+//[CustomPropertyDrawer(typeof(Condition))]
 public class ConditionDrawer : PropertyDrawer
 {
     private int height = 0;
@@ -25,13 +25,22 @@ public class ConditionDrawer : PropertyDrawer
         position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
         DrawProperty(position, property, 0, "conditionType");
+        DrawProperty(position, property, 1, "selector");
         switch (type.intValue)
         {
-            case (int)ConditionType.statEventCondition://TODO
-                DrawProperty(position, property, 1, "mustBeTrue");
-                DrawProperty(position, property, 2, "stat");
-                DrawProperty(position, property, 3, "statOperation");
+            case (int)ConditionType.hasStat:
+                DrawProperty(position, property, 2, "inverse");
+                DrawProperty(position, property, 3, "stat");
                 DrawProperty(position, property, 4, "value");
+                break;
+            case (int)ConditionType.isEffectHolder:
+                DrawProperty(position, property, 2, "inverse");
+                break;
+            case (int)ConditionType.isTarget:
+                DrawProperty(position, property, 2, "inverse");
+                break;
+            case (int)ConditionType.isSource:
+                DrawProperty(position, property, 2, "inverse");
                 break;
             default:
                 break;

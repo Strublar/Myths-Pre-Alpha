@@ -32,20 +32,20 @@ namespace Myths_Server
             {
                 if (statEvent.StatId == Stat.isCalled && statEvent.NewValue == 1)
                 {
-
-                    Entity summonedEntity = fightHandler.Entities[newEvent.TargetId];
+                    //TODO spawn adds
+                    Myth summonedEntity = fightHandler.Entities[newEvent.TargetId] as Myth;
                     Console.WriteLine("SummonRule executed for " + summonedEntity.Name);
                     if (summonedEntity != null)
                     {
-                        /*foreach (ListeningEffectDefinition listeningEffectDefinition
-                            in summonedEntity.Definition.BaseListeningEffects)
+                        foreach (ListeningEffectDefinition listeningEffectDefinition
+                            in summonedEntity.Definition.passives)
                         {
                             ListeningEffect newListeningEffect =
                                 new ListeningEffect(newEvent.TargetId, listeningEffectDefinition);
                             fightHandler.ListeningEffects.Add(newListeningEffect);
                             fightHandler.FireEvent(new ListeningEffectPlacedEvent(newEvent.TargetId, newEvent.TargetId,
                                 newListeningEffect.Id));
-                        }*/
+                        }
                     }
                 }
             }

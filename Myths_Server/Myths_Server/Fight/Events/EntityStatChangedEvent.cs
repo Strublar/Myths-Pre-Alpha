@@ -20,6 +20,7 @@ namespace Myths_Server
         #region Constructor
         public EntityStatChangedEvent(int targetId, int sourceId, Stat stat, int newValue) : base(targetId, sourceId)
         {
+            EventType = GameEventType.entityStatChanged ;
             this.statId = stat;
             this.newValue = newValue;
         }

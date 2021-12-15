@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Myths_Library;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ public class SpellBehaviour : MonoBehaviour
 
     public void UpdateEnergy()
     {
-        int spellCost = Mathf.Max(0, linkedSpell.EnergyCost - GameManager.gm.GetCostReduction(linkedSpell.Element));
+        int spellCost = Mathf.Max(0, linkedSpell.EnergyCost);
         energyTag.text = spellCost.ToString();
     }
 
@@ -119,7 +120,7 @@ public class SpellBehaviour : MonoBehaviour
         {
             GameManager.gm.selectedUnit = linkedSpell.Owner;
             GameManager.gm.selectedSpell = linkedSpell;
-            TileBehaviour.UpdateCastingTiles(linkedSpell.Owner, linkedSpell);
+            Tile.UpdateCastingTiles(linkedSpell.Owner, linkedSpell);
         }
         
 
@@ -128,18 +129,17 @@ public class SpellBehaviour : MonoBehaviour
     public void OnDrop()
     {
         if (GameManager.gm.selectedTile != null &&
-            GameManager.gm.selectedTile.currentTexture == GameManager.gm.selectedTile.textureTileCasting &&
-            GameManager.gm.selectedUnit.Stats[Stat.energy] >=
-            Mathf.Max(linkedSpell.EnergyCost - GameManager.gm.GetCostReduction(linkedSpell.Element)))
+            GameManager.gm.selectedTile.material.color == GameManager.gm.selectedTile.castColor &&
+            GameManager.gm.selectedUnit.Stats[Stat.energy] >= Mathf.Max(linkedSpell.EnergyCost))
         {
             Debug.Log("Casting " + GameManager.gm.selectedSpell.Name + " on tile " + GameManager.gm.selectedTile.x
                     + " " + GameManager.gm.selectedTile.y);
 
-            Server.SendMessageToServer(new CastSpellMessage(linkedSpell.Owner.Id, linkedSpell.Id,
-                GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));
+            /*Server.SendMessageToServer(new CastSpellMessage(linkedSpell.Owner.Id, linkedSpell.Id,
+                GameManager.gm.selectedTile.x, GameManager.gm.selectedTile.y));*/
             
         }
-        TileBehaviour.ResetTiles();
+        Tile.ResetTiles();
     }
 
     public void OnPointerEnter()

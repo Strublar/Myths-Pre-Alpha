@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Myths_Server
 {
-    class Player : Entity
+    public class Player : Entity
     {
         #region Attributes
         private int initiative;
@@ -35,7 +35,13 @@ namespace Myths_Server
             this.Stats = new Dictionary<Stat, int>
             {
                 { Stat.calls, 0 },
-                { Stat.mana, 0 }
+                { Stat.mana, 0 },
+                { Stat.masteryLight, 0 },
+                { Stat.masteryWater, 0 },
+                { Stat.masteryDark, 0 },
+                { Stat.masteryAir, 0 },
+                { Stat.masteryFire, 0 },
+                { Stat.masteryEarth, 0 }
             };
             this.Name = fightHandler.Game.Users[this.Team].Username;
             Console.WriteLine("Send player " + this.Team + " to " + this.Team + " and " + (1 - this.Team));

@@ -11,7 +11,7 @@ namespace Myths_Library
         //Index of the passive chosen
         public byte passive;
         //Index of chosen spells in spellbook
-        public byte[] spells = new byte[4];
+        public byte[] spells = new byte[3];
 
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +21,7 @@ public class Server : MonoBehaviour
     //Network relative variables
     public static Thread listeningThread;
     public static NetworkStream clientStream;
-    private static Dictionary<byte, Action<byte[]>> messageProcessor;
+    private static MessageProcessor messageProcessor;
     public static Queue<byte[]> workerQueue;
 
     //User relative variables
@@ -35,48 +36,29 @@ public class Server : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        Server.messageProcessor = new Dictionary<byte, Action<byte[]>>();
-        Server.messageProcessor.Add((byte)ServerMessageType.LoggedIn, OnLoggedIn);
-        Server.messageProcessor.Add((byte)ServerMessageType.LoggedOut, OnLoggedOut);
-        Server.messageProcessor.Add((byte)ServerMessageType.QueueJoined, OnQueueJoined);
-        Server.messageProcessor.Add((byte)ServerMessageType.QueueLeft, OnQueueLeft);
-        Server.messageProcessor.Add((byte)ServerMessageType.MatchFound, OnMatchFound);
 
+        messageProcessor = new MessageProcessor();
+        messageProcessor.processor.Add(typeof(LoggedInMessage), OnLoggedIn);
+        messageProcessor.processor.Add(typeof(LoggedOutMessage), OnLoggedOut);
+        messageProcessor.processor.Add(typeof(QueueJoinedMessage), OnQueueJoined);
+        messageProcessor.processor.Add(typeof(QueueLeftMessage), OnQueueLeft);
+        messageProcessor.processor.Add(typeof(MatchFoundMessage), OnMatchFound);
 
-        //Fight messages
-        //Start game messages
-        Server.messageProcessor.Add((byte)ServerMessageType.InitPlayer, OnInitPlayer);
-        Server.messageProcessor.Add((byte)ServerMessageType.InitMyth, OnInitMyth);
-        Server.messageProcessor.Add((byte)ServerMessageType.StartGame, OnStartGame);
+        messageProcessor.processor.Add(typeof(InitPlayerMessage), OnInitPlayer);
+        messageProcessor.processor.Add(typeof(InitMythMessage), OnInitMyth);
 
-        //other fight messages
-        Server.messageProcessor.Add((byte)ServerMessageType.EntityStatChanged, OnEntityStatChanged);
-        Server.messageProcessor.Add((byte)ServerMessageType.UnitCalled, OnUnitCalled);
-        Server.messageProcessor.Add((byte)ServerMessageType.UnitMoved, OnUnitMoved);
-        Server.messageProcessor.Add((byte)ServerMessageType.UnitAttack, OnUnitAttack);
-        Server.messageProcessor.Add((byte)ServerMessageType.UnitUncalled, OnUnitUncalled);
-        Server.messageProcessor.Add((byte)ServerMessageType.BeginTurn, OnBeginTurn);
-        Server.messageProcessor.Add((byte)ServerMessageType.EndGame, OnEndGame);
-        Server.messageProcessor.Add((byte)ServerMessageType.SpellCast, OnSpellCast);
-        Server.messageProcessor.Add((byte)ServerMessageType.InitPortal, OnInitPortal);
-        Server.messageProcessor.Add((byte)ServerMessageType.CapturePortal, OnCapturePortal);
+        messageProcessor.processor.Add(typeof(EntityStatChangedMessage), OnEntityStatChanged);
+        messageProcessor.processor.Add(typeof(EntityCalledMessage), OnUnitCalled);
+        messageProcessor.processor.Add(typeof(EntityUnCalledMessage), OnUnitUnCalled);
+        messageProcessor.processor.Add(typeof(EntityMovedMessage), OnUnitMoved);
+        messageProcessor.processor.Add(typeof(BeginTurnMessage), OnBeginTurn);
+
 
         Server.workerQueue = new Queue<byte[]>();
-        //test
-        /*byte[] player1 = {(byte)ServerMessageType.InitPlayer,0,0,0,0,0,0,0,0,1 };
-        byte[] playerName1 = Encoding.UTF8.GetBytes("player1");
-        int originalLength = player1.Length;
-        Array.Resize<byte>(ref player1, originalLength + playerName1.Length);
-        Array.Copy(playerName1, 0, player1, originalLength, playerName1.Length);
-        byte[] player2 = { (byte)ServerMessageType.InitPlayer, 0, 0, 0, 1, 0, 0, 0, 1, 0 };
-        byte[] playerName2 = Encoding.UTF8.GetBytes("player2");
-        int originalLength2 = player2.Length;
-        Array.Resize<byte>(ref player2, originalLength2 + playerName2.Length);
-        Array.Copy(playerName2, 0, player2, originalLength2, playerName2.Length);
-        OnInitPlayer(player1);
-        OnInitPlayer(player2);*/
+
+
     }
-    
+
 
 
     private void Update()
@@ -91,8 +73,8 @@ public class Server : MonoBehaviour
             }
         }
         catch (Exception) { }
-        
-        
+
+
     }
     #endregion
 
@@ -128,7 +110,7 @@ public class Server : MonoBehaviour
         {
             Debug.Log("failed to connect..." + e);
             connectionTry++;
-            if(connectionTry <3)
+            if (connectionTry < 3)
             {
                 goto connection;
             }
@@ -158,12 +140,12 @@ public class Server : MonoBehaviour
             try
             {
 
-                
+
                 byte[] buffer = new byte[256];
                 int messageLength;
-                while((messageLength = Server.clientStream.Read(buffer, 0, buffer.Length)) != 0)
+                while ((messageLength = Server.clientStream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    if(messageLength==256)
+                    if (messageLength == 256)
                     {
                         //string request = "";
                         int counterNull = 0;
@@ -183,10 +165,10 @@ public class Server : MonoBehaviour
 
                         workerQueue.Enqueue((byte[])buffer.Clone());
                     }
-                    
+
                     buffer = new byte[256];
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -238,9 +220,13 @@ public class Server : MonoBehaviour
     {
         try
         {
-            messageProcessor[message[0]].Invoke(message);
+            //messageProcessor[message[0]].Invoke(message);
+            Message messageObject = messageProcessor.GenerateServerMessage(message);
+            messageObject.ParseMessage(message);
+            messageProcessor.processor[messageObject.GetType()].Invoke(messageObject);
+
         }
-        catch(KeyNotFoundException)
+        catch (KeyNotFoundException)
         {
             Debug.LogError("Key not found in message : " + message[0]);
         }
@@ -250,43 +236,42 @@ public class Server : MonoBehaviour
 
     #region User Methods
 
-    private static void OnLoggedIn(byte[] message)
+    private static void OnLoggedIn(Message message)
     {
         Debug.Log("Logged in message received");
-        string loginName = Encoding.UTF8.GetString(message, 1, message.Length - 1);
-        Server.username = loginName;
+        Server.username = (message as LoggedInMessage).username;
         Server.currentUserMode = UserMode.LoggedIn;
         MenuManager.UpdateDisplay(MenuManager.menuManager.OnLoggedIn);
     }
 
-    private static void OnLoggedOut(byte[] message)
+    private static void OnLoggedOut(Message message)
     {
         Debug.Log("Logged out Message received");
         Server.currentUserMode = UserMode.Connected;
         MenuManager.UpdateDisplay(MenuManager.menuManager.OnLoggedOut);
     }
 
-    private static void OnQueueJoined(byte[] message)
+    private static void OnQueueJoined(Message message)
     {
         Debug.Log("Queue Joined Message received");
         Server.currentUserMode = UserMode.InQueue;
         MenuManager.UpdateDisplay(MenuManager.menuManager.OnQueueJoined);
     }
 
-    private static void OnQueueLeft(byte[] message)
+    private static void OnQueueLeft(Message message)
     {
         Debug.Log("Queue Left Message received");
         Server.currentUserMode = UserMode.LoggedIn;
         MenuManager.UpdateDisplay(MenuManager.menuManager.OnQueueLeft);
     }
 
-    private static void OnMatchFound(byte[] message)
+    private static void OnMatchFound(Message message)
     {
         Debug.Log("Match Found Message received");
 
         Server.currentUserMode = UserMode.MatchFound;
         MenuManager.UpdateDisplay(MenuManager.menuManager.OnMatchFound);
-        
+
     }
 
     #endregion
@@ -294,82 +279,81 @@ public class Server : MonoBehaviour
     #region Fight Messages
 
     #region Start Game
-    private static void OnInitPlayer(byte[] message)
+    private static void OnInitPlayer(Message message)
     {
         Debug.Log("Init Player message recieved");
-        
 
-        int playerId = Utils.ParseInt(message, 1);
-        int entityId = Utils.ParseInt(message, 5);
-        bool isLocalPlayer = (message[9] == 0) ? false : true;
-        string playerName = Encoding.UTF8.GetString(message, 10, 32);
-        object[] parameters = { playerId, entityId, playerName, isLocalPlayer };
-        GameManager.fightUpdates.Enqueue(GameManager.OnInitPlayer);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
+        if ((message as InitPlayerMessage).isLocalPlayer)
+        {
+            Debug.Log("I am : " + (message as InitPlayerMessage).playerName);
+        }
+        else
+        {
+            Debug.Log("opponent is : " + (message as InitPlayerMessage).playerName);
+        }
+
+        FightProcessor.fightUpdates.Enqueue(GameManager.gm.InitPlayer);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
+
     }
 
-    private static void OnInitMyth(byte[] message)
+    private static void OnInitMyth(Message message)
     {
         Debug.Log("Init Myth message recieved");
-        int playerId = Utils.ParseInt(message, 1);
-        byte teamIndex = message[5];
-        int entityId = Utils.ParseInt(message, 6);
-        int unitId = Utils.ParseInt(message, 10);
-        int hp = Utils.ParseInt(message, 14);
-        int armor = Utils.ParseInt(message, 18);
-        int barrier = Utils.ParseInt(message, 22);
-        int attack = Utils.ParseInt(message, 26);
-        int range = Utils.ParseInt(message, 30);
-        int attackType = Utils.ParseInt(message, 34);
-        int mobility = Utils.ParseInt(message, 38);
-        object[] parameters = { playerId, teamIndex, entityId, unitId, hp, armor, barrier, attack, range, attackType, mobility };
-        GameManager.fightUpdates.Enqueue(GameManager.OnInitMyth);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
+
+
+        Debug.Log("Myth id is " + (message as InitMythMessage).set.id);
+
+        FightProcessor.fightUpdates.Enqueue(GameManager.gm.InitMyth);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
 
     }
 
-    private static void OnStartGame(byte[] message)
+    #endregion
+    
+
+
+    private static void OnEntityStatChanged(Message message)
     {
-        //Nothing from now
+
+
+        //Debug.Log("Entity stat changed Message received, Stat is "+stat+" newvalue is " +newValue);
+        FightProcessor.fightUpdates.Enqueue(FightProcessor.OnEntityStatCHanged);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
     }
 
-    private static void OnEntityStatChanged(byte[] message)
+    private static void OnUnitCalled(Message message)
     {
-        
-        int targetId = Utils.ParseInt(message, 1);
-        Stat stat = (Stat)message[5];
-        int newValue = Utils.ParseInt(message, 6);
-        object[] parameters = { targetId, stat, newValue };
-        Debug.Log("Entity stat changed Message received, Stat is "+stat+" newvalue is " +newValue);
-        GameManager.fightUpdates.Enqueue(GameManager.OnEntityStatCHanged);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
-    }
 
-    private static void OnUnitCalled(byte[] message)
+        /*Debug.Log("Unit Called Message received, unit is " + GameManager.gm.entities[targetId].Name +
+            " on position " + x + " " + y);*/
+        FightProcessor.fightUpdates.Enqueue(FightProcessor.OnUnitCalled);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
+    }
+    
+    private static void OnUnitMoved(Message message)
     {
-        
-        int targetId = Utils.ParseInt(message, 1);
-        int x = Utils.ParseInt(message, 5);
-        int y = Utils.ParseInt(message, 9);
-        object[] parameters = { targetId,x,y};
-        Debug.Log("Unit Called Message received, unit is " +GameManager.gm.entities[targetId].Name+
-            " on position "+x+" "+y);
-        GameManager.fightUpdates.Enqueue(GameManager.OnUnitCalled);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
+
+        //Debug.Log("Unit moved Message received, unit is "+GameManager.gm.entities[targetId].Name+" on "+x+" "+y);
+        FightProcessor.fightUpdates.Enqueue(FightProcessor.OnUnitMoved);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
     }
 
-    private static void OnUnitMoved(byte[] message)
+    private static void OnBeginTurn(Message message)
     {
-        
-        int targetId = Utils.ParseInt(message, 1);
-        int x = Utils.ParseInt(message, 5);
-        int y = Utils.ParseInt(message, 9);
-        object[] parameters = { targetId ,x,y};
-        Debug.Log("Unit moved Message received, unit is "+GameManager.gm.entities[targetId].Name+" on "+x+" "+y);
-        GameManager.fightUpdates.Enqueue(GameManager.OnUnitMoved);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
+        Debug.Log("Begin turn Message received");
+        FightProcessor.fightUpdates.Enqueue(FightProcessor.OnBeginTurn);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
     }
 
+    private static void OnUnitUnCalled(Message message)
+    {
+
+        FightProcessor.fightUpdates.Enqueue(FightProcessor.OnUnitUncalled);
+        FightProcessor.fightUpdatesParam.Enqueue(message);
+    }
+
+    /*
     private static void OnUnitAttack(byte[] message)
     {
         Debug.Log("Unit attack Message received");
@@ -380,25 +364,9 @@ public class Server : MonoBehaviour
         GameManager.fightUpdatesParam.Enqueue(parameters);
     }
 
-    private static void OnUnitUncalled(byte[] message)
-    {
-        Debug.Log("Unit uncall Message received");
-        int targetId = Utils.ParseInt(message, 1);
+    
 
-        object[] parameters = { targetId };
-        GameManager.fightUpdates.Enqueue(GameManager.OnUnitUncalled);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
-    }
-
-    private static void OnBeginTurn(byte[] message)
-    {
-        Debug.Log("Begin turn Message received");
-        int playerId = Utils.ParseInt(message, 1);
-
-        object[] parameters = { playerId };
-        GameManager.fightUpdates.Enqueue(GameManager.OnBeginTurn);
-        GameManager.fightUpdatesParam.Enqueue(parameters);
-    }
+    
 
     private static void OnEndGame(byte[] message)
     {
@@ -444,7 +412,22 @@ public class Server : MonoBehaviour
         GameManager.fightUpdatesParam.Enqueue(parameters);
     }
     #endregion
-
+*/
     #endregion
 }
 
+public enum UserMode
+{
+    Launching,
+    Teambuilding,
+    Connecting,
+    Connected,
+    LoggingIn,
+    LoggedIn,
+    LoggingOut,
+    EnteringQueue,
+    InQueue,
+    LeavingQueue,
+    MatchFound
+
+}

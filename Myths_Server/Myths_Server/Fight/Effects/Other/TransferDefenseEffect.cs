@@ -21,8 +21,8 @@ namespace Myths_Server
         {
         }
 
-        public TransferDefenseEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
-            : base(sources, targets, values)
+        public TransferDefenseEffect(EffectDefinition definition) 
+            : base(definition)
         {
 
         }
@@ -44,7 +44,6 @@ namespace Myths_Server
                 fightHandler.FireEvent(new EntityStatChangedEvent(targetId, targetId, Stat.armor,
                     (int)MathF.Min(target.Stats[Stat.armor], target.GetStat(Stat.armor) + source.GetStat(Stat.armor))));
             }
-            fightHandler.FireEvent(new GainArmorEvent(targetId, targetId, source.GetStat(Stat.armor)));
 
 
 

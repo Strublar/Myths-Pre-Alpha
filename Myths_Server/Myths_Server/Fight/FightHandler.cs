@@ -12,7 +12,7 @@ namespace Myths_Server
      * Fire the Events and process all the actions of the Events
      * Manage what happens in the fight
      */
-    class FightHandler
+    public class FightHandler
     {
 
         #region Attributes
@@ -77,7 +77,7 @@ namespace Myths_Server
             /*FireEvent(new EntityCallEvent(myth10.Id, player1.Id, 0, 2));
             FireEvent(new EntityCallEvent(myth20.Id, player2.Id, 6, 2));*/
 
-            //InitGame(player1, player2);
+            InitGame(player1, player2);
             
             //FireEvent(new BeginTurnEvent(myth10.Id, myth10.Id));
 
@@ -244,27 +244,28 @@ namespace Myths_Server
                 {
                     if(myth.Owner == player1)
                     {
-                        player1.Initiative += myth.Stats[Stat.hp];
+                        player1.Initiative += myth.Stats[Stat.mana];
                     }
                     if(myth.Owner == player2)
                     {
-                        player2.Initiative += myth.Stats[Stat.hp];
+                        player2.Initiative += myth.Stats[Stat.mana];
                     }
                 }
             }
 
-            if(player1.Initiative<=player2.Initiative)
+            FireEvent(new EntityStatChangedEvent(player1.Id, player1.Id,Stat.mana,player1.Initiative));
+            FireEvent(new EntityStatChangedEvent(player2.Id, player1.Id, Stat.mana, player2.Initiative));
+
+            if (player1.Initiative<=player2.Initiative)
             {
                 game.ChangeCurrentPlayer();
-                FireEvent(new EntityStatChangedEvent(player1.Id, player1.Id, Stat.calls, 1));
-                FireEvent(new EntityStatChangedEvent(player2.Id, player2.Id, Stat.calls, 2));
-                FireEvent(new BeginTurnEvent(player2.Id, player2.Id));
+
+                FireEvent(new BeginTurnEvent(player2.Id, player2.Id,true));
             }
             else
             {
-                FireEvent(new EntityStatChangedEvent(player1.Id, player2.Id, Stat.calls, 2));
-                FireEvent(new EntityStatChangedEvent(player2.Id, player2.Id, Stat.calls, 1));
-                FireEvent(new BeginTurnEvent(player1.Id, player1.Id));
+
+                FireEvent(new BeginTurnEvent(player1.Id, player1.Id, true));
             }
             
         }

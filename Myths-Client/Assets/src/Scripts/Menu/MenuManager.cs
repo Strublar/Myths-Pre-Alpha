@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Myths_Library;
+using TMPro;
+using UnityEngine.UI;
 
 /**
  * MenuManager
@@ -15,14 +18,12 @@ public class MenuManager : MonoBehaviour
     #region Variables
     public static MenuManager menuManager;
 
-    public GameObject connectingText;
+    public Text connectingText;
     public GameObject enterWindow;
     public GameObject connectedWindow;
     public GameObject loggedInWindow;
     public GameObject inQueueWindow;
-    public GameObject teambuilderWindow;
-    public SelectedTeamBehaviour selectedTeam;
-    public TeambuilderBehaviour teambuilder;
+
     //For interface update on main threat purpose
     private static Queue<Action> menuUpdates = new Queue<Action>();
     #endregion
@@ -31,10 +32,10 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        initPrefs:
+    initPrefs:
 
         int firstLoad = PlayerPrefs.GetInt("First load");
-        if(firstLoad == 0)
+        if (firstLoad == 0)
         {
             PlayerPrefs.SetInt("Myth1", 4);
             PlayerPrefs.SetInt("Myth2", 0);
@@ -52,11 +53,11 @@ public class MenuManager : MonoBehaviour
             int myth4 = PlayerPrefs.GetInt("Myth4");
             int myth5 = PlayerPrefs.GetInt("Myth5");
 
-            selectedTeam.AddMyth(Myth.ParseMyth(myth1));
+            /*selectedTeam.AddMyth(Myth.ParseMyth(myth1));
             selectedTeam.AddMyth(Myth.ParseMyth(myth2));
             selectedTeam.AddMyth(Myth.ParseMyth(myth3));
             selectedTeam.AddMyth(Myth.ParseMyth(myth4));
-            selectedTeam.AddMyth(Myth.ParseMyth(myth5));
+            selectedTeam.AddMyth(Myth.ParseMyth(myth5));*/
 
         }
 
@@ -69,16 +70,16 @@ public class MenuManager : MonoBehaviour
     {
         MenuManager.menuManager = this;
         enterWindow.SetActive(true);
-        
+
     }
 
     void Update()
     {
-        while(menuUpdates.Count>0)
+        while (menuUpdates.Count > 0)
         {
             menuUpdates.Dequeue().Invoke();
         }
-        
+
     }
 
     #endregion
@@ -87,19 +88,17 @@ public class MenuManager : MonoBehaviour
 
     public void OnLocalButtonPressed()
     {
-        connectingText.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
         Thread connectionThread = new Thread(() => Server.Connect("127.0.0.1"));
         connectionThread.IsBackground = true;
         connectionThread.Start();
 
         //Update menu window
         enterWindow.SetActive(false);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Connecting...";
+        connectingText.text = "Connecting...";
     }
 
     public void OnOnlineButtonPressed()
     {
-        connectingText.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
 
         //Thread connectionThread = new Thread(() => Server.Connect("90.92.24.188"));
         Thread connectionThread = new Thread(() => Server.Connect("90.100.222.219"));
@@ -113,7 +112,8 @@ public class MenuManager : MonoBehaviour
         connectingText.GetComponent<UnityEngine.UI.Text>().text = "Connecting...";
     }
 
-    public void OnTeambuilderButtonPressed()
+    //TODO BUIlDER
+    /*public void OnTeambuilderButtonPressed()
     {
         enterWindow.SetActive(false);
         
@@ -131,23 +131,23 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetInt("Myth4", selectedTeam.myths[3].LinkedMyth.Id);
         PlayerPrefs.SetInt("Myth5", selectedTeam.myths[4].LinkedMyth.Id);
         enterWindow.SetActive(true);
-    }
+    }*/
     public void OnLoginButtonPressed()
     {
 
-        string username = connectedWindow.GetComponentInChildren<UnityEngine.UI.Text>().text;
+        string username = connectedWindow.GetComponentInChildren<Text>().text;
 
         if (username.Equals(""))
         {
             username = "Player Name";
         }
 
-        Debug.Log("Message to send : " + username+"END");
+        Debug.Log("Message to send : " + username + "END");
         Server.SendMessageToServer(new LoginMessage(username));
 
         //Update menu window
         connectedWindow.SetActive(false);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Logging in ...";
+        connectingText.text = "Logging in ...";
     }
 
     public void OnLogoutButtonPressed()
@@ -156,23 +156,41 @@ public class MenuManager : MonoBehaviour
 
         //Update menu window
         loggedInWindow.SetActive(false);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Logging out ...";
+        connectingText.text = "Logging out ...";
     }
 
     public void OnEnterQueueButtonPressed()
     {
 
-        Server.SendMessageToServer(new JoinQueueMessage(
+        /*Server.SendMessageToServer(new JoinQueueMessage(
             selectedTeam.myths[0].LinkedMyth.Id,
             selectedTeam.myths[1].LinkedMyth.Id,
             selectedTeam.myths[2].LinkedMyth.Id,
             selectedTeam.myths[3].LinkedMyth.Id,
             selectedTeam.myths[4].LinkedMyth.Id
-            ));
+            ));*/
+
+        //SELECTED TEAM (TMP)
+        TeamSet team = new TeamSet();
+        List<MythSet> sets = new List<MythSet>();
+        for (int i = 0; i < 5; i++)
+        {
+            MythSet set = new MythSet();
+            set.id = 0;
+            set.passive = 0;
+            set.spells = new byte[]
+            {
+                0,1,2
+            };
+            sets.Add(set);
+        }
+        team.myths = sets.ToArray();
+
+        Server.SendMessageToServer(new JoinQueueMessage(team));
 
         //Update menu window
         loggedInWindow.SetActive(false);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Entering queue ...";
+        connectingText.text = "Entering queue ...";
     }
 
     public void OnLeaveQueueButtonPressed()
@@ -181,7 +199,7 @@ public class MenuManager : MonoBehaviour
 
         //Update menu window
         inQueueWindow.SetActive(false);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Leaving queue ...";
+        connectingText.text = "Leaving queue ...";
     }
 
     #endregion
@@ -198,41 +216,43 @@ public class MenuManager : MonoBehaviour
     public void OnConnectionFailed()
     {
         enterWindow.SetActive(true);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Connection failed";
+        connectingText.text = "Connection failed";
     }
     public void OnConnected()
     {
         connectedWindow.SetActive(true);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Connected";
+        connectingText.text = "Connected";
     }
 
     public void OnLoggedIn()
     {
         loggedInWindow.SetActive(true);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Welcome : "+Server.username;
+        connectingText.text = "Welcome : " + Server.username;
     }
 
     public void OnLoggedOut()
     {
         connectedWindow.SetActive(true);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Connected";
+        connectingText.text = "Connected";
     }
 
     public void OnQueueJoined()
     {
         inQueueWindow.SetActive(true);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Looking for a match...";
+        connectingText.text = "Looking for a match...";
     }
 
     public void OnQueueLeft()
     {
         loggedInWindow.SetActive(true);
-        connectingText.GetComponent<UnityEngine.UI.Text>().text = "Welcome : " + Server.username;
+        connectingText.text = "Welcome : " + Server.username;
     }
 
     public void OnMatchFound()
     {
+        Debug.Log("MATCH FOUND");
         SceneManager.LoadScene("FightScene");
+        
     }
     #endregion
 

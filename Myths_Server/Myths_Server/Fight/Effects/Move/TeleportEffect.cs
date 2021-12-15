@@ -21,8 +21,8 @@ namespace Myths_Server
         {
         }
 
-        public TeleportEffect(TargetSelector sources, TargetSelector targets, List<int> values) 
-            : base(sources, targets, values)
+        public TeleportEffect(EffectDefinition definition) 
+            : base(definition)
         {
 
         }
@@ -33,7 +33,7 @@ namespace Myths_Server
         {
 
                     
-            Entity target = fightHandler.Entities[targetId];
+           /* Entity target = fightHandler.Entities[targetId];
             int targetX = effectContext.X;
             int targetY = effectContext.Y;
                     
@@ -46,7 +46,7 @@ namespace Myths_Server
                     Stat.y, targetY));
 
                 fightHandler.FireEvent(new EntityMovedEvent(targetId, targetId, targetX, targetY));
-            }
+            }*/
 
         }
         #endregion

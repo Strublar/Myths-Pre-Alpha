@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Myths_Library;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,7 +91,7 @@ public class MythPanelBehaviour : MonoBehaviour
         {
 
             recallButton.SetActive(false);
-            //Ultimate 1
+            /*//Ultimate 1
             if(linkedMyth.Stats[Stat.canUlt1] == 1)
             {
                 ults[0].gameObject.SetActive(true);
@@ -122,7 +123,7 @@ public class MythPanelBehaviour : MonoBehaviour
             else
             {
                 ults[2].gameObject.SetActive(false);
-            }
+            }*/
 
         }
         
@@ -139,14 +140,7 @@ public class MythPanelBehaviour : MonoBehaviour
             canMove.SetActive(false);
         }
 
-        if (linkedMyth.Stats[Stat.canAttack] == 1)
-        {
-            canAttack.SetActive(true);
-        }
-        else
-        {
-            canAttack.SetActive(false);
-        }
+
     }
     
     public void UpdateSpells()
@@ -154,7 +148,7 @@ public class MythPanelBehaviour : MonoBehaviour
         for(int i=0;i<4;i++)
         {
             
-            spells[i].Init(linkedMyth.Spells[i]);
+            //spells[i].Init(linkedMyth.Spells[i]);
         }
     }
 
@@ -195,7 +189,7 @@ public class MythPanelBehaviour : MonoBehaviour
 
         //this.gameObject.SetActive(false);
         Debug.Log("Recalling");
-        Server.SendMessageToServer(new RecallMessage(linkedMyth.Id, GameManager.gm.players[GameManager.gm.localPlayerId].Id));
+        //Server.SendMessageToServer(new RecallMessage(linkedMyth.Id, GameManager.gm.players[GameManager.gm.localPlayerId].Id));
     }
 
     public void MythRecalled()

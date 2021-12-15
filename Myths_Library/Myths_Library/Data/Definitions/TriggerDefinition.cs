@@ -8,16 +8,7 @@ namespace Myths_Library
     public class TriggerDefinition
     {
         public GameEventType eventType;
-        public TriggerSelector selector;
         public ConditionDefinition[] conditions;
-    }
-    public enum TriggerSelector: byte
-    {
-        any,
-        source,
-        target,
-    }
-
-    
+    }  
 
 }

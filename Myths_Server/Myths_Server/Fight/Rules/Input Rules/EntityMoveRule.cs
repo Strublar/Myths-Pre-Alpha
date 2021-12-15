@@ -35,6 +35,8 @@ namespace Myths_Server
                         Stat.y, moveEvent.Y));
                     fightHandler.FireEvent(new EntityStatChangedEvent(moveEvent.TargetId, moveEvent.TargetId,
                         Stat.canMove, 0));
+                    fightHandler.FireEvent(new EntityStatChangedEvent(moveEvent.TargetId, moveEvent.TargetId,
+                        Stat.canRecall, 0));
                     fightHandler.FireEvent(new EntityMovedEvent(moveEvent.TargetId, moveEvent.TargetId, moveEvent.X, moveEvent.Y));
 
                 }

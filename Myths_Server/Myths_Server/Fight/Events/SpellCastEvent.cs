@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +20,7 @@ namespace Myths_Server
         #region Constructor
         public SpellCastEvent(int targetId, int sourceId,int spellId,int x, int y) : base(targetId, sourceId)
         {
+            EventType = GameEventType.spellCast;
             this.SpellId = spellId;
             this.X = x;
             this.Y = y;

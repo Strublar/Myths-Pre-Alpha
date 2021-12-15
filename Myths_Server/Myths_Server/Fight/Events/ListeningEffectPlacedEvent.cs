@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace Myths_Server
         #region Constructor
         public ListeningEffectPlacedEvent(int targetId, int sourceId, int listeningEffectId) : base(targetId, sourceId)
         {
+            EventType = GameEventType.listeningEffectPlaced;
             this. listeningEffectId = listeningEffectId;
         }
 

@@ -94,6 +94,11 @@ namespace Myths_Server
             messageProcessor.processor.Add(typeof(LogoutMessage), Logout);
             messageProcessor.processor.Add(typeof(JoinQueueMessage), JoinQueue);
             messageProcessor.processor.Add(typeof(LeaveQueueMessage), LeaveQueue);
+
+            messageProcessor.processor.Add(typeof(CallMessage), OnCall);
+            messageProcessor.processor.Add(typeof(UnCallMessage), OnUnCall);
+            messageProcessor.processor.Add(typeof(EndTurnMessage), OnEndTurn);
+            messageProcessor.processor.Add(typeof(MoveMessage), OnMove);
         }
         #endregion
 
@@ -239,79 +244,53 @@ namespace Myths_Server
 
         #region Fight Methods
 
-        public void OnAttack(byte[] message)
-        {
-            int attackerId = Utils.ParseInt(message, 1);
-            int targetId = Utils.ParseInt(message, 5);
-            object[] parameters = { attackerId, targetId };
-            if(game.CurrentPlayer == this)
-            {
-                this.game.WorkerQueue.Enqueue(this.game.OnAttack);
-                this.game.WorkerQueueParameters.Enqueue(parameters);
-            }
-        }
 
-        public void OnCall(byte[] message)
+
+        public void OnCall(Message message)
         {
-            int targetId = Utils.ParseInt(message, 1);
-            int playerId = Utils.ParseInt(message, 5);
-            int x = Utils.ParseInt(message, 9);
-            int y = Utils.ParseInt(message, 13);
-            bool isSwitch = (message[17] == 1);
-            object[] parameters = { targetId,playerId,x,y,isSwitch };
             if (game.CurrentPlayer == this)
             {
                 this.game.WorkerQueue.Enqueue(this.game.OnCall);
-                this.game.WorkerQueueParameters.Enqueue(parameters);
+                this.game.WorkerQueueParameters.Enqueue(message);
             }
         }
 
-        public void OnCastSpell(byte[] message)
+        public void OnCastSpell(Message message)
         {
-            int casterId = Utils.ParseInt(message, 1);
-            int spellId = Utils.ParseInt(message, 5);
-            int x = Utils.ParseInt(message, 9);
-            int y = Utils.ParseInt(message, 13);
-            object[] parameters = { casterId, spellId, x, y };
+
             if (game.CurrentPlayer == this)
             {
                 this.game.WorkerQueue.Enqueue(this.game.OnCastSpell);
-                this.game.WorkerQueueParameters.Enqueue(parameters);
+                this.game.WorkerQueueParameters.Enqueue(message);
             }
         }
 
-        public void OnEndTurn(byte[] message)
+        public void OnEndTurn(Message message)
         {
-            object[] parameters = { this};
             if (game.CurrentPlayer == this)
             {
                 this.game.WorkerQueue.Enqueue(this.game.OnEndTurn);
-                this.game.WorkerQueueParameters.Enqueue(parameters);
+                this.game.WorkerQueueParameters.Enqueue(message);
             }
         }
 
-        public void OnMove(byte[] message)
+        public void OnMove(Message message)
         {
-            int targetId = Utils.ParseInt(message, 1);
-            int x = Utils.ParseInt(message, 5);
-            int y = Utils.ParseInt(message, 9);
-            object[] parameters = { targetId, x, y };
+
             if (game.CurrentPlayer == this)
             {
                 this.game.WorkerQueue.Enqueue(this.game.OnMove);
-                this.game.WorkerQueueParameters.Enqueue(parameters);
+                this.game.WorkerQueueParameters.Enqueue(message);
             }
         }
 
-        public void OnRecall(byte[] message)
+        public void OnUnCall(Message message)
         {
-            int targetId = Utils.ParseInt(message, 1);
-            int playerId = Utils.ParseInt(message, 5);
-            object[] parameters = { targetId, playerId };
+
             if (game.CurrentPlayer == this)
             {
                 this.game.WorkerQueue.Enqueue(this.game.OnRecall);
-                this.game.WorkerQueueParameters.Enqueue(parameters);
+                this.game.WorkerQueueParameters.Enqueue(message);
             }
         }
 

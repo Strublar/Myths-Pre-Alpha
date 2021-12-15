@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +9,7 @@ namespace Myths_Server
     {
         #region Attributes
 
+        public bool isDraft;
         #endregion
 
         #region Getters & Setters
@@ -15,9 +17,10 @@ namespace Myths_Server
         #endregion
 
         #region Constructor
-        public BeginTurnEvent(int targetId, int sourceId) : base(targetId, sourceId)
+        public BeginTurnEvent(int targetId, int sourceId, bool isDraft) : base(targetId, sourceId)
         {
-
+            EventType = GameEventType.beginTurn;
+            this.isDraft = isDraft;
         }
 
         

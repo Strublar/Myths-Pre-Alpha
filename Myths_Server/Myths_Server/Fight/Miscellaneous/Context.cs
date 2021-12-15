@@ -8,7 +8,7 @@ namespace Myths_Server
      * -----Context-----
      * Contains informations of the context where/when an Event is fired
      */
-    class Context
+    public class Context
     {
         #region Attributes
         private FightHandler fightHandler;

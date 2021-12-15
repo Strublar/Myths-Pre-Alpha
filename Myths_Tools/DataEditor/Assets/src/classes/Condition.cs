@@ -12,9 +12,8 @@ public class Condition
 
     public ConditionType conditionType;
     public TargetSelector selector;
-    public bool mustBeTrue = true;
+    public bool inverse;
     public Stat stat;
-    public StatOperation statOperation;
     public int value;
 
     public ConditionDefinition BuildDefinition()
@@ -22,11 +21,11 @@ public class Condition
         ConditionDefinition definition = new ConditionDefinition
         {
             type = conditionType,
-            mustBeTrue = mustBeTrue,
+            inverse = inverse,
             stat = stat,
-            statOperation = statOperation,
             value = value
         };
+        definition.selector = selector.BuildDefinition();
 
         return definition;
     }

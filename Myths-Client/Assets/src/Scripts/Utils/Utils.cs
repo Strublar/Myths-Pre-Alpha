@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,6 @@ using UnityEngine;
 
 class Utils
 {
-    public static int ParseInt(byte[]message, int startIndex)
-    {
-
-        byte[] intArray = new byte[4];
-        Array.Copy(message, startIndex, intArray, 0, 4);
-
-
-        return BitConverter.ToInt32(intArray, 0);
-    }
 
     public static bool LineOfSight(int x1,int y1,int x2, int y2)
     {
@@ -54,7 +46,7 @@ class Utils
                 {
                     return true;
                 }
-            } while (GameManager.gm.UnitOnTile(x, y) == null );
+            } while (Utils.UnitOnTile(x, y) == null );
             return false;
         }
         else
@@ -73,7 +65,7 @@ class Utils
                 {
                     return true;
                 }
-            } while (GameManager.gm.UnitOnTile(x, y) == null);
+            } while (Utils.UnitOnTile(x, y) == null);
             return false;
         }
 
@@ -112,7 +104,7 @@ class Utils
                     {
                         if (currentX != sourceX || currentY != sourceY)
                         {
-                            if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                            if (Utils.UnitOnTile(currentX, currentY) != null)
                             {
                                 return false;
                             }
@@ -125,7 +117,7 @@ class Utils
                     {
                         if (currentX != sourceX || currentY != sourceY)
                         {
-                            if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                            if (Utils.UnitOnTile(currentX, currentY) != null)
                             {
                                 return false;
                             }
@@ -140,7 +132,7 @@ class Utils
                     {
                         if (currentX != sourceX || currentY != sourceY)
                         {
-                            if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                            if (Utils.UnitOnTile(currentX, currentY) != null)
                             {
                                 return false;
                             }
@@ -167,7 +159,7 @@ class Utils
                     {
                         if (currentX != sourceX || currentY != sourceY)
                         {
-                            if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                            if (Utils.UnitOnTile(currentX, currentY) != null)
                             {
                                 return false;
                             }
@@ -180,7 +172,7 @@ class Utils
                     {
                         if (currentX != sourceX || currentY != sourceY)
                         {
-                            if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                            if (Utils.UnitOnTile(currentX, currentY) != null)
                             {
                                 return false;
                             }
@@ -195,7 +187,7 @@ class Utils
                     {
                         if (currentX != sourceX || currentY != sourceY)
                         {
-                            if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                            if (Utils.UnitOnTile(currentX, currentY) != null)
                             {
                                 return false;
                             }
@@ -254,7 +246,7 @@ class Utils
                 }
                 if (currentX != sourceX || currentY != sourceY)
                 {
-                    if (GameManager.gm.UnitOnTile(currentX, currentY) != null)
+                    if (Utils.UnitOnTile(currentX, currentY) != null)
                     {
                         return false;
                     }
@@ -276,7 +268,7 @@ class Utils
 
         for (; yDirection > 0 ? currentY < targetY : currentY > targetY; currentY += yDirection)
         {
-            if (GameManager.gm.UnitOnTile(targetX, currentY) != null)
+            if (Utils.UnitOnTile(targetX, currentY) != null)
             {
                 return false;
             }
@@ -292,7 +284,7 @@ class Utils
 
         for(int i = startY+1;i<endY;++i)
         {
-            if(GameManager.gm.UnitOnTile(x1,i) != null)
+            if(Utils.UnitOnTile(x1,i) != null)
             {
                 return false;
             }
@@ -301,6 +293,29 @@ class Utils
         return true;
     }
 
+    public static Unit UnitOnTile(int x, int y)
+    {
+        var units = GameManager.gm.entities.Values.OfType<Unit>();
 
+        Unit unitOnTile = null;
+        List<Unit> unitsOnTile = (from unit in units
+                                  where unit.Stats[Stat.x] == x
+                                  && unit.Stats[Stat.y] == y &&
+                                  unit.Stats[Stat.isCalled] == 1
+                                  select unit).ToList();
+        if (unitsOnTile.Count == 1)
+        {
+            unitOnTile = unitsOnTile[0];
+            return unitOnTile;
+        }
+        else if (unitsOnTile.Count > 1)
+        {
+            Console.WriteLine("There can't be multiple units on this tile : " + x + " " + y);
+        }
+        return null;
+
+    }
+
+    
 }
 

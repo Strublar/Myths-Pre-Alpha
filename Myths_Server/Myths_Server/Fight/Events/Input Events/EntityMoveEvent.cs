@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,6 +19,7 @@ namespace Myths_Server
         #region Constructor
         public EntityMoveEvent(int targetId, int sourceId, int x, int y) : base(targetId, sourceId)
         {
+            EventType = GameEventType.entityMove;
             this.x = x;
             this.y = y;
         }

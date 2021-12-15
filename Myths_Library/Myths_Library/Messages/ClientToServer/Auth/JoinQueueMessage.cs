@@ -27,7 +27,7 @@ namespace Myths_Library
                 MythSet currentSet = teamSet.myths[i];
                 returnArray = Message.AddInt(this, returnArray, currentSet.id);
                 returnArray = Message.AddByte(this, returnArray, currentSet.passive);
-                for (int j=0;j<4;j++)
+                for (int j=0;j<3;j++)
                 {
                     returnArray = Message.AddByte(this, returnArray, currentSet.spells[j]);
                 }
@@ -46,7 +46,7 @@ namespace Myths_Library
                 MythSet currentSet = new MythSet();
                 currentSet.id = ParseInt(message);
                 currentSet.passive = ParseByte(message);
-                for(int j=0;j<4;j++)
+                for(int j=0;j<3;j++)
                 {
                     currentSet.spells[j] = ParseByte(message);
                 }

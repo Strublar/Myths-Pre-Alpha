@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,6 +19,7 @@ namespace Myths_Server
         #region Constructor
         public FirstSpellOfTurnCastEvent(int targetId, int sourceId, int spellId) : base(targetId, sourceId)
         {
+            EventType = GameEventType.firstSpellCast;
             this.SpellId = spellId;
         }
 

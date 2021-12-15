@@ -13,24 +13,16 @@ namespace Myths_Library
 
         //Data
 
-        public bool mustBeTrue;
+        public bool inverse;
         public Stat stat;
-        public StatOperation statOperation;
         public int value;
     }
 
     public enum ConditionType : byte
     {
-        statEventCondition,
+        hasStat,
+        isSource,
+        isTarget,
+        isEffectHolder
     }
-
-    public enum StatOperation
-    {
-        changed,
-        gained,
-        lost
-    }
-
-
-
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myths_Library;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,15 +10,19 @@ namespace Myths_Server
      * Abstract Class
      * Determines if an effect should apply 
      */
-    class Condition
+    public class Condition
     {
 
         #region Attributes
+        private ConditionDefinition definition;
+        private TargetSelector targets;
         private int value;
         #endregion
 
         #region Getters & Setters
         public int Value { get => value; set => this.value = value; }
+        public ConditionDefinition Definition { get => definition; set => definition = value; }
+        public TargetSelector Targets { get => targets; set => targets = value; }
         #endregion
 
         #region Constructor
@@ -25,7 +30,13 @@ namespace Myths_Server
         {
         }
 
-        
+        public Condition(ConditionDefinition definition)
+        {
+            this.definition = definition;
+            targets = TargetSelectorBuilder.BuildFrom(definition.selector);
+        }
+
+
         #endregion
 
         #region Methods

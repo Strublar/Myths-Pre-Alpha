@@ -10,13 +10,14 @@ namespace Myths_Server
      * -----Entity-----
      * Abstract class that contains the definition of an Entity
      */
-    class Entity
+    public class Entity
     {
         public static int nextId = 0;
         #region Attributes
         private int id;
         private string name;
         private int team;
+        private EntityDefinition definition;
         private Dictionary<Stat, int> stats;
         private List<Event> events;
 
@@ -29,6 +30,7 @@ namespace Myths_Server
         public int Team { get => team; set => team = value; }
 
         public string Name { get => name; set => name = value; }
+        public EntityDefinition Definition { get => definition; set => definition = value; }
         #endregion
 
         #region Constructor
